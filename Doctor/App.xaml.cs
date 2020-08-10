@@ -49,8 +49,18 @@ namespace Doctor
             }
             client.Start();
             //System.Diagnostics.Process.Start("cmd.exe", "regsvr32 Ry4SCom.dll");
+            MessageReceived();
 
-
+        }
+        /// <summary>
+        /// 服务端返回的消息
+        /// </summary>
+        private void MessageReceived()
+        {
+            //注册消息接收事件，接收服务端发送的数据
+            client.MessageReceived += (data) => {
+                MessageBox.Show(data);
+            };
         }
 
     }

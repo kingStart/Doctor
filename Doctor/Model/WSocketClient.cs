@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SuperSocket.ClientEngine;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -84,9 +85,9 @@ namespace Doctor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void WebSocket_Error(object sender, EventArgs e)
+        void WebSocket_Error(object sender, SuperSocket.ClientEngine.ErrorEventArgs e)
         {
-            _Logger.Info("websocket_Error:" );
+            _Logger.Info("websocket_Error:"+e.Exception.ToString() );
         }
         /// <summary>
         /// Socket打开事件
