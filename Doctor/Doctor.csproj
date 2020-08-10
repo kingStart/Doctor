@@ -61,6 +61,7 @@
     <Compile Include="DcPlan.xaml.cs">
       <DependentUpon>DcPlan.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\HttpHelper.cs" />
     <Compile Include="Search.xaml.cs">
       <DependentUpon>Search.xaml</DependentUpon>
     </Compile>
