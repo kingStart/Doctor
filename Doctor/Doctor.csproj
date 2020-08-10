@@ -61,6 +61,20 @@
     <Compile Include="DcPlan.xaml.cs">
       <DependentUpon>DcPlan.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\PatientInfo.cs" />
+    <Compile Include="Model\WebSocketResult.cs" />
+    <Compile Include="Model\StoreTreeAcuherb.cs" />
+    <Compile Include="Model\Acupoint.cs" />
+    <Compile Include="Model\Diagnosis.cs" />
+    <Compile Include="Model\FilterWm.cs" />
+    <Compile Include="Model\UserInfo.cs" />
+    <Compile Include="Model\DoctorInfo.cs" />
+    <Compile Include="Model\Symptom.cs" />
+    <Compile Include="Model\HealthData.cs" />
+    <Compile Include="Model\ZCYVender.cs" />
+    <Compile Include="Model\ZCY.cs" />
+    <Compile Include="Model\WebApiResult.cs" />
+    <Compile Include="Model\SuspectedDisease.cs" />
     <Compile Include="Search.xaml.cs">
       <DependentUpon>Search.xaml</DependentUpon>
     </Compile>
@@ -196,5 +210,6 @@
   <ItemGroup>
     <Resource Include="Resources\收起.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
