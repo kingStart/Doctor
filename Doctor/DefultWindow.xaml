@@ -1,0 +1,50 @@
+﻿<Window x:Class="Doctor.DefultWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Doctor"
+        mc:Ignorable="d"
+        WindowStyle="None" AllowDrop="True" ResizeMode="NoResize"   BorderThickness="0"  Height="600" Width="350">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#3484F5" >
+            <Label x:Name="titleLabel" FontWeight="Bold"  Margin="0,0,0,0.4" HorizontalContentAlignment="Left"  Foreground="White"  FontSize="15" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="30"   Width="267">全科医生机器人辅助诊断系统</Label>
+            <Button   Template="{StaticResource MaxBtn}" Margin="10,0,0,0" />
+            <Button   Template="{StaticResource MinBtn}" Margin="5,0,0,0" />
+            <Button   Template="{StaticResource CloseBtn}" Margin="5,0,0,0" />
+        </StackPanel>
+        <StackPanel  Grid.Row="1" Background="White">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200"></RowDefinition>
+                    <RowDefinition Height="200"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                   
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" VerticalAlignment="Center">
+                    <Image Width="100" Height="100" VerticalAlignment="Center" HorizontalAlignment="Center" Source="/Doctor;component/Resources/logo.png"></Image>
+                </StackPanel>
+                <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Vertical">
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                        <Label FontSize="14" Foreground="#009EFF" FontWeight="Bold">李医生,</Label>
+                        <Label FontSize="14"  FontWeight="Bold">您好！</Label>
+                    </StackPanel>
+                    <Label FontSize="14" FontWeight="Bold" HorizontalContentAlignment="Center">我是您的全科医生助手。</Label>
+                    <Label FontSize="14" FontWeight="Bold">我会根据您的电子病历系统中输入患者主诉信息为</Label>
+                    <Label FontSize="14" FontWeight="Bold" HorizontalContentAlignment="Center">您推荐疑似疾病及中西医疗法方案。</Label>
+                </StackPanel>
+                <StackPanel Grid.Row="2" HorizontalAlignment="Center" Orientation="Vertical">
+
+                    <Label FontSize="14" FontWeight="Bold" Foreground="#999999" HorizontalContentAlignment="Center">可点击右上角关闭按钮最小化窗口，需要时</Label>
+                    <Label FontSize="14" FontWeight="Bold" HorizontalContentAlignment="Center" Foreground="#999999">点击“AI辅诊”将我唤醒。</Label>
+                 
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+
+    </Grid>
+</Window>

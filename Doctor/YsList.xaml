@@ -1,0 +1,130 @@
+﻿<Window x:Class="Doctor.YsList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Doctor"
+        mc:Ignorable="d"
+        WindowStyle="None" AllowDrop="True" ResizeMode="NoResize"   BorderThickness="0"  Height="600" Width="350">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#3484F5" >
+            <Label x:Name="titleLabel" FontWeight="Bold"  Margin="0,0,0,0.4" HorizontalContentAlignment="Left"  Foreground="White"  FontSize="15" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="30"   Width="267">全科医生机器人辅助诊断系统</Label>
+            <Button   Template="{StaticResource MaxBtn}" Margin="10,0,0,0" />
+            <Button   Template="{StaticResource MinBtn}" Margin="5,0,0,0" />
+            <Button   Template="{StaticResource CloseBtn}" Margin="5,0,0,0" />
+        </StackPanel>
+        <StackPanel  Grid.Row="1" Background="White">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"></RowDefinition>
+                  
+                    <RowDefinition Height="*"></RowDefinition>
+                   
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0">
+                    <Label Height="40"  Width="300" Background="White" Foreground="#3484F5"  FontSize="18" FontWeight="Bold"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center">「 张三三   男   36岁 」</Label>
+                </StackPanel>
+                <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35"></RowDefinition>
+                            <RowDefinition Height="30"></RowDefinition>
+                            <RowDefinition Height="400"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Orientation="Vertical"  >
+                            <StackPanel Orientation="Horizontal">
+                                <Label Height="30" Width="200" Margin="10,0,0,0" FontSize="14"  FontWeight="Bold" VerticalContentAlignment="Center" VerticalAlignment="Center" Content="疑似疾病"/>
+
+                            </StackPanel>
+     
+
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" Orientation="Vertical">
+                            <Label Height="30" Width="290"  FontSize="12" Foreground="Red"   HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Content="以下疑似疾病仅供参考，实际以医生判断为准"/>
+
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="2" Orientation="Vertical" >
+                            <StackPanel Orientation="Vertical" Background="#F8F8F8">
+
+                                <Label Height="23" Width="60" Background=" #009EFF"  FontSize="9.5" Foreground="White"   HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Center" Content="自定义"/>
+                                <StackPanel Height="40" Orientation="Horizontal">
+                                    <Label Height="40" Width="100" Margin="5,0,0,0" FontSize="13"  FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="慢性肠胃炎"/>
+                                    <Image Width="20" Height="25" Source="/Doctor;component/Resources/急.png"></Image>
+                                    <Image Width="20" Height="25" Source="/Doctor;component/Resources/危.png"></Image>
+                                    <Image Width="20" Height="25" Source="/Doctor;component/Resources/重.png"></Image>
+                                    <Label Height="40" Width="55" Margin="5,0,0,0" FontSize="13"  FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="置信度："/>
+                                    <Label Height="40" Width="60"  FontSize="13" Foreground="#009EFF"  FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="85%"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Background="#F8F8F8" Margin="0,10,0,0">
+
+                                <Label Height="23" Width="60" Background=" #009EFF"  FontSize="9.5" Foreground="White"   HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Center" Content="自定义"/>
+                                <StackPanel Height="40" Orientation="Horizontal">
+                                    <Label Height="40" Width="100" Margin="5,0,0,0" FontSize="13"  FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="慢性肠胃炎"/>
+                                    <Image Width="20" Height="25" Source="/Doctor;component/Resources/急.png"></Image>
+                                    <Image Width="20" Height="25" Source="/Doctor;component/Resources/危.png"></Image>
+                                    <Image Width="20" Height="25" Source="/Doctor;component/Resources/重.png"></Image>
+                                    <Label Height="40" Width="55" Margin="5,0,0,0" FontSize="13"  FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="置信度："/>
+                                    <Label Height="40" Width="60"  FontSize="13" Foreground="#009EFF"  FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="85%"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Background="#F8F8F8" Margin="0,10,0,0">
+
+                                <Label Height="23" Width="60" Background=" #009EFF"  FontSize="9.5" Foreground="White"   HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Center" Content="自定义"/>
+                                <StackPanel Height="40" Orientation="Horizontal">
+                                    <Label Height="40" Width="100" Margin="5,0,0,0" FontSize="13"  FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="慢性肠胃炎"/>
+                                    <Image Width="20" Height="25" Source="/Doctor;component/Resources/急.png"></Image>
+                                    <Image Width="20" Height="25" Source="/Doctor;component/Resources/危.png"></Image>
+                                    <Image Width="20" Height="25" Source="/Doctor;component/Resources/重.png"></Image>
+                                    <Label Height="40" Width="55" Margin="5,0,0,0" FontSize="13"  FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="置信度："/>
+                                    <Label Height="40" Width="60"  FontSize="13" Foreground="#009EFF"  FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="85%"/>
+                                </StackPanel>
+
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Background="#F8F8F8" Margin="0,10,0,0">
+
+                                <Label Height="23" Width="60" Background=" #009EFF"  FontSize="9.5" Foreground="White"   HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Center" Content="自定义"/>
+                                <StackPanel Height="40" Orientation="Horizontal">
+                                    <Label Height="40" Width="100" Margin="5,0,0,0" FontSize="13"  FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="慢性肠胃炎"/>
+                                    <Image Width="20" Height="25" Source="/Doctor;component/Resources/急.png"></Image>
+                                    <Image Width="20" Height="25" Source="/Doctor;component/Resources/危.png"></Image>
+                                    <Image Width="20" Height="25" Source="/Doctor;component/Resources/重.png"></Image>
+                                    <Label Height="40" Width="55" Margin="5,0,0,0" FontSize="13"  FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="置信度："/>
+                                    <Label Height="40" Width="60"  FontSize="13" Foreground="#009EFF"  FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="85%"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Background="#F8F8F8" Margin="0,10,0,0">
+
+                                <Label Height="23" Width="60" Background=" #009EFF"  FontSize="9.5" Foreground="White"   HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Center" Content="自定义"/>
+                                <StackPanel Height="40" Orientation="Horizontal">
+                                    <Label Height="40" Width="100" Margin="5,0,0,0" FontSize="13"  FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="慢性肠胃炎"/>
+                                    <Image Width="20" Height="25" Source="/Doctor;component/Resources/急.png"></Image>
+                                    <Image Width="20" Height="25" Source="/Doctor;component/Resources/危.png"></Image>
+                                    <Image Width="20" Height="25" Source="/Doctor;component/Resources/重.png"></Image>
+                                    <Label Height="40" Width="55" Margin="5,0,0,0" FontSize="13"  FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="置信度："/>
+                                    <Label Height="40" Width="60"  FontSize="13" Foreground="#009EFF"  FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="85%"/>
+                                </StackPanel>
+                            </StackPanel>
+
+
+                        </StackPanel>
+                        <StackPanel Grid.Row="3" Orientation="Horizontal">
+                            <Image HorizontalAlignment="Center" VerticalAlignment="Center" Width="20" Height="20" Source="/Doctor;component/Resources/记录 .png"></Image>
+                            <Label Height="40" Width="120"  FontSize="13" Foreground="Black"  FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="共计：18"/>
+                            <Button Background="White" BorderBrush="White"  FontWeight="Bold" Foreground="#009EFF" HorizontalContentAlignment="Right" Width="150">查看更多>></Button>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            
+               
+            </Grid>
+        </StackPanel>
+
+    </Grid>
+</Window>

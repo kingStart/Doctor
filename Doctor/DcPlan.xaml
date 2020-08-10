@@ -1,0 +1,69 @@
+﻿<Window x:Class="Doctor.DcPlan"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Doctor"
+        mc:Ignorable="d"
+        WindowStyle="None" AllowDrop="True" ResizeMode="NoResize"   BorderThickness="0"  Height="500" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#F8F8F8 " >
+            <Label x:Name="titleLabel" FontWeight="Bold"  Margin="0,0,0,0.4" HorizontalContentAlignment="Left"    FontSize="15" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="30"   Width="417">治疗方案</Label>
+
+            <Button   Template="{StaticResource CloseWindwoBtn}" Margin="360,0,0,0" />
+        </StackPanel>
+        <StackPanel  Grid.Row="1" Background="White">
+            <StackPanel Orientation="Horizontal" >
+                <Label Height="40" Width="320" FontSize="16" FontWeight="Bold" Padding="10" VerticalContentAlignment="Center" VerticalAlignment="Center">一般治疗</Label>
+               
+            </StackPanel>
+            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                <Label VerticalContentAlignment="Center" FontSize="15"  HorizontalContentAlignment="Center" Height="40" Width="800"  Background="#F4F4F4" >注意休息   注意保暖   注意休息   注意保暖   注意休息   注意保暖   注意休息</Label>
+    
+
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" >
+                <Label Height="40" Width="320" FontSize="16" FontWeight="Bold" Padding="10" VerticalContentAlignment="Center" VerticalAlignment="Center">药物治疗</Label>
+
+            </StackPanel>
+            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                <Label VerticalContentAlignment="Center" FontSize="15" Padding="20,0,0,0" Foreground="#009EFF" FontWeight="Bold" HorizontalContentAlignment="Left" Height="40" Width="25"  Background="#F4F4F4" >I</Label>
+                <Label VerticalContentAlignment="Center" FontSize="15" HorizontalContentAlignment="Left" Height="40" Width="778"  Background="#F4F4F4" >抗感染</Label>
+
+
+            </StackPanel>
+            <StackPanel Margin="0,0,0,0" Orientation="Horizontal">
+                <Label VerticalContentAlignment="Center" FontSize="15" Padding="20,0,0,0"  HorizontalContentAlignment="Left" Height="40" Width="800"  Background="#F4F4F4" >注意休息   注意保暖   注意休息   注意保暖   注意休息   注意保暖   注意休息</Label>
+
+
+            </StackPanel>
+            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                <Label VerticalContentAlignment="Center" FontSize="15" Padding="20,0,0,0" Foreground="#009EFF" FontWeight="Bold" HorizontalContentAlignment="Left" Height="40" Width="25"  Background="#F4F4F4" >I</Label>
+                <Label VerticalContentAlignment="Center" FontSize="15" HorizontalContentAlignment="Left" Height="40" Width="778"  Background="#F4F4F4" >抗感染</Label>
+
+
+            </StackPanel>
+            <StackPanel Margin="0,0,0,0" Orientation="Horizontal">
+                <Label VerticalContentAlignment="Center" FontSize="15" Padding="20,0,0,0"  HorizontalContentAlignment="Left" Height="40" Width="800"  Background="#F4F4F4" >注意休息   注意保暖   注意休息   注意保暖   注意休息   注意保暖   注意休息</Label>
+
+
+            </StackPanel>
+            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                <Label VerticalContentAlignment="Center" FontSize="15" Padding="20,0,0,0" Foreground="#009EFF" FontWeight="Bold" HorizontalContentAlignment="Left" Height="40" Width="25"  Background="#F4F4F4" >I</Label>
+                <Label VerticalContentAlignment="Center" FontSize="15" HorizontalContentAlignment="Left" Height="40" Width="778"  Background="#F4F4F4" >抗感染</Label>
+
+
+            </StackPanel>
+            <StackPanel Margin="0,0,0,0" Orientation="Horizontal">
+                <Label VerticalContentAlignment="Center" FontSize="15" Padding="20,0,0,0"  HorizontalContentAlignment="Left" Height="40" Width="800"  Background="#F4F4F4" >注意休息   注意保暖   注意休息   注意保暖   注意休息   注意保暖   注意休息</Label>
+
+
+            </StackPanel>
+        </StackPanel>
+       
+    </Grid>
+</Window>
