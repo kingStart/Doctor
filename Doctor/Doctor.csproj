@@ -92,7 +92,7 @@
     <Compile Include="DcPlan.xaml.cs">
       <DependentUpon>DcPlan.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\HttpHelper.cs" />
+    <Compile Include="Service\HttpHelper.cs" />
     <Compile Include="Model\WSocketClient.cs" />
     <Compile Include="Model\PatientInfo.cs" />
     <Compile Include="Model\WebSocketResult.cs" />
