@@ -92,6 +92,9 @@
     <Compile Include="DcPlan.xaml.cs">
       <DependentUpon>DcPlan.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\DiseaseDosageSchedule.cs" />
+    <Compile Include="Model\Disease.cs" />
+    <Compile Include="Model\DrugKnowledageBase.cs" />
     <Compile Include="Service\HttpHelper.cs" />
     <Compile Include="Model\WSocketClient.cs" />
     <Compile Include="Model\PatientInfo.cs" />
