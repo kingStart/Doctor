@@ -36,6 +36,9 @@ namespace Doctor
 
             doctor = LoginService.LoginUser(doctor);
 
+            var dlg = new DefultWindow(doctor);
+            dlg.ShowDialog();
+
 
             base.OnStartup(e);
         }

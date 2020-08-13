@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Doctor"
         mc:Ignorable="d"
-        WindowStyle="None" AllowDrop="True" ResizeMode="NoResize"   BorderThickness="0"  Height="600" Width="350">
+        WindowStyle="None" AllowDrop="True" ResizeMode="NoResize"   BorderThickness="0"  Height="600" Width="350" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
@@ -13,9 +13,9 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#3484F5" >
             <Label x:Name="titleLabel" FontWeight="Bold"  Margin="0,0,0,0.4" HorizontalContentAlignment="Left"  Foreground="White"  FontSize="15" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="30"   Width="267">全科医生机器人辅助诊断系统</Label>
-            <Button   Template="{StaticResource MaxBtn}" Margin="10,0,0,0" />
-            <Button   Template="{StaticResource MinBtn}" Margin="5,0,0,0" />
-            <Button   Template="{StaticResource CloseBtn}" Margin="5,0,0,0" />
+            <Button Template="{StaticResource MaxBtn}" Margin="10,0,0,0" x:Name="MaxBtn"/>
+            <Button Template="{StaticResource MinBtn}" Margin="5,0,0,0" x:Name="MinBtn" Click="MinBtn_Click"/>
+            <Button Template="{StaticResource CloseBtn}" Margin="5,0,0,0" x:Name="CloseBtn" Click="CloseBtn_Click"/>
         </StackPanel>
         <StackPanel  Grid.Row="1" Background="White">
             <Grid>
@@ -30,7 +30,7 @@
                 </StackPanel>
                 <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Vertical">
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                        <Label FontSize="14" Foreground="#009EFF" FontWeight="Bold">李医生,</Label>
+                        <Label FontSize="14"  Foreground="#009EFF" FontWeight="Bold" Content="{Binding doctorName}"></Label>
                         <Label FontSize="14"  FontWeight="Bold">您好！</Label>
                     </StackPanel>
                     <Label FontSize="14" FontWeight="Bold" HorizontalContentAlignment="Center">我是您的全科医生助手。</Label>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Doctor.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,11 +20,31 @@ namespace Doctor
     /// </summary>
     public partial class DefultWindow : Window
     {
-        public DefultWindow()
+        private DoctorInfo _doctor;
+
+        public DefultWindow(DoctorInfo doctor)
         {
+            this._doctor = doctor;
             InitializeComponent();
         }
 
-      
+        
+
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.DataContext = _doctor;
+        }
+
+        private void CloseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            System.Environment.Exit(0);
+        }
+
+        private void MinBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
     }
 }
