@@ -28,7 +28,7 @@ namespace Doctor.Model
         /// <summary>
         /// 时间戳
         /// </summary>
-        public int timestamp { get; set; }
+        public long timestamp { get; set; }
 
     }
 }

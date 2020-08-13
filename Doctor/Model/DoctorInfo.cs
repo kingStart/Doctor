@@ -23,7 +23,7 @@ namespace Doctor.Model
         /// <summary>
         /// 医生id
         /// </summary>
-        public string doctorid { get; set; }
+        public string doctorId { get; set; }
 
         /// <summary>
         /// 机构id
@@ -34,5 +34,8 @@ namespace Doctor.Model
         /// 
         /// </summary>
         public string sourceId { get; set; }
+
+        public string doctorSex { get; set; }
+        public string doctorToken { get; set; }
     }
 }
