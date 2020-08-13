@@ -33,7 +33,7 @@ namespace Doctor
         {
             ServerPath = url;
             this._webSocket = new WebSocket4Net.WebSocket(url);
-            this._webSocket.
+            
             this._webSocket.Opened += WebSocket_Opened;
            this._webSocket.Error += WebSocket_Error;
             this._webSocket.Closed += WebSocket_Closed;
@@ -70,7 +70,7 @@ namespace Doctor
         void WebSocket_MessageReceived(object sender, MessageReceivedEventArgs e)
         {
             _Logger.Info(" Received:" + e.Message);
-            MessageReceived?.Invoke(e.Message);
+            //MessageReceived?.Invoke(e.Message);
         }
         /// <summary>
         /// Socket关闭事件

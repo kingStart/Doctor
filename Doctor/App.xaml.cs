@@ -24,7 +24,6 @@ namespace Doctor
             //hook on error before app really starts
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
 
-            base.OnStartup(e);
             //用传过来的参数登陆
             var doctor = new DoctorInfo();
             doctor.doctorName = "稳献萤";
@@ -36,6 +35,10 @@ namespace Doctor
             doctor.doctorSex = "";
 
             doctor = WebApiService.LoginUser(doctor);
+
+
+            base.OnStartup(e);
+
 
             var dlg = new DefultWindow(doctor);
             dlg.ShowDialog();
