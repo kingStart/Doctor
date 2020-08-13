@@ -17,7 +17,7 @@ namespace Doctor
     {
         // 这里的URL配置成你websocket服务端的地址就好了
         private static string url = ConfigurationManager.AppSettings["WebSocketUrl"];
-        WSocketClient client = new WSocketClient(url);
+
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -26,8 +26,8 @@ namespace Doctor
 
             //用传过来的参数登陆
             var doctor = new DoctorInfo();
-            doctor.doctorName = "稳献萤";
-            doctor.doctorId = "34182587845910";
+            doctor.doctorName = "过妊许";
+            doctor.doctorId = "34182509670326";
             doctor.orgCode = "341825001";
             doctor.areaCodeCount = "341825";
             doctor.sourceId = "mmednet_jqkj";
@@ -35,6 +35,11 @@ namespace Doctor
             doctor.doctorSex = "";
 
             doctor = WebApiService.LoginUser(doctor);
+            string socketUrl = url + doctor.doctorId + "/" + doctor.doctorToken;
+
+            WSocketClient client = new WSocketClient(socketUrl);
+
+            client.Start();
 
 
             base.OnStartup(e);
@@ -50,8 +55,8 @@ namespace Doctor
             //put your tracing or logging code here (I put a message box as an example)
             System.Windows.Forms.MessageBox.Show(e.ExceptionObject.ToString());
         }
-       
-    
+
+
         private void Application_Startup(object sender, StartupEventArgs e)
         {
 
@@ -69,9 +74,7 @@ namespace Doctor
                     }
                 }
             }
-            client.Start();
-            //System.Diagnostics.Process.Start("cmd.exe", "regsvr32 Ry4SCom.dll");
-            MessageReceived();
+
 
         }
         /// <summary>
@@ -80,9 +83,7 @@ namespace Doctor
         private void MessageReceived()
         {
             //注册消息接收事件，接收服务端发送的数据
-            client.MessageReceived += (data) => {
-                MessageBox.Show(data);
-            };
+
         }
 
     }

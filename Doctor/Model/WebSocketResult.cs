@@ -30,14 +30,6 @@ namespace Doctor.Model
         /// </summary>
         public string page { get; set; }
 
-        /// <summary>
-        /// 疾病编码
-        /// </summary>
-        public string icd10 { get; set; }
-
-        /// <summary>
-        /// 传染
-        /// </summary>
-        public string infectious { get; set; }
+       
     }
 }
