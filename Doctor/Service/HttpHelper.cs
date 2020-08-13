@@ -103,7 +103,7 @@ namespace Doctor.Service
         }
 
 
-        public static DoctorInfo PostJson(string Url, string jsonParas)
+        public static string PostJson(string Url, string jsonParas)
         {
             string strURL = Url;
             //创建一个HTTP请求  
@@ -154,14 +154,7 @@ namespace Doctor.Service
             string postContent = sRead.ReadToEnd();
             sRead.Close();
 
-            //转换结果
-            var result = JsonConvert.DeserializeObject<WebApiResult>(postContent);
-            
-            var result_doctor = JsonConvert.DeserializeObject<DoctorInfo>(result.data.ToString());
-
-            
-
-            return result_doctor;//返回Json数据
+            return postContent;//返回Json数据
         }
     }
 }

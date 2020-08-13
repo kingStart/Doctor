@@ -33,6 +33,7 @@ namespace Doctor
         {
             ServerPath = url;
             this._webSocket = new WebSocket4Net.WebSocket(url);
+            this._webSocket.
             this._webSocket.Opened += WebSocket_Opened;
            this._webSocket.Error += WebSocket_Error;
             this._webSocket.Closed += WebSocket_Closed;

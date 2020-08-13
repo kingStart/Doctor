@@ -117,7 +117,7 @@
     <Compile Include="Search.xaml.cs">
       <DependentUpon>Search.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Service\LoginService.cs" />
+    <Compile Include="Service\WebApiService.cs" />
     <Compile Include="YpExplain.xaml.cs">
       <DependentUpon>YpExplain.xaml</DependentUpon>
     </Compile>

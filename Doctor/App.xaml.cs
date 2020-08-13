@@ -24,23 +24,23 @@ namespace Doctor
             //hook on error before app really starts
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
 
+            base.OnStartup(e);
             //用传过来的参数登陆
             var doctor = new DoctorInfo();
-            doctor.doctorName = "李明123";
-            doctor.doctorId = "34182532749988";
+            doctor.doctorName = "稳献萤";
+            doctor.doctorId = "34182587845910";
             doctor.orgCode = "341825001";
             doctor.areaCodeCount = "341825";
             doctor.sourceId = "mmednet_jqkj";
             doctor.doctorToken = "";
             doctor.doctorSex = "";
 
-            doctor = LoginService.LoginUser(doctor);
+            doctor = WebApiService.LoginUser(doctor);
 
             var dlg = new DefultWindow(doctor);
             dlg.ShowDialog();
 
 
-            base.OnStartup(e);
         }
         void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
