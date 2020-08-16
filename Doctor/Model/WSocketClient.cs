@@ -78,51 +78,61 @@ namespace Doctor
             string page = alive["page"].ToString();
             if (!string.IsNullOrEmpty(page))
             {
+
+            
                 string datastr= alive["data"].ToString();
                 //医生信息
                 if (page == "doctor_info")
                 {
                     DoctorInfo doc = Newtonsoft.Json.JsonConvert.DeserializeObject<DoctorInfo>(datastr);
-                    DefultWindow dlg = new DefultWindow(doc);
-                    dlg.WindowStartupLocation = WindowStartupLocation.Manual;
-                    dlg.Left = System.Windows.SystemParameters.PrimaryScreenWidth - 380;
-                    dlg.Top = System.Windows.SystemParameters.PrimaryScreenHeight - 630;
-                    dlg.Topmost = true;
-                    dlg.Show();
+                    App.Current.Dispatcher.Invoke((Action)(() =>
+                    {
+                        DefultWindow dlg = new DefultWindow(doc);
+                        dlg.WindowStartupLocation = WindowStartupLocation.Manual;
+                        dlg.Left = System.Windows.SystemParameters.PrimaryScreenWidth - 380;
+                        dlg.Top = System.Windows.SystemParameters.PrimaryScreenHeight - 630;
+                        dlg.Topmost = true;
+                        dlg.Show();
+                    }));
 
                 }
                 else if (page == "patient_info")
                 {
                     PatientInfo paient = Newtonsoft.Json.JsonConvert.DeserializeObject<PatientInfo>(datastr);
-                    ZhuSu dlg = new ZhuSu(paient);
-                    dlg.WindowStartupLocation = WindowStartupLocation.Manual;
-                    dlg.Left = System.Windows.SystemParameters.PrimaryScreenWidth - 380;
-                    dlg.Top = System.Windows.SystemParameters.PrimaryScreenHeight - 630;
-                    dlg.Topmost = true;
-                    dlg.Show();
+                    App.Current.Dispatcher.Invoke((Action)(() =>
+                    {
+                        ZhuSu dlg = new ZhuSu(paient);
+                        dlg.WindowStartupLocation = WindowStartupLocation.Manual;
+                        dlg.Left = System.Windows.SystemParameters.PrimaryScreenWidth - 380;
+                        dlg.Top = System.Windows.SystemParameters.PrimaryScreenHeight - 630;
+                        dlg.Topmost = true;
+                        dlg.Show();
+                    }));
                 }
-                else if (page == "undisease_list")
+                else if (page == "disease_list")
                 {
                     SuspectedDisease paient = Newtonsoft.Json.JsonConvert.DeserializeObject<SuspectedDisease>(datastr);
-
-                    if (paient.wmDiseaseDetailSocketParams != null && paient.wmDiseaseDetailSocketParams.Count() > 0)
+                    App.Current.Dispatcher.Invoke((Action)(() =>
                     {
-                        YsList dlg = new YsList(paient);
-                        dlg.WindowStartupLocation = WindowStartupLocation.Manual;
-                        dlg.Left = System.Windows.SystemParameters.PrimaryScreenWidth - 380;
-                        dlg.Top = System.Windows.SystemParameters.PrimaryScreenHeight - 630;
-                        dlg.Topmost = true;
-                        dlg.Show();
-                    }
-                    else
-                    {
-                        DefultNo dlg = new DefultNo(paient.patient);
-                        dlg.WindowStartupLocation = WindowStartupLocation.Manual;
-                        dlg.Left = System.Windows.SystemParameters.PrimaryScreenWidth - 380;
-                        dlg.Top = System.Windows.SystemParameters.PrimaryScreenHeight - 630;
-                        dlg.Topmost = true;
-                        dlg.Show();
-                    }
+                        if (paient.wmDiseaseDetailSocketParams != null && paient.wmDiseaseDetailSocketParams.Count() > 0)
+                        {
+                            YsList dlg = new YsList(paient);
+                            dlg.WindowStartupLocation = WindowStartupLocation.Manual;
+                            dlg.Left = System.Windows.SystemParameters.PrimaryScreenWidth - 380;
+                            dlg.Top = System.Windows.SystemParameters.PrimaryScreenHeight - 630;
+                            dlg.Topmost = true;
+                            dlg.Show();
+                        }
+                        else
+                        {
+                            DefultNo dlg = new DefultNo(paient.patient);
+                            dlg.WindowStartupLocation = WindowStartupLocation.Manual;
+                            dlg.Left = System.Windows.SystemParameters.PrimaryScreenWidth - 380;
+                            dlg.Top = System.Windows.SystemParameters.PrimaryScreenHeight - 630;
+                            dlg.Topmost = true;
+                            dlg.Show();
+                        }
+                    }));
                 }
             }
             //MessageReceived?.Invoke(e.Message);

@@ -24,8 +24,9 @@ namespace Doctor
 
         public ZhuSu(PatientInfo _pInfo)
         {
-            InitializeComponent();
             pInfo = _pInfo;
+            InitializeComponent();
+            
         }
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
         {

@@ -36,6 +36,37 @@ namespace Doctor
         {
             this.DragMove();
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            string sex = suspectedDisease.patient.sexCode == "1" ? "男" : "女";
+            this.MainLabel.Content = "「 " + suspectedDisease.patient.patientName + "   " + sex + "   " + suspectedDisease.patient.age + " 」";
+            int _MainCount = 0;
+            if (suspectedDisease != null && suspectedDisease.wmDiseaseDetailSocketParams != null)
+            {
+                _MainCount = suspectedDisease.wmDiseaseDetailSocketParams.Count();
+                this.MainCount.Content = "共计：" + _MainCount.ToString();
+                foreach (var wmDIs in suspectedDisease.wmDiseaseDetailSocketParams)
+                {
+                    wmDIs.diseaseMatching = wmDIs.diseaseMatching+"%";
+                }
+                this.YsListDb.ItemsSource = suspectedDisease.wmDiseaseDetailSocketParams;
+            }
 
+
+        }
+        /// <summary>
+        /// 查看详情
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

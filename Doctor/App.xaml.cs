@@ -26,8 +26,8 @@ namespace Doctor
 
             //用传过来的参数登陆
             var doctor = new DoctorInfo();
-            doctor.doctorName = "梅赖冰";
-            doctor.doctorId = "34182539368730";
+            doctor.doctorName = "羽蓬监";
+            doctor.doctorId = "34182586570974";
             doctor.orgCode = "341825001";
             doctor.areaCodeCount = "341825";
             doctor.sourceId = "mmednet_jqkj";
