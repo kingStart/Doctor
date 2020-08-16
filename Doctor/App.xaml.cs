@@ -26,21 +26,25 @@ namespace Doctor
 
             //用传过来的参数登陆
             var doctor = new DoctorInfo();
-            doctor.doctorName = "稳献萤";
-            doctor.doctorId = "34182587845910";
+            doctor.doctorName = "苞邓晶";
+            doctor.doctorId = "34182533722695";
             doctor.orgCode = "341825001";
             doctor.areaCodeCount = "341825";
             doctor.sourceId = "mmednet_jqkj";
             doctor.doctorToken = "";
             doctor.doctorSex = "";
 
-            doctor = WebApiService.LoginUser(doctor);
-
+            //doctor = WebApiService.LoginUser(doctor);
+            //var list = WebApiService.QuerySymptomList();
 
             base.OnStartup(e);
 
 
-            var dlg = new DefultWindow(doctor);
+            //var dlg = new DefultWindow(doctor);
+            //dlg.ShowDialog();
+
+
+            var dlg = new MainWindow();
             dlg.ShowDialog();
 
 

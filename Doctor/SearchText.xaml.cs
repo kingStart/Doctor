@@ -31,7 +31,14 @@ namespace Doctor
 
         private void TbxInput_OnKeyDown(object sender, KeyEventArgs e)
         {
-            ExeccuteSearch();
+            if (e.Key == Key.Enter)
+            {
+                TbxInput.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+                if (!string.IsNullOrEmpty(TbxInput.Text))
+                {
+                    ExeccuteSearch();
+                }
+            }
         }
 
         private void ExeccuteSearch()
@@ -40,8 +47,19 @@ namespace Doctor
             {
                 var args = new SearchEventArgs();
                 args.SearchText = TbxInput.Text;
+                
                 OnSearch(this, args);
+                TbxInput.Text = "";
             }
+        }
+
+        public string GetText()
+        {
+            return TbxInput.Text;
+        }
+        public void ClearText()
+        {
+            TbxInput.Text = "";
         }
     }
     public class SearchEventArgs : EventArgs

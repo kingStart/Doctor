@@ -15,13 +15,13 @@
         </Grid.ColumnDefinitions>
         <Rectangle Grid.Column="0" Grid.ColumnSpan="3" Fill="LightGray" RadiusX="15" RadiusY="15" Opacity="0.8"></Rectangle>
 
-        <TextBox x:Name="TbxInput" Grid.Column="1" KeyDown="TbxInput_OnKeyDown">
+        <TextBox x:Name="TbxInput" Grid.Column="1">
             <TextBox.Template>
                 <ControlTemplate TargetType="TextBox">
                     <Grid>
                         <TextBlock x:Name="Uc_TblShow" Text="请输入..." Foreground="Gray" Opacity="0.5" VerticalAlignment="Center" Visibility="Collapsed"></TextBlock>
                         <TextBox x:Name="Uc_TbxContent" Foreground="Gray" Background="Transparent" VerticalAlignment="Center" VerticalContentAlignment="Center" BorderThickness="0"
-                                 Text="{Binding ElementName=TbxInput,Path=Text,Mode=TwoWay}" FontSize="18"></TextBox>
+                                 Text="{Binding ElementName=TbxInput,Path=Text,Mode=TwoWay}"  KeyDown="TbxInput_OnKeyDown" FontSize="18"></TextBox>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger SourceName="Uc_TbxContent" Property="Text" Value="">

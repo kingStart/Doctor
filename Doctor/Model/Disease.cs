@@ -47,7 +47,7 @@ namespace Doctor.Model
         public string diseaseMatching { get; set; }
         public string num { get; set; }
         public string coefficient { get; set; }
-        public string typical { get; set; } 
+        public bool typical { get; set; } 
     }
 
     public class SystemDisease
@@ -61,7 +61,7 @@ namespace Doctor.Model
         public string wmKnow { get; set; }
         public string tcmCode { get; set; }
         public string diseaseMatching { get; set; }
-        public int num { get; set; }
+        public double num { get; set; }
         public string coefficient { get; set; }
         public bool typical { get; set; }
 
