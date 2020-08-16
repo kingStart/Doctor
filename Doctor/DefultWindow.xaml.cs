@@ -22,10 +22,13 @@ namespace Doctor
     {
         private DoctorInfo _doctor;
 
+        public static DefultWindow defultWindow;
         public DefultWindow(DoctorInfo doctor)
         {
             this._doctor = doctor;
             InitializeComponent();
+
+            defultWindow = this;
         }
 
         

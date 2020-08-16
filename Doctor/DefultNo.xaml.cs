@@ -22,10 +22,12 @@ namespace Doctor
     {
         private PatientInfo pInfo;
 
+        public static DefultNo defultNo;
         public DefultNo(PatientInfo _pInfo)
         {
             InitializeComponent();
             pInfo = _pInfo;
+            defultNo = this;
         }
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
         {

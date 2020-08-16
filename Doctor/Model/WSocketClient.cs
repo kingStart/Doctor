@@ -72,6 +72,8 @@ namespace Doctor
         /// <param name="e"></param>
         void WebSocket_MessageReceived(object sender, MessageReceivedEventArgs e)
         {
+          
+             
             _Logger.Info(" Received:" + e.Message);
 
             JObject alive = (JObject)Newtonsoft.Json.JsonConvert.DeserializeObject(e.Message);
@@ -87,6 +89,8 @@ namespace Doctor
                     DoctorInfo doc = Newtonsoft.Json.JsonConvert.DeserializeObject<DoctorInfo>(datastr);
                     App.Current.Dispatcher.Invoke((Action)(() =>
                     {
+
+                      
                         DefultWindow dlg = new DefultWindow(doc);
                         dlg.WindowStartupLocation = WindowStartupLocation.Manual;
                         dlg.Left = System.Windows.SystemParameters.PrimaryScreenWidth - 380;
@@ -101,6 +105,9 @@ namespace Doctor
                     PatientInfo paient = Newtonsoft.Json.JsonConvert.DeserializeObject<PatientInfo>(datastr);
                     App.Current.Dispatcher.Invoke((Action)(() =>
                     {
+                       
+
+
                         ZhuSu dlg = new ZhuSu(paient);
                         dlg.WindowStartupLocation = WindowStartupLocation.Manual;
                         dlg.Left = System.Windows.SystemParameters.PrimaryScreenWidth - 380;
@@ -116,6 +123,9 @@ namespace Doctor
                     {
                         if (paient.wmDiseaseDetailSocketParams != null && paient.wmDiseaseDetailSocketParams.Count() > 0)
                         {
+                            
+
+
                             YsList dlg = new YsList(paient);
                             dlg.WindowStartupLocation = WindowStartupLocation.Manual;
                             dlg.Left = System.Windows.SystemParameters.PrimaryScreenWidth - 380;
@@ -125,6 +135,8 @@ namespace Doctor
                         }
                         else
                         {
+                           
+
                             DefultNo dlg = new DefultNo(paient.patient);
                             dlg.WindowStartupLocation = WindowStartupLocation.Manual;
                             dlg.Left = System.Windows.SystemParameters.PrimaryScreenWidth - 380;
@@ -219,6 +231,44 @@ namespace Doctor
             this._webSocket.Close();
             this._webSocket.Dispose();
             this._webSocket = null;
+        }
+
+
+        public static void ShutDownOtherWindow( string Name)
+        {
+            if (Name != "DefultWindow")
+            {
+               
+                if (DefultWindow.defultWindow != null)
+                {
+                    DefultWindow.defultWindow.Close();
+                }
+            }
+            if (Name != "DefultNo")
+            {
+                if (DefultNo.defultNo != null)
+                {
+                    DefultNo.defultNo.Close();
+                }
+            }
+            if (Name != "ZhuSu")
+            {
+                if (ZhuSu.zhuSu != null)
+                {
+                    ZhuSu.zhuSu.Close();
+                }
+               
+            }
+            if (Name != "YsList")
+            {
+                if (YsList.ysList != null)
+                {
+                    YsList.ysList.Close();
+                }
+               
+            }
+            
+           
         }
     }
 }

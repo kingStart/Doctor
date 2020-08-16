@@ -22,11 +22,15 @@ namespace Doctor
     {
         private PatientInfo pInfo;
 
+        public static ZhuSu zhuSu;
+
         public ZhuSu(PatientInfo _pInfo)
         {
             pInfo = _pInfo;
             InitializeComponent();
-            
+            zhuSu = this;
+
+            WSocketClient.ShutDownOtherWindow("ZhuSu");
         }
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
         {

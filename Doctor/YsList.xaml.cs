@@ -21,10 +21,26 @@ namespace Doctor
     public partial class YsList : Window
     {
         private SuspectedDisease suspectedDisease;
+        public static YsList ysList;
         public YsList(SuspectedDisease _suspe)
         {
+          
             InitializeComponent();
             this.suspectedDisease = _suspe;
+            ysList = this;
+
+            WSocketClient.ShutDownOtherWindow("YsList");
+        }
+
+        private void CloseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            System.Environment.Exit(0);
+        }
+
+        private void MinBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
         }
 
         /// <summary>
@@ -36,6 +52,7 @@ namespace Doctor
         {
             this.DragMove();
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -66,6 +83,13 @@ namespace Doctor
         /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            //
+
+            Plan dlg = new Plan(suspectedDisease);
+            dlg.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            dlg.Show();
+
+
             this.Close();
         }
     }

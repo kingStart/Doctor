@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Doctor"
         mc:Ignorable="d"
-        WindowStyle="None" AllowDrop="True" Loaded="Window_Loaded" ResizeMode="NoResize"  MouseLeftButtonDown="Window_MouseLeftButtonDown"  BorderThickness="0"  Height="600" Width="350">
+        WindowStyle="None" AllowDrop="True" Title="ZhuSu" Loaded="Window_Loaded" ResizeMode="NoResize"  MouseLeftButtonDown="Window_MouseLeftButtonDown"  BorderThickness="0"  Height="600" Width="350">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />

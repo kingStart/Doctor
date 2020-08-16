@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Doctor"
         mc:Ignorable="d"
-        WindowStyle="None" AllowDrop="True" MouseLeftButtonDown="Window_MouseLeftButtonDown"  ResizeMode="NoResize"   BorderThickness="0"  Height="600" Width="350" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+        WindowStyle="None" AllowDrop="True" Title="DefultWindow" MouseLeftButtonDown="Window_MouseLeftButtonDown"  ResizeMode="NoResize"   BorderThickness="0"  Height="600" Width="350" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
