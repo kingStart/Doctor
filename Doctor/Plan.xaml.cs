@@ -61,10 +61,15 @@ namespace Doctor
                 
                 foreach (var wmDIs in suspectedDisease.wmDiseaseDetailSocketParams)
                 {
+
+
                     wmDIs.diseaseMatching = wmDIs.diseaseMatching + "%";
                 }
                 this.YsListDb.ItemsSource = suspectedDisease.wmDiseaseDetailSocketParams;
             }
+
+
+
             //加载症状
             List<PaintName> painetList = new List<PaintName>();
             if (!string.IsNullOrEmpty(suspectedDisease.patient.symptom)&& suspectedDisease.patient.symptom.Contains(","))
@@ -93,6 +98,13 @@ namespace Doctor
             Search dlg = new Search();
             dlg.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             dlg.Show();
+        }
+
+        private void StackPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var stackpanel = sender as StackPanel;
+            string icd = stackpanel.Tag.ToString();
+
         }
     }
 

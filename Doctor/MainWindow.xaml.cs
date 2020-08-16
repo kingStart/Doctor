@@ -73,6 +73,9 @@ namespace Doctor
 
             symptomResultListBox.ItemsSource = _symptomResultList;
 
+
+           
+
         }
 
         private void SearchText_OnSearch(object sender, SearchEventArgs e)
@@ -89,6 +92,20 @@ namespace Doctor
             var list = WebApiService.QuerySymptomList(text);
 
             //var re = WebApiService.QueryDiseaseBySymptom();
+            #region
+            //加载疑似病例模块
+            //if (suspectedDisease != null && suspectedDisease.wmDiseaseDetailSocketParams != null)
+            //{
+
+            //    foreach (var wmDIs in suspectedDisease.wmDiseaseDetailSocketParams)
+            //    {
+
+
+            //        wmDIs.diseaseMatching = wmDIs.diseaseMatching + "%";
+            //    }
+            //    this.YsListDb.ItemsSource = suspectedDisease.wmDiseaseDetailSocketParams;
+            //}
+            #endregion
 
             if (list.Any())
             {

@@ -134,5 +134,36 @@ namespace Doctor.Service
             return desease;
         }
 
+        /// <summary>
+        /// 添加疾病知识库
+        /// </summary>
+        public static DiseaseDosageSchedule GetPlanList(string dicID)
+        {
+            var dSchedule = new DiseaseDosageSchedule();
+            
+            Dictionary<string, string> dic = new Dictionary<string, string>() { };
+            dic.Add("icd10", dicID);//令牌
+            dic.Add("doctorToken", "19bdb7cd22354ce0ab8d8e4a8f35e49d");//令牌
+            dic.Add("doctorId", "34182533722695");//医生id
+            dic.Add("timestamp", TimeHelper.GetTimeStamp());//时间戳
+            dic.Add("outpatientId", "891919391-341825001");//门诊流水号
+
+            var postContent = HttpHelper.Post("http://103.85.170.99:10001/api/assistant/wm/getDiseaseDosageSchedule ", dic);
+
+            //转换结果
+            var result = JsonConvert.DeserializeObject<WebApiResult>(postContent);
+            if (result.data != null)
+            {
+                var result_healthData = JsonConvert.DeserializeObject<DiseaseDosageSchedule>(result.data.ToString());
+
+                if (result_healthData != null)
+                {
+                    dSchedule = result_healthData;
+                }
+                return dSchedule;
+            }
+            return null;
+        }
+
     }
 }
