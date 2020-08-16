@@ -46,5 +46,15 @@ namespace Doctor
         {
             this.WindowState = WindowState.Minimized;
         }
+
+        /// <summary>
+        /// 窗体可拖动
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
     }
 }

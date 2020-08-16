@@ -26,8 +26,8 @@ namespace Doctor
 
             //用传过来的参数登陆
             var doctor = new DoctorInfo();
-            doctor.doctorName = "过妊许";
-            doctor.doctorId = "34182509670326";
+            doctor.doctorName = "梅赖冰";
+            doctor.doctorId = "34182539368730";
             doctor.orgCode = "341825001";
             doctor.areaCodeCount = "341825";
             doctor.sourceId = "mmednet_jqkj";
@@ -46,7 +46,11 @@ namespace Doctor
 
 
             var dlg = new DefultWindow(doctor);
-            dlg.ShowDialog();
+            dlg.WindowStartupLocation = WindowStartupLocation.Manual;
+            dlg.Left = System.Windows.SystemParameters.PrimaryScreenWidth - 380;
+            dlg.Top = System.Windows.SystemParameters.PrimaryScreenHeight - 630;
+            dlg.Topmost = true;
+            dlg.Show();
 
 
         }

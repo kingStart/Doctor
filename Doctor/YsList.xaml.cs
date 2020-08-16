@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Doctor.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,11 +20,22 @@ namespace Doctor
     /// </summary>
     public partial class YsList : Window
     {
-        public YsList()
+        private SuspectedDisease suspectedDisease;
+        public YsList(SuspectedDisease _suspe)
         {
             InitializeComponent();
+            this.suspectedDisease = _suspe;
         }
 
-      
+        /// <summary>
+        /// 窗体可拖动
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
+
     }
 }

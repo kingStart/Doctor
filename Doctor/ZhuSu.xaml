@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Doctor"
         mc:Ignorable="d"
-        WindowStyle="None" AllowDrop="True" ResizeMode="NoResize"   BorderThickness="0"  Height="600" Width="350">
+        WindowStyle="None" AllowDrop="True" Loaded="Window_Loaded" ResizeMode="NoResize"  MouseLeftButtonDown="Window_MouseLeftButtonDown"  BorderThickness="0"  Height="600" Width="350">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
@@ -13,9 +13,9 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#3484F5" >
             <Label x:Name="titleLabel" FontWeight="Bold"  Margin="0,0,0,0.4" HorizontalContentAlignment="Left"  Foreground="White"  FontSize="15" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="30"   Width="267">全科医生机器人辅助诊断系统</Label>
-            <Button   Template="{StaticResource MaxBtn}" Margin="10,0,0,0" />
-            <Button   Template="{StaticResource MinBtn}" Margin="5,0,0,0" />
-            <Button   Template="{StaticResource CloseBtn}" Margin="5,0,0,0" />
+         
+            <Button  Click="MinBtn_Click"  Template="{StaticResource MinBtn}" Margin="35,0,0,0" />
+            <Button Click="CloseBtn_Click"   Template="{StaticResource CloseBtn}" Margin="5,0,0,0" />
         </StackPanel>
         <StackPanel  Grid.Row="1" Background="White">
             <Grid>
@@ -26,7 +26,7 @@
                    
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0" VerticalAlignment="Center">
-                    <Label Height="40"  Width="300" Background="White" Foreground="#3484F5"  FontSize="18" FontWeight="Bold"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center">「 张三三   男   36岁 」</Label>
+                    <Label x:Name="MainLabel" Height="40"  Width="300" Background="White" Foreground="#3484F5"  FontSize="18" FontWeight="Bold"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center">「 张三三   男   36岁 」</Label>
                 </StackPanel>
                 <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Vertical">
                     <Image Width="150" Height="150" VerticalAlignment="Center" HorizontalAlignment="Center" Source="/Doctor;component/Resources/没输入主诉信息.png"></Image>

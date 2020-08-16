@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Doctor"
         mc:Ignorable="d"
-        WindowStyle="None" AllowDrop="True" ResizeMode="NoResize"   BorderThickness="0"  Height="600" Width="350">
+        WindowStyle="None" AllowDrop="True" Loaded="Window_Loaded" MouseLeftButtonDown="Window_MouseLeftButtonDown" ResizeMode="NoResize"   BorderThickness="0"  Height="600" Width="350">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
@@ -13,29 +13,33 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#3484F5" >
             <Label x:Name="titleLabel" FontWeight="Bold"  Margin="0,0,0,0.4" HorizontalContentAlignment="Left"  Foreground="White"  FontSize="15" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="30"   Width="267">全科医生机器人辅助诊断系统</Label>
-            <Button   Template="{StaticResource MaxBtn}" Margin="10,0,0,0" />
-            <Button   Template="{StaticResource MinBtn}" Margin="5,0,0,0" />
-            <Button   Template="{StaticResource CloseBtn}" Margin="5,0,0,0" />
+          
+            <Button  Click="MinBtn_Click"  Template="{StaticResource MinBtn}" Margin="35,0,0,0" />
+            <Button  Click="CloseBtn_Click"  Template="{StaticResource CloseBtn}" Margin="5,0,0,0" />
         </StackPanel>
         <StackPanel  Grid.Row="1" Background="White">
             <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="41*"/>
+                    <ColumnDefinition Width="9*"/>
+                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="200"></RowDefinition>
                     <RowDefinition Height="200"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
-                   
+
                 </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0" VerticalAlignment="Center">
-                    <Label Height="40"  Width="300" Background="White" Foreground="#3484F5"  FontSize="18" FontWeight="Bold"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center">「 张三三   男   36岁 」</Label>
+                <StackPanel Grid.Row="0" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="0,80,0.4,80">
+                    <Label x:Name="MainLabel" Height="40"  Width="300" Background="White" Foreground="#3484F5"  FontSize="18" FontWeight="Bold"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center">「 张三三   男   36岁 」</Label>
                 </StackPanel>
-                <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Vertical">
+                <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Vertical" Margin="100,0,37.4,0">
                     <Image Width="150" Height="150" VerticalAlignment="Center" HorizontalAlignment="Center" Source="/Doctor;component/Resources/没有检测到症状.png"></Image>
                 </StackPanel>
-                <StackPanel Grid.Row="2" HorizontalAlignment="Center" Orientation="Vertical">
+                <StackPanel Grid.Row="2" HorizontalAlignment="Center" Orientation="Vertical" Margin="105,0,42.4,0.4">
 
                     <Label FontSize="14" FontWeight="Bold" Foreground="#666666" HorizontalContentAlignment="Center">没有检索到相关症状</Label>
                     <StackPanel Orientation="Horizontal">
-                    <Label FontSize="14" FontWeight="Bold" HorizontalContentAlignment="Center" Foreground="#666666">您可以尝试</Label>
+                        <Label FontSize="14" FontWeight="Bold" HorizontalContentAlignment="Center" Foreground="#666666">您可以尝试</Label>
                         <Button Background="White" BorderBrush="White"  FontSize="14" FontWeight="Bold" Foreground="#009EFF" HorizontalContentAlignment="Right" Width="60">详细问诊</Button>
                     </StackPanel>
                 </StackPanel>

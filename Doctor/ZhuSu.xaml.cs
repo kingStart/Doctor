@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Doctor.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,11 +20,38 @@ namespace Doctor
     /// </summary>
     public partial class ZhuSu : Window
     {
-        public ZhuSu()
+        private PatientInfo pInfo;
+
+        public ZhuSu(PatientInfo _pInfo)
         {
             InitializeComponent();
+            pInfo = _pInfo;
+        }
+        private void CloseBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            System.Environment.Exit(0);
         }
 
-      
+        private void MinBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        /// <summary>
+        /// 窗体可拖动
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            string sex = pInfo.sexCode == "1" ? "男" : "女";
+            this.MainLabel.Content = "「 "+ pInfo.patientName+ "   "+ sex + "   "+ pInfo.age+ " 」";
+        }
     }
 }
