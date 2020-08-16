@@ -12,7 +12,7 @@
             </Border>
         </ControlTemplate>
         <!--文本框输入模板-->
-            <Style x:Key="txtTest" TargetType="TextBox">
+        <Style x:Key="txtTest" TargetType="TextBox">
             <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="Background" Value="#CCCCCC" />
             <Setter Property="Padding" Value="5,0,0,0" />
@@ -31,6 +31,55 @@
                             <Border x:Name="Border" 
                                 CornerRadius="5"
                                 BorderBrush="#CCCCCC" BorderThickness="0" Background="#CCCCCC" >
+                                <ScrollViewer x:Name="PART_ContentHost" BorderThickness="0"
+ Margin="2" VerticalAlignment="Stretch"  />
+                            </Border>
+                        </Grid>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="UserItemContainerStyle" TargetType="ListBoxItem">
+            <Style.Resources>
+                <!--SelectedItem with focus-->
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="LightBlue" Opacity="0"/>
+                <!--SelectedItem without focus-->
+                <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="LightBlue" Opacity="0"/>
+            </Style.Resources>
+            <!-- 设置触发器 -->
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Background" Value="#efefef"/>
+                    <Setter Property="Foreground" Value="Red"/>
+                </Trigger>
+                <Trigger Property="IsFocused" Value="true">
+                    <Setter Property="Background" Value="Coral"/>
+                    <Setter Property="Foreground" Value="Red"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="newText" TargetType="TextBox" >
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Background" Value="#FFF" />
+            <Setter Property="Padding" Value="6,0,6,0" />
+            <Setter Property="FontFamily" Value="Microsoft YaHei" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Foreground" Value="#000" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Width" Value="80" />
+            <Setter Property="BorderBrush" Value="#FFF" />
+
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Grid x:Name="Grid">
+                            <Border x:Name="Border" 
+                                CornerRadius="5"
+                                BorderBrush="#CCC" BorderThickness="1" Background="#FFFFFF" >
                                 <ScrollViewer x:Name="PART_ContentHost" BorderThickness="0"
  Margin="2" VerticalAlignment="Stretch"  />
                             </Border>
@@ -82,11 +131,10 @@
             <!--<Setter Property="FontWeight" Value="Bold"/>-->
             <Setter Property="Background" Value="#666666"/>
             <Setter Property="Height" Value="35" />
-            <Setter Property="Width" Value="120" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Name="border" BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="5,5,5,5">
+                        <Border Name="border" BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="5,5,5,5" Padding="10,4,10,4">
                             <Border.Background>
                                 <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                                     <GradientStop Color="#F4F4F4" Offset="0.0" />
@@ -108,6 +156,33 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style TargetType="{x:Type Button}" x:Key="GreenButton">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Microsoft YaHei"/>
+            <Setter Property="FontSize" Value="14"/>
+            <!--<Setter Property="FontWeight" Value="Bold"/>-->
+            <Setter Property="Background" Value="#3a99f2"/>
+            <Setter Property="Height" Value="40" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="5,5,5,5">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="#3a99f2" Offset="0.0" />
+                                    <GradientStop Color="#3a99f2" Offset="0.2" />
+                                    <GradientStop Color="#3a99f2" Offset="0.0" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" ></ContentPresenter>
+                        </Border>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
 
         <Style TargetType="{x:Type Button}" x:Key="QuxiaoButton">
             <Setter Property="Foreground" Value="White"/>
@@ -136,32 +211,62 @@
             </Setter>
         </Style>
 
-        <Style TargetType="{x:Type Button}" x:Key="GreenButton">
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontFamily" Value="Microsoft YaHei"/>
-            <Setter Property="FontSize" Value="14"/>
-            <!--<Setter Property="FontWeight" Value="Bold"/>-->
-            <Setter Property="Background" Value="#3a99f2"/>
-            <Setter Property="Height" Value="40" />
-            <Setter Property="Width" Value="120" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="0" CornerRadius="5,5,5,5">
-                            <Border.Background>
-                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-                                    <GradientStop Color="#3a99f2" Offset="0.0" />
-                                    <GradientStop Color="#3a99f2" Offset="0.2" />
-                                    <GradientStop Color="#3a99f2" Offset="0.0" />
-                                </LinearGradientBrush>
-                            </Border.Background>
-                            <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" ></ContentPresenter>
-                        </Border>
+        
 
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
+
+        <Style x:Key="EmptyCheckBox" TargetType="CheckBox">
+            <Setter  Property="Focusable" Value="False"/>
+            <Setter Property="IsTabStop" Value="False" />
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="CheckBox">
+                                <Grid Background="Transparent" Cursor="Hand" VerticalAlignment="Center" HorizontalAlignment="Center"  Width="{TemplateBinding Width}">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Disabled" />
+                                            <VisualState x:Name="Normal" />
+                                            <VisualState x:Name="MouseOver" />
+                                            <VisualState x:Name="Pressed" />
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                        <Button SnapsToDevicePixels="True" Foreground="{TemplateBinding Foreground}" Content="{TemplateBinding Content}" HorizontalAlignment="Center" Padding="4,0,4,0" Style="{StaticResource GreenButton}"/>
+
+                                    </StackPanel>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+                <Trigger Property="IsChecked" Value="False">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="CheckBox">
+                                <Grid Background="Transparent" Cursor="Hand" VerticalAlignment="Center" HorizontalAlignment="Center" Width="{TemplateBinding Width}" >
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Disabled" />
+                                            <VisualState x:Name="Normal" />
+                                            <VisualState x:Name="MouseOver" />
+                                            <VisualState x:Name="Pressed" />
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                                        <Button SnapsToDevicePixels="True" Foreground="{TemplateBinding Foreground}" Content="{TemplateBinding Content}" HorizontalAlignment="Center" Padding="4,0,4,0" Style="{StaticResource WhiteButton}"/>
+                                        
+                                    </StackPanel>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
         </Style>
+
+
         <!--最小化-->
         <ControlTemplate x:Key="MinBtn" TargetType="{x:Type Button}">
             <Grid>
@@ -208,6 +313,7 @@
         </ControlTemplate>
         <!--关闭-->
         <ControlTemplate x:Key="BlueClose" TargetType="{x:Type Button}">
+            
             <Grid>
                 <Rectangle HorizontalAlignment="Center" Width="18" Height="18">
                     <Rectangle.Fill>
@@ -217,6 +323,9 @@
 
             </Grid>
         </ControlTemplate>
+
+
+
         <!--关闭-->
         <ControlTemplate x:Key="JiButton" TargetType="{x:Type Button}">
             <Grid>

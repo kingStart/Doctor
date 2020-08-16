@@ -30,5 +30,8 @@ namespace Doctor.Model
         /// </summary>
         public long timestamp { get; set; }
 
+        public string requestId { get; set; }
+        public object apiCondition { get; set; }
+
     }
 }
