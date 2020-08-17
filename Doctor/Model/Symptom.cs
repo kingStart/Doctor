@@ -65,5 +65,6 @@ namespace Doctor.Model
         /// </summary>
         public string colloquialName { get; set; }
 
+
     }
 }

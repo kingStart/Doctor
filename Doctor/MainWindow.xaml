@@ -14,8 +14,8 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#3484F5" >
             <Label x:Name="titleLabel" FontWeight="Bold"  Margin="0,0,0,0.4" HorizontalContentAlignment="Left"  Foreground="White"  FontSize="15" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="30"   Width="417">全科医生机器人辅助诊断系统</Label>
-            <Button Template="{StaticResource MaxBtn}" Margin="510,0,0,0" x:Name="MaxBtn"/>
-            <Button Template="{StaticResource MinBtn}" Margin="5,0,0,0" x:Name="MinBtn" Click="MinBtn_Click"/>
+            <Button Template="{StaticResource MaxBtn}" Margin="510,0,0,0" x:Name="MaxBtn" Visibility="Collapsed"/>
+            <Button Template="{StaticResource MinBtn}" Margin="540,0,0,0" x:Name="MinBtn" Click="MinBtn_Click"/>
             <Button Template="{StaticResource CloseBtn}" Margin="5,0,0,0" x:Name="CloseBtn" Click="CloseBtn_Click"/>
         </StackPanel>
         <StackPanel  Grid.Row="1" Background="#e6e6e6">
@@ -34,7 +34,7 @@
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" Orientation="Horizontal">
                             <Label Height="40" Width="300" FontSize="14"  FontWeight="Bold" Background="White" VerticalContentAlignment="Center" VerticalAlignment="Center">基本信息</Label>
-                            <Label Height="40"  Width="400" Background="White" Foreground="#3484F5"  FontSize="14" FontWeight="Bold"  VerticalContentAlignment="Center" VerticalAlignment="Center">「 张三三   男   36岁 」</Label>
+                            <Label Height="40"  Width="400" Background="White" Foreground="#3484F5"  FontSize="14" FontWeight="Bold"  VerticalContentAlignment="Center" VerticalAlignment="Center" x:Name="PatientLabel">「 张三三   男   36岁 」</Label>
                         </StackPanel>
                         <StackPanel Grid.Row="1" Orientation="Horizontal" Background="White">
                             <Grid>
@@ -51,23 +51,26 @@
 
                                 </StackPanel>
                                 <StackPanel Grid.Row="1" Orientation="Horizontal">
-                                    <ItemsControl x:Name="symptomListBox"  Width="700">
-                                        <ItemsControl.ItemsPanel>
-                                            <ItemsPanelTemplate>
-                                                <WrapPanel Orientation="Horizontal" IsItemsHost="True" Height="auto" Width="670"/>
-                                            </ItemsPanelTemplate>
-                                        </ItemsControl.ItemsPanel>
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <StackPanel Orientation="Horizontal" Margin="6,4,6,4">
-                                                    <Border CornerRadius="5" Height="30" Width="auto" BorderThickness="3" BorderBrush="#F4F4F4">
-                                                        <Label VerticalContentAlignment="Center"  HorizontalContentAlignment="Center"  Background="#F4F4F4" HorizontalAlignment="Left" Width="auto" Content="{Binding .}"></Label>
-                                                    </Border>
-                                                    <Button Background="#3484F5"  Template="{StaticResource BlueClose}" Margin="-10,-20,0,0" Click="DeleteSymptomButton_Click" Tag="{Binding .,Mode=OneWay}"/>
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                    </ItemsControl>
+
+                                    <ScrollViewer Height="115" VerticalScrollBarVisibility="Auto" Width="700">
+                                        <ItemsControl x:Name="symptomListBox"  Width="680">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <WrapPanel Orientation="Horizontal" IsItemsHost="True" Height="auto" Width="670"/>
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal" Margin="6,4,6,4">
+                                                        <Border CornerRadius="5" Height="30" Width="auto" BorderThickness="3" BorderBrush="#F4F4F4">
+                                                            <Label VerticalContentAlignment="Center"  HorizontalContentAlignment="Center"  Background="#F4F4F4" HorizontalAlignment="Left" Width="auto" Content="{Binding symptom}" MouseLeftButtonDown="SearchSymptomDisease_MouseLeftButtonDown"></Label>
+                                                        </Border>
+                                                        <Button Background="#3484F5"  Template="{StaticResource BlueClose}" Margin="-10,-20,0,0" Click="DeleteSymptomButton_Click" Tag="{Binding symptom,Mode=OneWay}"/>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </ScrollViewer>
                                     <!--<ListBox Width="700" x:Name="symptomListBox3" BorderThickness="0" Visibility="Hidden">
                                         <ListBox.ItemsPanel>
                                             <ItemsPanelTemplate>
@@ -193,26 +196,25 @@
 
                                 </StackPanel>
                                 <StackPanel Grid.Row="1" Orientation="Vertical">
-                                    
-                                    
-                                    <ItemsControl Height="225" Width="700" x:Name="symptomResultListBox" BorderThickness="0">
-                                        <ItemsControl.ItemsPanel>
-                                            <ItemsPanelTemplate>
-                                                <WrapPanel Orientation="Horizontal" IsItemsHost="True" Height="auto" Width="670"/>
-                                            </ItemsPanelTemplate>
-                                        </ItemsControl.ItemsPanel>
-                                        <ItemsControl.ItemTemplate >
-                                            <DataTemplate>
-                                                <StackPanel Orientation="Horizontal" Margin="8,8,2,2">
+                                    <ScrollViewer Height="225" VerticalScrollBarVisibility="Auto" Width="700">
+                                        <ItemsControl Width="680" x:Name="symptomResultListBox" BorderThickness="0">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <WrapPanel Orientation="Horizontal" IsItemsHost="True" Width="670"/>
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate >
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal" Margin="8,8,2,2">
 
-                                                    <!--<CheckBox Style="{StaticResource EmptyCheckBox}" Content="{Binding symptom}" Width="auto" Click="SymptomCheckBox_Click"></CheckBox>-->
-                                                    <Button Style="{StaticResource WhiteButton}" Height="30" Width="auto"  Content="{Binding symptom}" Click="SymptomResultButton_Click" Tag="false"></Button>
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
+                                                        <!--<CheckBox Style="{StaticResource EmptyCheckBox}" Content="{Binding symptom}" Width="auto" Click="SymptomCheckBox_Click"></CheckBox>-->
+                                                        <Button Style="{StaticResource WhiteButton}" Height="30" Width="auto"  Content="{Binding symptom}" Click="SymptomResultButton_Click" Tag="false"></Button>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
 
-                                    </ItemsControl>
-                                    
+                                        </ItemsControl>
+                                    </ScrollViewer>
 
 
                                     <!--<StackPanel Orientation="Horizontal" Margin="0,15,0,0">
@@ -327,7 +329,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="45"></RowDefinition>
                             <RowDefinition Height="30"></RowDefinition>
-                            <RowDefinition Height="520"></RowDefinition>
+                            <RowDefinition Height="540"></RowDefinition>
                             <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" Orientation="Vertical"  >
@@ -344,7 +346,7 @@
                         </StackPanel>
 
                         <StackPanel Grid.Row="2" Orientation="Vertical" >
-                            <ListBox x:Name="YsListDb"    HorizontalContentAlignment="Center" BorderThickness="0" HorizontalAlignment="Center" Width="280" Height="520"  >
+                            <ListBox x:Name="YsListDb"    HorizontalContentAlignment="Center" BorderThickness="0" HorizontalAlignment="Center" Width="280" Height="540"  >
 
                                 <ListBox.ItemsPanel>
                                     <ItemsPanelTemplate>
@@ -354,7 +356,7 @@
                                 <ListBox.ItemTemplate >
 
                                     <DataTemplate>
-                                        <StackPanel Tag="{Binding icd10}"  Orientation="Vertical" Background="#F8F8F8" Margin="0,10,0,0">
+                                        <StackPanel Tag="{Binding icd10}" Orientation="Vertical" Background="#F8F8F8" Margin="0,10,0,0">
 
                                             <Label Height="23" Width="60" Background=" #009EFF"  FontSize="9.5" Foreground="White"   HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Center" Content="自定义"/>
                                             <StackPanel Height="40" Orientation="Horizontal">
@@ -377,8 +379,8 @@
                         </StackPanel>
                         <StackPanel Grid.Row="3" Orientation="Horizontal">
                             <Image HorizontalAlignment="Center" VerticalAlignment="Center" Width="20" Height="20" Source="/Doctor;component/Resources/记录 .png"></Image>
-                            <Label Height="40" Width="120"  FontSize="13" Foreground="Black"  FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="共计：18"/>
-                            <Button Background="White" BorderBrush="White"  FontWeight="Bold" Foreground="#009EFF" HorizontalContentAlignment="Right" Width="150">查看更多>></Button>
+                            <Label x:Name="totalCountLabel" Height="40" Width="120"  FontSize="13" Foreground="Black"  FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="共计：0"/>
+                            <Button Margin="80,0,0,0" Background="White" BorderBrush="White"  FontWeight="Bold" Foreground="#009EFF" HorizontalContentAlignment="Right" Width="70" Click="MoreButton_Click">查看更多>></Button>
                         </StackPanel>
                     </Grid>
                 </StackPanel>

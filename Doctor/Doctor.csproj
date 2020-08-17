@@ -98,6 +98,7 @@
     <Compile Include="Model\DiseaseDosageSchedule.cs" />
     <Compile Include="Model\Disease.cs" />
     <Compile Include="Model\DrugKnowledageBase.cs" />
+    <Compile Include="Model\QueryDiseaseBySymptomParams.cs" />
     <Compile Include="Service\HttpHelper.cs" />
     <Compile Include="Model\WSocketClient.cs" />
     <Compile Include="Model\PatientInfo.cs" />
@@ -118,6 +119,7 @@
       <DependentUpon>Search.xaml</DependentUpon>
     </Compile>
     <Compile Include="Service\TimeHelper.cs" />
+    <Compile Include="Service\TokenHelper.cs" />
     <Compile Include="Service\WebApiService.cs" />
     <Compile Include="YpExplain.xaml.cs">
       <DependentUpon>YpExplain.xaml</DependentUpon>

@@ -40,7 +40,7 @@
                     <Label FontSize="14" FontWeight="Bold" Foreground="#666666" HorizontalContentAlignment="Center">没有检索到相关症状</Label>
                     <StackPanel Orientation="Horizontal">
                         <Label FontSize="14" FontWeight="Bold" HorizontalContentAlignment="Center" Foreground="#666666">您可以尝试</Label>
-                        <Button Background="White" BorderBrush="White"  FontSize="14" FontWeight="Bold" Foreground="#009EFF" HorizontalContentAlignment="Right" Width="60">详细问诊</Button>
+                        <Button Background="White" BorderBrush="White"  FontSize="14" FontWeight="Bold" Foreground="#009EFF" HorizontalContentAlignment="Right" Width="60" Click="MainWindowButton_Click">详细问诊</Button>
                     </StackPanel>
                 </StackPanel>
             </Grid>
