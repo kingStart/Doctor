@@ -33,7 +33,7 @@ namespace Doctor.Service
         /// 搜索症状
         /// </summary>
         /// <returns></returns>
-        public static List<Symptom> QuerySymptomList(string ymptomName)
+        public static List<Symptom> QuerySymptomList(string ymptomName,PatientInfo patientInfo)
         {
             var list = new List<Symptom>() { };
             if (string.IsNullOrEmpty(ymptomName))
@@ -43,12 +43,12 @@ namespace Doctor.Service
 
             Dictionary<string, string> dic = new Dictionary<string, string>() { };
             dic.Add("symptomSynonym", ymptomName);
-            dic.Add("doctorId", "34182533722695");
-            dic.Add("doctorToken", "19bdb7cd22354ce0ab8d8e4a8f35e49d");
+            dic.Add("doctorId", TokenHelper.doctorInfo.doctorId);
+            dic.Add("doctorToken", TokenHelper.doctorInfo.doctorToken);
             dic.Add("timestamp", TimeHelper.GetTimeStamp());
-            dic.Add("gender", "0");
-            dic.Add("age", "30");
-            dic.Add("outpatientId", "891919391-341825001");
+            dic.Add("gender", patientInfo.sexCode) ;
+            dic.Add("age", patientInfo.age.Replace("岁",""));
+            dic.Add("outpatientId", patientInfo.outpatientId);
 
             var postContent = HttpHelper.Post("http://103.85.170.99:10001/api/assistant/wm/querySymptomList", dic);
 
@@ -73,15 +73,25 @@ namespace Doctor.Service
         /// 查询患者体征数据
         /// </summary>
         /// <returns></returns>
-        public static HealthData QueryHealthData()
+        public static HealthData QueryHealthData(PatientInfo patientInfo)
         {
             var healthData = new HealthData();
             
             Dictionary<string, string> dic = new Dictionary<string, string>() { };
-            dic.Add("doctorToken", "19bdb7cd22354ce0ab8d8e4a8f35e49d");//令牌
-            dic.Add("doctorId", "34182533722695");//医生id
-            dic.Add("timestamp", TimeHelper.GetTimeStamp());//时间戳
-            dic.Add("outpatientId", "891919391-341825001");//门诊流水号
+            if (patientInfo == null)
+            {
+                dic.Add("doctorToken", TokenHelper.doctorInfo.doctorToken);//令牌
+                dic.Add("doctorId", "34182533722695");//医生id
+                dic.Add("timestamp", TimeHelper.GetTimeStamp());//时间戳
+                dic.Add("outpatientId", "891919391-341825001");//门诊流水号
+            }
+            else
+            {
+                dic.Add("doctorToken", TokenHelper.doctorInfo.doctorToken);//令牌
+                dic.Add("doctorId", TokenHelper.doctorInfo.doctorId);//医生id
+                dic.Add("timestamp", TimeHelper.GetTimeStamp());//时间戳
+                dic.Add("outpatientId", patientInfo.outpatientId);//门诊流水号
+            }
 
             var postContent = HttpHelper.Post("http://103.85.170.99:10001/api/assistant/wm/getHealthData", dic);
 
@@ -105,18 +115,29 @@ namespace Doctor.Service
         /// 搜索症状
         /// </summary>
         /// <returns></returns>
-        public static Disease QueryDiseaseBySymptom(string doctorToken = "19bdb7cd22354ce0ab8d8e4a8f35e49d", string doctorId = "34182533722695", string outpatientId = "891919391-341825001",string symptom="厌食")
+        public static Disease QueryDiseaseBySymptom(string symptom,PatientInfo patientInfo)
         {
             var desease = new Disease();
 
-            var item = new Symptom()
-            {
-                symptom = symptom
+            var item = new QueryDiseaseBySymptomParams();
+            var baseInfo = new Baseinfo() {
+                gender = patientInfo.sexCode,
+                patientCard = patientInfo.patientId,
+                spersonname = patientInfo.patientName,
+                //age = patientInfo.age,               
             };
+            item.baseinfo = baseInfo;
+            item.outpatientId = patientInfo.outpatientId;
+            item.trackId = "";
+            item.symptom = symptom;
+            item.searchtype = 3;
+            item.type = 1;
+
+
             var json = JsonConvert.SerializeObject(item);
 
 
-            var postContent = HttpHelper.PostJson("http://103.85.170.99:10001/api/assistant/wm/queryDiseaseBySymptom?doctorToken="+ doctorToken + "&timestamp=" + TimeHelper.GetTimeStamp() + "&outpatientId="+ outpatientId + "&doctorId=" + doctorId + "", json);
+            var postContent = HttpHelper.PostJson("http://103.85.170.99:10001/api/assistant/wm/queryDiseaseBySymptom?doctorToken="+ TokenHelper.doctorInfo.doctorToken + "&timestamp=" + TimeHelper.GetTimeStamp() + "&outpatientId="+ patientInfo.outpatientId + "&doctorId=" + TokenHelper.doctorInfo.doctorId + "", json);
 
 
             //转换结果

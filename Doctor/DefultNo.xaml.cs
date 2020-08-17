@@ -55,5 +55,15 @@ namespace Doctor
             string sex = pInfo.sexCode == "1" ? "男" : "女";
             this.MainLabel.Content = "「 " + pInfo.patientName + "   " + sex + "   " + pInfo.age + " 」";
         }
+
+        private void MainWindowButton_Click(object sender, RoutedEventArgs e)
+        {
+            var dlg = new MainWindow(pInfo);
+            dlg.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            dlg.Show();
+
+
+            this.Close();
+        }
     }
 }

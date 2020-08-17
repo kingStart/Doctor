@@ -123,8 +123,8 @@ namespace Doctor
                     {
                         if (paient.wmDiseaseDetailSocketParams != null && paient.wmDiseaseDetailSocketParams.Count() > 0)
                         {
-                            
-
+                            //var dlg = new MainWindow(paient.patient);
+                            //dlg.Show();
 
                             YsList dlg = new YsList(paient);
                             dlg.WindowStartupLocation = WindowStartupLocation.Manual;

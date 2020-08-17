@@ -26,7 +26,7 @@ namespace Doctor
 
             //用传过来的参数登陆
             var doctor = new DoctorInfo();
-            doctor.doctorName = "羽蓬监";
+            doctor.doctorName = "南宫医生";
             doctor.doctorId = "34182586570974";
             doctor.orgCode = "341825001";
             doctor.areaCodeCount = "341825";
@@ -41,9 +41,10 @@ namespace Doctor
 
             client.Start();
 
+            //设置全局属性，doctor
+            TokenHelper.doctorInfo = doctor;
 
             base.OnStartup(e);
-
 
             var dlg = new DefultWindow(doctor);
             dlg.WindowStartupLocation = WindowStartupLocation.Manual;

@@ -23,58 +23,89 @@ namespace Doctor
     public partial class MainWindow : Window
     {
 
-        private ObservableCollection<string> _symptomList = new ObservableCollection<string>() { };//症状搜索集合
-        private ObservableCollection<Symptom> _symptomResultList = new ObservableCollection<Symptom>() { };//症状搜索结果集合
+        /*
+         1. 输入症状后搜索 症状集合及分层分析的数据  请求“api/assistant/wm/querySymptomList
 
+         2. 点击主诉症状的某个症状，调用搜索症状接口（用响应数据去更新症状分层分析的数据及疑似疾病列表（右侧）的数据）。 
+                调用“api/assistant/wm/queryDiseaseBySymptom
+
+         3. 症装分层分析里的数据点击，把点击数据累加到原来搜索症状数据（symptom)中，重新进行第2步骤
+         
+
+            1 =>3 =>2
+            queryDiseaseBySymptom  这个接口请求的结果，显示在【症状分析层】和 【疑似疾病】中
+            【症状分析层】中的症状点击后结果也是 显示在【症状分析层】和 【疑似疾病】中
+         */
+
+        //private ObservableCollection<string> _symptomList = new ObservableCollection<string>() { };//症状搜索集合
+        private ObservableCollection<Symptom> _symptomResultList = new ObservableCollection<Symptom>() { };//症状搜索结果集合 主诉症状
+         
+        private ObservableCollection<Symptom> _symptomResultList2 = new ObservableCollection<Symptom>() { };//症状搜索结果集合  分析层症状
+        //private ObservableCollection<DiagnosisDisease> _diagnosisDiseaseList = new ObservableCollection<DiagnosisDisease>() { };//疑似疾病
+
+
+
+        private PatientInfo _patieneInfo;
 
         public MainWindow()
         {
             InitializeComponent();
         }
 
+        public MainWindow(PatientInfo patientInfo)
+        {
+            _patieneInfo = patientInfo;
+            InitializeComponent();
+        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            string sex = _patieneInfo.sexCode == "1" ? "男" : "女";
+            this.PatientLabel.Content = "「 " + _patieneInfo.patientName + "   " + sex + "   " + _patieneInfo.age + " 」";
+
+
             searchText.OnSearch += SearchText_OnSearch;
 
-            _symptomList.Add("感冒");
-            _symptomList.Add("发烧");
-            _symptomList.Add("感冒感冒感冒");
-            _symptomList.Add("发烧");
-            _symptomList.Add("瞌睡");
-            _symptomList.Add("劳累");
-            _symptomList.Add("劳累");
-            _symptomList.Add("感冒");
-            _symptomList.Add("发烧");
-            _symptomList.Add("感冒");
-            _symptomList.Add("感冒感冒感冒");
-            _symptomList.Add("感冒");
-            _symptomList.Add("发烧");
-            _symptomList.Add("感冒感冒感冒");
-            _symptomList.Add("发烧");
-            _symptomList.Add("感冒");
-            _symptomList.Add("感冒感冒感冒");
-            _symptomList.Add("感冒");
-            _symptomList.Add("发烧");
+            //_symptomList.Add("感冒");
+            //_symptomList.Add("发烧");
+            //_symptomList.Add("感冒感冒感冒");
+            //_symptomList.Add("发烧");
+            //_symptomList.Add("瞌睡");
+            //_symptomList.Add("劳累");
+            //_symptomList.Add("劳累");
+            //_symptomList.Add("感冒");
+            //_symptomList.Add("发烧");
+            //_symptomList.Add("感冒");
+            //_symptomList.Add("感冒感冒感冒");
+            //_symptomList.Add("感冒");
+            //_symptomList.Add("发烧");
+            //_symptomList.Add("感冒感冒感冒");
+            //_symptomList.Add("发烧");
+            //_symptomList.Add("感冒");
+            //_symptomList.Add("感冒感冒感冒");
+            //_symptomList.Add("感冒");
+            //_symptomList.Add("发烧");
 
-            symptomListBox.ItemsSource = _symptomList;
+            //symptomListBox.ItemsSource = _symptomList;
             //DataContext = this;
 
 
             //查询患者体征数据
-            var healthData = WebApiService.QueryHealthData();
+            var healthData = WebApiService.QueryHealthData(_patieneInfo);
             if (healthData != null)
             {
                 this.DataContext = healthData;
                 //healthData = new HealthData();
                 //healthData.bloodGlucose = "100";
             }
-            
 
 
-            symptomResultListBox.ItemsSource = _symptomResultList;
+
+            symptomListBox.ItemsSource = _symptomResultList;
+            symptomResultListBox.ItemsSource = _symptomResultList2;
 
 
-           
+
 
         }
 
@@ -87,41 +118,17 @@ namespace Doctor
             {
                 return;
             }
+            var list = WebApiService.QuerySymptomList(text, _patieneInfo);
 
 
-            var list = WebApiService.QuerySymptomList(text);
 
-            //var re = WebApiService.QueryDiseaseBySymptom();
-            #region
-            //加载疑似病例模块
-            //if (suspectedDisease != null && suspectedDisease.wmDiseaseDetailSocketParams != null)
-            //{
-
-            //    foreach (var wmDIs in suspectedDisease.wmDiseaseDetailSocketParams)
-            //    {
-
-
-            //        wmDIs.diseaseMatching = wmDIs.diseaseMatching + "%";
-            //    }
-            //    this.YsListDb.ItemsSource = suspectedDisease.wmDiseaseDetailSocketParams;
-            //}
-            #endregion
 
             if (list.Any())
             {
-                if (!_symptomList.Contains(text))
+                foreach (var item in list)
                 {
-                    _symptomList.Add(text);
-                    foreach(var item in list)
-                    {
-                        _symptomResultList.Add(item);
-                    }
+                    _symptomResultList.Add(item);
                 }
-                else
-                {
-                    //已经搜索该症状
-                }
-
             }
             else
             {
@@ -141,18 +148,72 @@ namespace Doctor
             System.Environment.Exit(0);
         }
 
+        /// <summary>
+        /// 点击主诉症状的某一项
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SearchSymptomDisease_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var label = sender as Label;
+            var sn = label.Content.ToString();
+
+            var re = WebApiService.QueryDiseaseBySymptom(sn,_patieneInfo);
+
+
+            var suspectedDisease = re.diagnosisDisease;
+            var sList = re.concomitant;
+
+            //加载疑似病例模块
+            if (suspectedDisease != null && suspectedDisease.Any())
+            {
+
+                foreach (var wmDIs in suspectedDisease)
+                {
+                    wmDIs.diseaseMatching = wmDIs.diseaseMatching + "%";
+                }
+                this.YsListDb.ItemsSource = suspectedDisease;
+                this.totalCountLabel.Content = "共计：" + suspectedDisease.Count();
+            }
+
+            if(sList != null && sList.Any())
+            {
+                _symptomResultList2.Clear();
+                foreach (var item in sList)
+                {
+                    _symptomResultList2.Add(item);
+                }
+            }
+
+        }
+
+        /// <summary>
+        /// 删除主诉症状的某一项
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteSymptomButton_Click(object sender, RoutedEventArgs e)
         {
             //var index = symptomListBox.SelectedIndex;
 
             Button btn = sender as Button;
-            var obj = _symptomList.First(item => item == btn.Tag.ToString());
-            if (!string.IsNullOrEmpty(obj))
+            var str = btn.Tag.ToString();
+
+            var obj = _symptomResultList.FirstOrDefault(item => item.symptom == str);
+            if (obj!=null)
             {
-                _symptomList.Remove(obj);
+                _symptomResultList.Remove(obj);
             }
         }
 
+
+
+
+        /// <summary>
+        /// 点击症状分析层的某一项
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SymptomResultButton_Click(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
@@ -169,6 +230,12 @@ namespace Doctor
                 btn.SetValue(Button.StyleProperty, Application.Current.Resources["GreenButton"]);
             }
 
+            //添加到主诉症状
+            var item = new Symptom();
+            item.symptom = btn.Content.ToString();
+
+            _symptomResultList.Add(item);
+
         }
 
         private void SymptomCheckBox_Click(object sender, RoutedEventArgs e)
@@ -183,6 +250,16 @@ namespace Doctor
             {
                 check.IsChecked = true;
             }
+        }
+
+        /// <summary>
+        /// 点击查看更多
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MoreButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
