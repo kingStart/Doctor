@@ -40,6 +40,20 @@ namespace Doctor.Model
         public string system { get; set; }
         public string icd10 { get; set; }
         public string degree { get; set; }
+        /// <summary>
+        /// 程度
+        /// </summary>
+        public string degreeJi { get; set; }
+
+        /// <summary>
+        /// 程度
+        /// </summary>
+        public string degreeWei { get; set; }
+
+        /// <summary>
+        /// 程度
+        /// </summary>
+        public string degreeZ { get; set; }
         public string infectious { get; set; }
         public string department { get; set; }
         public string wmKnow { get; set; }
