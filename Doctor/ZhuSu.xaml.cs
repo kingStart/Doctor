@@ -20,7 +20,7 @@ namespace Doctor
     /// </summary>
     public partial class ZhuSu : Window
     {
-        private PatientInfo pInfo;
+        public static PatientInfo pInfo;
 
         public static ZhuSu zhuSu;
 

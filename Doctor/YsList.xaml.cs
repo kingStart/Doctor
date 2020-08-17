@@ -69,6 +69,30 @@ namespace Doctor
                 this.MainCount.Content = "共计：" + _MainCount.ToString();
                 foreach (var wmDIs in suspectedDisease.wmDiseaseDetailSocketParams)
                 {
+                    if (wmDIs.degree.Contains("危"))
+                    {
+                        wmDIs.degreeWei = "Visible";
+                    }
+                    else
+                    {
+                        wmDIs.degreeWei = "Hidden";
+                    }
+                    if (wmDIs.degree.Contains("急"))
+                    {
+                        wmDIs.degreeJi = "Visible";
+                    }
+                    else
+                    {
+                        wmDIs.degreeJi = "Hidden";
+                    }
+                    if (wmDIs.degree.Contains("重"))
+                    {
+                        wmDIs.degreeZ = "Visible";
+                    }
+                    else
+                    {
+                        wmDIs.degreeZ = "Hidden";
+                    }
                     wmDIs.diseaseMatching = wmDIs.diseaseMatching+"%";
                 }
                 this.YsListDb.ItemsSource = suspectedDisease.wmDiseaseDetailSocketParams;

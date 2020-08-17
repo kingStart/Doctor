@@ -17,7 +17,7 @@ namespace Doctor
     {
         // 这里的URL配置成你websocket服务端的地址就好了
         private static string url = ConfigurationManager.AppSettings["WebSocketUrl"];
-
+        public static DoctorInfo doctor;
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -25,9 +25,9 @@ namespace Doctor
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
 
             //用传过来的参数登陆
-            var doctor = new DoctorInfo();
-            doctor.doctorName = "羽蓬监";
-            doctor.doctorId = "34182586570974";
+            doctor = new DoctorInfo();
+            doctor.doctorName = "于景蔡";
+            doctor.doctorId = "34182551246931";
             doctor.orgCode = "341825001";
             doctor.areaCodeCount = "341825";
             doctor.sourceId = "mmednet_jqkj";

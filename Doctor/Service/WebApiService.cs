@@ -135,18 +135,18 @@ namespace Doctor.Service
         }
 
         /// <summary>
-        /// 添加疾病知识库
+        /// 获取疾病知识库
         /// </summary>
-        public static DiseaseDosageSchedule GetPlanList(string dicID)
+        public static DiseaseDosageSchedule GetPlanList(string dicID,string outpatientId)
         {
             var dSchedule = new DiseaseDosageSchedule();
             
             Dictionary<string, string> dic = new Dictionary<string, string>() { };
             dic.Add("icd10", dicID);//令牌
-            dic.Add("doctorToken", "19bdb7cd22354ce0ab8d8e4a8f35e49d");//令牌
-            dic.Add("doctorId", "34182533722695");//医生id
+            dic.Add("doctorToken", App.doctor.doctorToken);//令牌
+            dic.Add("doctorId", App.doctor.doctorId);//医生id
             dic.Add("timestamp", TimeHelper.GetTimeStamp());//时间戳
-            dic.Add("outpatientId", "891919391-341825001");//门诊流水号
+            dic.Add("outpatientId", outpatientId);//诊断号
 
             var postContent = HttpHelper.Post("http://103.85.170.99:10001/api/assistant/wm/getDiseaseDosageSchedule ", dic);
 

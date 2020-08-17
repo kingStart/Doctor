@@ -32,6 +32,21 @@ namespace Doctor.Model
         public string degree { get; set; }
 
         /// <summary>
+        /// 程度
+        /// </summary>
+        public string degreeJi { get; set; }
+
+        /// <summary>
+        /// 程度
+        /// </summary>
+        public string degreeWei { get; set; }
+
+        /// <summary>
+        /// 程度
+        /// </summary>
+        public string degreeZ { get; set; }
+
+        /// <summary>
         /// 疾病名称
         /// </summary>
         public string disease { get; set; }
