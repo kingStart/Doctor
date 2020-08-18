@@ -15,6 +15,13 @@ namespace Doctor
     /// </summary>
     public partial class App : Application
     {
+
+        public App()
+        {
+            log4net.Config.XmlConfigurator.Configure();
+            this.Startup += new StartupEventHandler(Application_Startup);
+        }
+
         // 这里的URL配置成你websocket服务端的地址就好了
         private static string url = ConfigurationManager.AppSettings["WebSocketUrl"];
         public static DoctorInfo doctor;
@@ -24,15 +31,49 @@ namespace Doctor
             //hook on error before app really starts
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
 
-            //用传过来的参数登陆
+
             doctor = new DoctorInfo();
-            doctor.doctorName = "南宫医生";
-            doctor.doctorId = "34182586570974";
-            doctor.orgCode = "341825001";
-            doctor.areaCodeCount = "341825";
-            doctor.sourceId = "mmednet_jqkj";
+
+            if (e.Args.Length > 0)
+            {
+                var str = e.Args[0];
+
+                LogHelper.AddEventLog("初始启动参数--->"+ str);
+
+
+                if (!string.IsNullOrEmpty(str))
+                {
+                    var paramsString = StringHelper.UnBase64String(str);
+                    var paramsList = paramsString.Split(new Char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+
+
+                    LogHelper.AddEventLog("解密后启动参数--->" + paramsString);
+
+                    //用传过来的参数登陆
+                    doctor.doctorName = paramsList[0];
+                    doctor.doctorId = paramsList[1];
+                    doctor.orgCode = paramsList[2];
+                    doctor.areaCodeCount = paramsList[3];
+                    doctor.sourceId = paramsList[4];
+
+                }
+            }            
+            else
+            {
+                //用传过来的参数登陆
+                doctor.doctorName = "南宫医生";
+                doctor.doctorId = "34182586570974";
+                doctor.orgCode = "341825001";
+                doctor.areaCodeCount = "341825";
+                doctor.sourceId = "mmednet_jqkj";
+            }
             doctor.doctorToken = "";
             doctor.doctorSex = "";
+
+
+
+
+
 
             doctor = WebApiService.LoginUser(doctor);
             string socketUrl = url + doctor.doctorId + "/" + doctor.doctorToken;
