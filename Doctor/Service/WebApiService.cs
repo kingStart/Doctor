@@ -208,5 +208,37 @@ namespace Doctor.Service
             return null;
         }
 
+
+        /// <summary>
+        /// 获取疾病知识库
+        /// </summary>
+        public static DrugKnowledageBase GetDrug(string drugid, string outpatientId)
+        {
+            var dSchedule = new DrugKnowledageBase();
+
+            Dictionary<string, string> dic = new Dictionary<string, string>() { };
+            dic.Add("drugid", drugid);//令牌
+            dic.Add("doctorToken", App.doctor.doctorToken);//令牌
+            dic.Add("doctorId", App.doctor.doctorId);//医生id
+            dic.Add("timestamp", TimeHelper.GetTimeStamp());//时间戳
+            dic.Add("outpatientId", outpatientId);//诊断号
+
+            var postContent = HttpHelper.Post("http://103.85.170.99:10001/api/assistant/wm/getDrugKnowledageBase", dic);
+
+            //转换结果
+            var result = JsonConvert.DeserializeObject<WebApiResult>(postContent);
+            if (result.data != null)
+            {
+                var result_healthData = JsonConvert.DeserializeObject<DrugKnowledageBase>(result.data.ToString());
+
+                if (result_healthData != null)
+                {
+                    dSchedule = result_healthData;
+                }
+                return dSchedule;
+            }
+            return null;
+        }
+
     }
 }
