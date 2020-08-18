@@ -163,7 +163,7 @@ namespace Doctor
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
 
-            Search dlg = new Search();
+            Search dlg = new Search(suspectedDisease.patient);
             dlg.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             dlg.Show();
         }
