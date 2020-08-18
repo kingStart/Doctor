@@ -23,7 +23,7 @@ namespace Doctor.Model
         /// <summary>
         /// 疾病列表
         /// </summary>
-        public List<DiagnosisDisease> diagnosisDisease { get; set; }
+        public List<SuspectedDiseaseDetail> diagnosisDisease { get; set; }
 
         /// <summary>
         /// 系统下疾病统计

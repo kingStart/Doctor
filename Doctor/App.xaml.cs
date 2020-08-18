@@ -26,8 +26,8 @@ namespace Doctor
 
             //用传过来的参数登陆
             doctor = new DoctorInfo();
-            doctor.doctorName = "于景蔡";
-            doctor.doctorId = "34182551246931";
+            doctor.doctorName = "南宫医生";
+            doctor.doctorId = "34182586570974";
             doctor.orgCode = "341825001";
             doctor.areaCodeCount = "341825";
             doctor.sourceId = "mmednet_jqkj";

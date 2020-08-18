@@ -43,8 +43,8 @@ namespace Doctor.Service
 
             Dictionary<string, string> dic = new Dictionary<string, string>() { };
             dic.Add("symptomSynonym", ymptomName);
-            dic.Add("doctorId", TokenHelper.doctorInfo.doctorId);
-            dic.Add("doctorToken", TokenHelper.doctorInfo.doctorToken);
+            dic.Add("doctorId", App.doctor.doctorId);
+            dic.Add("doctorToken", App.doctor.doctorToken);
             dic.Add("timestamp", TimeHelper.GetTimeStamp());
             dic.Add("gender", patientInfo.sexCode) ;
             dic.Add("age", patientInfo.age.Replace("岁",""));
@@ -80,15 +80,15 @@ namespace Doctor.Service
             Dictionary<string, string> dic = new Dictionary<string, string>() { };
             if (patientInfo == null)
             {
-                dic.Add("doctorToken", TokenHelper.doctorInfo.doctorToken);//令牌
+                dic.Add("doctorToken", App.doctor.doctorToken);//令牌
                 dic.Add("doctorId", "34182533722695");//医生id
                 dic.Add("timestamp", TimeHelper.GetTimeStamp());//时间戳
                 dic.Add("outpatientId", "891919391-341825001");//门诊流水号
             }
             else
             {
-                dic.Add("doctorToken", TokenHelper.doctorInfo.doctorToken);//令牌
-                dic.Add("doctorId", TokenHelper.doctorInfo.doctorId);//医生id
+                dic.Add("doctorToken", App.doctor.doctorToken);//令牌
+                dic.Add("doctorId", App.doctor.doctorId);//医生id
                 dic.Add("timestamp", TimeHelper.GetTimeStamp());//时间戳
                 dic.Add("outpatientId", patientInfo.outpatientId);//门诊流水号
             }
@@ -137,7 +137,7 @@ namespace Doctor.Service
             var json = JsonConvert.SerializeObject(item);
 
 
-            var postContent = HttpHelper.PostJson("http://103.85.170.99:10001/api/assistant/wm/queryDiseaseBySymptom?doctorToken="+ TokenHelper.doctorInfo.doctorToken + "&timestamp=" + TimeHelper.GetTimeStamp() + "&outpatientId="+ patientInfo.outpatientId + "&doctorId=" + TokenHelper.doctorInfo.doctorId + "", json);
+            var postContent = HttpHelper.PostJson("http://103.85.170.99:10001/api/assistant/wm/queryDiseaseBySymptom?doctorToken="+ App.doctor.doctorToken + "&timestamp=" + TimeHelper.GetTimeStamp() + "&outpatientId="+ patientInfo.outpatientId + "&doctorId=" + App.doctor.doctorId + "", json);
 
 
             //转换结果
@@ -154,6 +154,28 @@ namespace Doctor.Service
 
             return desease;
         }
+
+        /// <summary>
+        /// 添加疾病
+        /// </summary>
+        /// <returns></returns>
+        public static bool AddDisease(string diseaseName, string symptoms,string outpatientId)
+        {
+            var desease = new Disease();
+
+            var postContent = HttpHelper.PostJson("http://103.85.170.99:10001/api/assistant/wm/addDisease?diseaseName="+ diseaseName + "&symptoms="+ symptoms + "&doctorId="+ App.doctor.doctorId + "&doctorToken=" + App.doctor.doctorToken + "&timestamp=" + TimeHelper.GetTimeStamp() + "&outpatientId=" + outpatientId , "");
+
+
+            //转换结果
+            var result = JsonConvert.DeserializeObject<WebApiResult>(postContent);
+            if (result.msg != null && (result.msg == "SUCCESS" || result.msg == "Success" || result.msg == "success"))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
 
         /// <summary>
         /// 获取疾病知识库

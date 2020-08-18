@@ -41,7 +41,7 @@ namespace Doctor
         private ObservableCollection<Symptom> _symptomResultList = new ObservableCollection<Symptom>() { };//症状搜索结果集合 主诉症状
          
         private ObservableCollection<Symptom> _symptomResultList2 = new ObservableCollection<Symptom>() { };//症状搜索结果集合  分析层症状
-        //private ObservableCollection<DiagnosisDisease> _diagnosisDiseaseList = new ObservableCollection<DiagnosisDisease>() { };//疑似疾病
+        private ObservableCollection<SuspectedDiseaseDetail> _diagnosisDiseaseList = new ObservableCollection<SuspectedDiseaseDetail>() { };//疑似疾病
 
 
 
@@ -164,6 +164,8 @@ namespace Doctor
             var suspectedDisease = re.diagnosisDisease;
             var sList = re.concomitant;
 
+            _diagnosisDiseaseList.Clear();
+
             //加载疑似病例模块
             if (suspectedDisease != null && suspectedDisease.Any())
             {
@@ -171,6 +173,7 @@ namespace Doctor
                 foreach (var wmDIs in suspectedDisease)
                 {
                     wmDIs.diseaseMatching = wmDIs.diseaseMatching + "%";
+                    _diagnosisDiseaseList.Add(wmDIs);
                 }
                 this.YsListDb.ItemsSource = suspectedDisease;
                 this.totalCountLabel.Content = "共计：" + suspectedDisease.Count();
@@ -259,7 +262,15 @@ namespace Doctor
         /// <param name="e"></param>
         private void MoreButton_Click(object sender, RoutedEventArgs e)
         {
+            var item = new SuspectedDisease();
+            item.patient = _patieneInfo;
+            item.wmDiseaseDetailSocketParams = _diagnosisDiseaseList.ToList();
 
+            Plan dlg = new Plan(item);
+            dlg.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            dlg.Show();
+
+            this.Close();
         }
     }
 }
