@@ -22,6 +22,8 @@ namespace Doctor
     public partial class Plan : Window
     {
         private SuspectedDisease suspectedDisease;
+
+        public DiseaseDosageSchedule currentDiseaseDosageSchedule;
         public static Plan plan;
 
         public static int SQ1Status=0;
@@ -108,28 +110,28 @@ namespace Doctor
                 string icd = suspectedDisease.wmDiseaseDetailSocketParams.FirstOrDefault().icd10;
 
                 //加载疾病知识库
-                var dSchedule = WebApiService.GetPlanList(icd, suspectedDisease.patient.outpatientId);
-                LinChuang.Text = dSchedule.clinicalManifestation;
-                ZhenDuan.Text = dSchedule.differentialDiagnosis;
-                GaiShu.Text = dSchedule.diseasesummary;
-                JianCha.Text = dSchedule.laboratoryExamination;
-                YuFang.Text = dSchedule.prophylacticPrognosis;
-                ZhiLiao.Text = dSchedule.treatmentPlan;
-                YuanZe.Text = dSchedule.treatmentPrinciple;
-                LiuXing.Text = dSchedule.epidemiology;
-                Changjian.Text = dSchedule.commonSymptoms;
+                currentDiseaseDosageSchedule = WebApiService.GetPlanList(icd, suspectedDisease.patient.outpatientId);
+                LinChuang.Text = currentDiseaseDosageSchedule.clinicalManifestation;
+                ZhenDuan.Text = currentDiseaseDosageSchedule.differentialDiagnosis;
+                GaiShu.Text = currentDiseaseDosageSchedule.diseasesummary;
+                JianCha.Text = currentDiseaseDosageSchedule.laboratoryExamination;
+                YuFang.Text = currentDiseaseDosageSchedule.prophylacticPrognosis;
+                ZhiLiao.Text = currentDiseaseDosageSchedule.treatmentPlan;
+                YuanZe.Text = currentDiseaseDosageSchedule.treatmentPrinciple;
+                LiuXing.Text = currentDiseaseDosageSchedule.epidemiology;
+                Changjian.Text = currentDiseaseDosageSchedule.commonSymptoms;
 
                 //绑定一般治疗方法
-                proListItem = dSchedule.drugProgramAll.Take(4).ToList();
+                proListItem = currentDiseaseDosageSchedule.drugProgramAll.Take(4).ToList();
                 ProgramMotherList.ItemsSource = proListItem;
 
-                List<ProgramItem> proListItem1 = dSchedule.drugProgramAll.Take(4).FirstOrDefault().childItem;
+                List<ProgramItem> proListItem1 = currentDiseaseDosageSchedule.drugProgramAll.Take(4).FirstOrDefault().childItem;
                 //绑定药物治疗
-                ItemProgramMotherList.ItemsSource = dSchedule.drugProgramAll.Take(4).FirstOrDefault().childItem;
+                ItemProgramMotherList.ItemsSource = currentDiseaseDosageSchedule.drugProgramAll.Take(4).FirstOrDefault().childItem;
 
                 //加载检查方案
 
-                disCheckItem.ItemsSource = dSchedule.diseaseCheckItem;
+                disCheckItem.ItemsSource = currentDiseaseDosageSchedule.diseaseCheckItem;
             }
 
 
@@ -172,28 +174,28 @@ namespace Doctor
             string icd = stackpanel.Tag.ToString();
 
             //加载疾病知识库
-            var dSchedule =  WebApiService.GetPlanList(icd, suspectedDisease.patient.outpatientId);
-            LinChuang.Text = dSchedule.clinicalManifestation;
-            ZhenDuan.Text = dSchedule.differentialDiagnosis;
-            GaiShu.Text = dSchedule.diseasesummary;
-            JianCha.Text = dSchedule.laboratoryExamination;
-            YuFang.Text = dSchedule.prophylacticPrognosis;
-            ZhiLiao.Text = dSchedule.treatmentPlan;
-            YuanZe.Text = dSchedule.treatmentPrinciple;
-            LiuXing.Text = dSchedule.epidemiology;
-            Changjian.Text = dSchedule.commonSymptoms;
+            currentDiseaseDosageSchedule =  WebApiService.GetPlanList(icd, suspectedDisease.patient.outpatientId);
+            LinChuang.Text = currentDiseaseDosageSchedule.clinicalManifestation;
+            ZhenDuan.Text = currentDiseaseDosageSchedule.differentialDiagnosis;
+            GaiShu.Text = currentDiseaseDosageSchedule.diseasesummary;
+            JianCha.Text = currentDiseaseDosageSchedule.laboratoryExamination;
+            YuFang.Text = currentDiseaseDosageSchedule.prophylacticPrognosis;
+            ZhiLiao.Text = currentDiseaseDosageSchedule.treatmentPlan;
+            YuanZe.Text = currentDiseaseDosageSchedule.treatmentPrinciple;
+            LiuXing.Text = currentDiseaseDosageSchedule.epidemiology;
+            Changjian.Text = currentDiseaseDosageSchedule.commonSymptoms;
 
             //绑定一般治疗方法
-            proListItem = dSchedule.drugProgramAll.Take(4).ToList();
+            proListItem = currentDiseaseDosageSchedule.drugProgramAll.Take(4).ToList();
             ProgramMotherList.ItemsSource = proListItem;
 
-            List<ProgramItem> proListItem1= dSchedule.drugProgramAll.Take(4).FirstOrDefault().childItem;
+            List<ProgramItem> proListItem1= currentDiseaseDosageSchedule.drugProgramAll.Take(4).FirstOrDefault().childItem;
             //绑定药物治疗
-            ItemProgramMotherList.ItemsSource = dSchedule.drugProgramAll.Take(4).FirstOrDefault().childItem;
+            ItemProgramMotherList.ItemsSource = currentDiseaseDosageSchedule.drugProgramAll.Take(4).FirstOrDefault().childItem;
 
             //加载检查方案
 
-            disCheckItem.ItemsSource = dSchedule.diseaseCheckItem;
+            disCheckItem.ItemsSource = currentDiseaseDosageSchedule.diseaseCheckItem;
 
         }
 
@@ -377,7 +379,25 @@ namespace Doctor
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var btn = sender as Button;
-            string drugID = btn.Tag.ToString();
+            if (btn.Tag != null)
+            {
+                string drugID = btn.Tag.ToString();
+
+                string outpatientId = suspectedDisease.patient.outpatientId;
+
+
+                YpExplain dlg = new YpExplain(drugID, outpatientId);
+                dlg.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                dlg.Show();
+            }
+          
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            DcPlan dlg = new DcPlan(currentDiseaseDosageSchedule);
+            dlg.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            dlg.Show();
         }
     }
 

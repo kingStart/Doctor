@@ -196,6 +196,8 @@ namespace Doctor.Model
         public bool @checked { get; set; }
 
 
+        public string itemChidNames { get; set; }
+
 
     }
 
