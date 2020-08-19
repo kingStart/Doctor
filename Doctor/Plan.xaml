@@ -13,7 +13,7 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#3484F5" >
             <Label x:Name="titleLabel" FontWeight="Bold"  Margin="0,0,0,0.4" HorizontalContentAlignment="Left"  Foreground="White"  FontSize="15" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="30"   Width="417">全科医生机器人辅助诊断系统</Label>
-            <Button   Template="{StaticResource MaxBtn}" Margin="510,0,0,0" />
+            <Button   Template="{StaticResource MaxBtn}" Margin="510,0,0,0" Visibility="Hidden"/>
             <Button  Click="MinBtn_Click"  Template="{StaticResource MinBtn}" Margin="5,0,0,0" />
             <Button  Click="CloseBtn_Click"  Template="{StaticResource CloseBtn}" Margin="5,0,0,0" />
         </StackPanel>

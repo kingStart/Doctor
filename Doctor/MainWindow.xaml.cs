@@ -60,6 +60,8 @@ namespace Doctor
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            App._suspensionWindow._defultWindow = this;
+
             string sex = _patieneInfo.sexCode == "1" ? "男" : "女";
             this.PatientLabel.Content = "「 " + _patieneInfo.patientName + "   " + sex + "   " + _patieneInfo.age + " 」";
 
@@ -140,6 +142,12 @@ namespace Doctor
         private void MinBtn_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
+            this.ShowInTaskbar = false;
+            this.Hide();
+
+            App._suspensionWindow.Left = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Width / (CommonHelper.GetScale()) - 100;
+            App._suspensionWindow.Top = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Height / (CommonHelper.GetScale()) - 100;
+            App._suspensionWindow.Show();
         }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)

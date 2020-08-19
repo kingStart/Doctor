@@ -20,7 +20,7 @@ namespace Doctor
     /// </summary>
     public partial class SuspensionWindow : Window
     {
-        private DefultWindow _defultWindow;
+        public Window _defultWindow;
 
         public SuspensionWindow()
         {
@@ -56,6 +56,8 @@ namespace Doctor
         {
             this.Hide();
             _defultWindow.Show();
+            _defultWindow.WindowState = WindowState.Normal;
+            _defultWindow.ShowInTaskbar = true;
             _defultWindow.Topmost = true;
         }
         private void closeMenu_Click(object sender, EventArgs e)

@@ -97,6 +97,8 @@ namespace Doctor
                         dlg.Top = System.Windows.SystemParameters.PrimaryScreenHeight - 630;
                         dlg.Topmost = true;
                         dlg.Show();
+
+                        App._suspensionWindow._defultWindow = dlg;
                     }));
 
                 }
@@ -114,6 +116,7 @@ namespace Doctor
                         dlg.Top = System.Windows.SystemParameters.PrimaryScreenHeight - 630;
                         dlg.Topmost = true;
                         dlg.Show();
+                        App._suspensionWindow._defultWindow = dlg;
                     }));
                 }
                 else if (page == "disease_list")
@@ -132,6 +135,7 @@ namespace Doctor
                             dlg.Top = System.Windows.SystemParameters.PrimaryScreenHeight - 630;
                             dlg.Topmost = true;
                             dlg.Show();
+                            App._suspensionWindow._defultWindow = dlg;
                         }
                         else
                         {
@@ -143,6 +147,7 @@ namespace Doctor
                             dlg.Top = System.Windows.SystemParameters.PrimaryScreenHeight - 630;
                             dlg.Topmost = true;
                             dlg.Show();
+                            App._suspensionWindow._defultWindow = dlg;
                         }
                     }));
                 }
