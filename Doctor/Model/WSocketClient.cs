@@ -1,4 +1,5 @@
 ﻿using Doctor.Model;
+using Doctor.Service;
 using Newtonsoft.Json.Linq;
 using SuperSocket.ClientEngine;
 using System;
@@ -15,7 +16,6 @@ namespace Doctor
 {
     public class WSocketClient : IDisposable
     {
-        public static NLog.Logger _Logger = NLog.LogManager.GetCurrentClassLogger();
 
         #region 向外传递数据事件
         public event Action<string> MessageReceived;
@@ -60,7 +60,7 @@ namespace Doctor
             }
             catch (Exception ex)
             {
-                _Logger.Error(ex.ToString());
+                LogHelper.Error(ex.ToString());
                 result = false;
             }
             return result;
@@ -74,7 +74,7 @@ namespace Doctor
         {
           
              
-            _Logger.Info(" Received:" + e.Message);
+            LogHelper.Info(" Received:" + e.Message);
 
             JObject alive = (JObject)Newtonsoft.Json.JsonConvert.DeserializeObject(e.Message);
             string page = alive["page"].ToString();
@@ -156,7 +156,7 @@ namespace Doctor
         /// <param name="e"></param>
         void WebSocket_Closed(object sender, EventArgs e)
         {
-            _Logger.Info("websocket_Closed");
+            LogHelper.Info("websocket_Closed");
         }
         /// <summary>
         /// Socket报错事件
@@ -165,7 +165,7 @@ namespace Doctor
         /// <param name="e"></param>
         void WebSocket_Error(object sender, SuperSocket.ClientEngine.ErrorEventArgs e)
         {
-            _Logger.Info("websocket_Error:"+e.Exception.ToString() );
+            LogHelper.Info("websocket_Error:"+e.Exception.ToString() );
         }
         /// <summary>
         /// Socket打开事件
@@ -174,7 +174,7 @@ namespace Doctor
         /// <param name="e"></param>
         void WebSocket_Opened(object sender, EventArgs e)
         {
-            _Logger.Info(" websocket_Opened");
+            LogHelper.Info(" websocket_Opened");
         }
         /// <summary>
         /// 检查重连线程
@@ -187,7 +187,7 @@ namespace Doctor
                 {
                     if (this._webSocket.State != WebSocket4Net.WebSocketState.Open && this._webSocket.State != WebSocket4Net.WebSocketState.Connecting)
                     {
-                        _Logger.Info(" Reconnect websocket WebSocketState:" + this._webSocket.State);
+                        LogHelper.Info(" Reconnect websocket WebSocketState:" + this._webSocket.State);
                         this._webSocket.Close();
                         this._webSocket.Open();
                         Console.WriteLine("正在重连");
@@ -195,7 +195,7 @@ namespace Doctor
                 }
                 catch (Exception ex)
                 {
-                    _Logger.Error(ex.ToString());
+                    LogHelper.Error(ex.ToString());
                 }
                 System.Threading.Thread.Sleep(5000);
             } while (this._isRunning);

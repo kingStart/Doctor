@@ -38,7 +38,7 @@ namespace Doctor
             {
                 var str = e.Args[0];
 
-                LogHelper.AddEventLog("初始启动参数--->"+ str);
+                LogHelper.Info("初始启动参数--->"+ str);
 
 
                 if (!string.IsNullOrEmpty(str))
@@ -47,7 +47,7 @@ namespace Doctor
                     var paramsList = paramsString.Split(new Char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
 
 
-                    LogHelper.AddEventLog("解密后启动参数--->" + paramsString);
+                    LogHelper.Info("解密后启动参数--->" + paramsString);
 
                     //用传过来的参数登陆
                     doctor.doctorName = paramsList[0];
@@ -60,6 +60,7 @@ namespace Doctor
             }            
             else
             {
+                LogHelper.Info("初始启动参数--->" );
                 //用传过来的参数登陆
                 doctor.doctorName = "南宫医生";
                 doctor.doctorId = "34182586570974";

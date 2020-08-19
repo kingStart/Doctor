@@ -9,12 +9,12 @@ namespace Doctor.Service
     public class LogHelper
     {
         private static ILog logWriter = LogManager.GetLogger("AppLog");
-        public static void AddErrorLog(string str)
+        public static void Error(string str)
         {
             logWriter.Error(str);
         }
 
-        public static void AddEventLog(string str)
+        public static void Info(string str)
         {
             logWriter.Info(str);
         }
