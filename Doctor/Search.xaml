@@ -47,11 +47,11 @@
             </StackPanel>
             <StackPanel Height="30" Margin="50,30,0,0"  VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal">
                 <TextBox Height="30" Width="300" MaxLines="1" FontSize="16" VerticalContentAlignment="Center" x:Name="sTextBox"></TextBox>
-                <Button Style="{StaticResource GreenButton}" FontSize="15" Height="30" Width="60" Margin="10,0,0,0" Click="AddButton_Click" >添加</Button>
+                <Button Style="{StaticResource ButtonStyle3}" FontSize="15" Height="30" Width="60" Margin="10,0,0,0" Click="AddButton_Click" >添加</Button>
             </StackPanel>
             <StackPanel Height="50" Margin="0,30,0,0"  VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
                 <Button Style="{StaticResource QuxiaoButton}" Background="#D9D9D9" FontSize="15" Height="30" Width="60" Margin="10,0,0,0" Click="CancelButton_Click" >取消</Button>
-                <Button Style="{StaticResource GreenButton}" FontSize="15" Height="30" Width="60" Margin="10,0,0,0" Click="SaveButton_Click" >保存</Button>
+                <Button Style="{StaticResource ButtonStyle3}" FontSize="15" Height="30" Width="60" Margin="10,0,0,0" Click="SaveButton_Click" >保存</Button>
             </StackPanel>
         </StackPanel>
        

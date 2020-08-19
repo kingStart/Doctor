@@ -28,6 +28,12 @@ namespace Doctor
 
         protected override void OnStartup(StartupEventArgs e)
         {
+
+
+            //var n = new SuspensionWindow();
+            //n.ShowDialog();
+            //return;
+
             //hook on error before app really starts
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
 
@@ -60,10 +66,10 @@ namespace Doctor
             }            
             else
             {
-                LogHelper.Info("初始启动参数--->" );
+                LogHelper.Info("无参数启动--->" );
                 //用传过来的参数登陆
                 doctor.doctorName = "南宫医生";
-                doctor.doctorId = "34182586570974";
+                doctor.doctorId = "000010008";
                 doctor.orgCode = "341825001";
                 doctor.areaCodeCount = "341825";
                 doctor.sourceId = "mmednet_jqkj";

@@ -1,0 +1,27 @@
+﻿<Window x:Class="Doctor.SuspensionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Doctor"
+        mc:Ignorable="d"
+        Title="SuspensionWindow" Height="56" Width="56"
+        WindowStartupLocation="Manual" Topmost="True"
+        Name="RootWindow"
+        ShowInTaskbar="False" 
+        WindowStyle="None" 
+        WindowState="Normal" 
+        Loaded="RootWindow_Loaded"
+        MouseEnter="RootWindow_MouseEnter"  MouseLeave="RootWindow_MouseLeave"
+        Activated="RootWindow_Activated"  Deactivated="RootWindow_Deactivated"
+        MouseLeftButtonDown="RootWindow_MouseLeftButtonDown"  MouseLeftButtonUp="RootWindow_MouseLeftButtonUp"
+        Closed="RootWindow_Closed"
+        MouseDoubleClick="RootWindow_MouseDoubleClick"
+        SnapsToDevicePixels="True" ResizeMode="NoResize"         
+        AllowsTransparency="True">
+    <Grid>
+        <Border BorderThickness="1" BorderBrush="#0096DC">
+            <Image x:Name="windowIcon" VerticalAlignment="Center" HorizontalAlignment="Center" Source="/Doctor;component/Resources/logo.png"></Image>
+        </Border>
+    </Grid>
+</Window>

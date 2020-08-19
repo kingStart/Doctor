@@ -5,6 +5,12 @@
              Startup="Application_Startup" >
     <Application.Resources>
 
+        <SolidColorBrush x:Key="ButtonStyle3BackgroundColor" Color="#41A0E9"></SolidColorBrush>
+        <SolidColorBrush x:Key="ButtonStyle3BorderColor" Color="#41A0E9"></SolidColorBrush>
+        <SolidColorBrush x:Key="ButtonStyle3ForeColor" Color="#FFFFFF"></SolidColorBrush>
+        <SolidColorBrush x:Key="ButtonStyle3HoverBackgroundColor" Color="#3B98DE"></SolidColorBrush>
+        <SolidColorBrush x:Key="ButtonStyle3HoverForeColor" Color="#FFFFFF"></SolidColorBrush>
+        
         <!--Label圆角-->
         <ControlTemplate x:Key="FilletLabel" TargetType="{x:Type Label}">
             <Border BorderBrush="White" BorderThickness="1" CornerRadius="10">
@@ -61,6 +67,39 @@
             </Style.Triggers>
         </Style>
 
+
+        <Style x:Key="ButtonStyle3" TargetType="{x:Type Button}" >
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="Background" Value="{StaticResource ButtonStyle3BackgroundColor}"></Setter>
+            <Setter Property="Foreground" Value="{StaticResource ButtonStyle3ForeColor}"></Setter>
+            <Setter Property="BorderBrush" Value="{StaticResource ButtonStyle3BorderColor}"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <ControlTemplate.Resources>
+                            <Storyboard x:Key="Storyboard1"/>
+                        </ControlTemplate.Resources>
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" 
+                                SnapsToDevicePixels="true" CornerRadius="4" Cursor="Hand">
+                            <ContentPresenter x:Name="contentPresenter" 
+                                              Focusable="False" 
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                              Margin="{TemplateBinding Padding}" 
+                                              RecognizesAccessKey="True" 
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"  />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource ButtonStyle3HoverBackgroundColor}"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style x:Key="newText" TargetType="TextBox" >
             <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="Background" Value="#FFF" />
