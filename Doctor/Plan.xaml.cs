@@ -148,7 +148,7 @@ namespace Doctor
             List<PaintName> painetList = new List<PaintName>();
             if (!string.IsNullOrEmpty(suspectedDisease.patient.symptom)&& suspectedDisease.patient.symptom.Contains(","))
             {
-                List<string> pList = suspectedDisease.patient.symptom.Split(',').ToList();
+                List<string> pList = suspectedDisease.patient.symptom.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();
                 foreach (var u in pList)
                 {
                     PaintName p = new PaintName();
@@ -168,10 +168,21 @@ namespace Doctor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BtnSave_Click(object sender, RoutedEventArgs e)
+        private void AddDiseaseBtnSave_Click(object sender, RoutedEventArgs e)
         {
+            //把 painetList 参数 传过去
 
-            Search dlg = new Search(suspectedDisease.patient);
+
+            //加载症状
+            List<string> list = new List<string>();
+            if (!string.IsNullOrEmpty(suspectedDisease.patient.symptom) && suspectedDisease.patient.symptom.Contains(","))
+            {
+                list = suspectedDisease.patient.symptom.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                
+            }
+
+
+            Search dlg = new Search(suspectedDisease.patient, list);
             dlg.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             dlg.Show();
         }

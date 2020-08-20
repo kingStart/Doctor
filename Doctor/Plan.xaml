@@ -80,7 +80,7 @@
 
                         </StackPanel>
                         <StackPanel Grid.Row="3" Orientation="Horizontal" Background="#F4F4F4">
-                            <Button x:Name="btnSave" Margin="80,0,0,0"  Click="BtnSave_Click" Style="{StaticResource DefaultButton}"  Background="White"  Height="35">
+                            <Button x:Name="AddDiseaseBtn" Margin="80,0,0,0"  Click="AddDiseaseBtnSave_Click" Style="{StaticResource DefaultButton}"  Background="White"  Height="35">
                                 <Button.Content>
                                     <DockPanel>
                                         <Image Source="/Doctor;component/Resources/添加疾病.png" Width="16" ></Image>
@@ -126,8 +126,8 @@
                                 <ListBox.ItemTemplate >
 
                                     <DataTemplate>
-                                        <Border CornerRadius="5"  Height="30" Width="70" Margin="3,0,0,0"  BorderThickness="3" BorderBrush="#F4F4F4">
-                                            <Label FontSize="12" Width="70" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center"  Background="#F4F4F4" Content="{Binding Name}" ></Label>
+                                        <Border CornerRadius="5"  Height="30" Margin="3,0,0,0"  BorderThickness="3" BorderBrush="#F4F4F4">
+                                            <Label FontSize="12" VerticalContentAlignment="Center"  HorizontalContentAlignment="Center"  Background="#F4F4F4" Content="{Binding Name}" ></Label>
                                         </Border>
                                     </DataTemplate>
 

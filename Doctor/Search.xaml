@@ -32,8 +32,8 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate >
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
-                                    <Border CornerRadius="5" Height="36" Width="80" BorderThickness="3" BorderBrush="#F4F4F4">
+                                <StackPanel Orientation="Horizontal" Margin="10,4,4,4">
+                                    <Border CornerRadius="5" Height="36" BorderThickness="3" BorderBrush="#F4F4F4">
                                         <Label VerticalContentAlignment="Center" FontSize="14"  HorizontalContentAlignment="Center"  Background="#F4F4F4" Content="{Binding .}"></Label>
                                     </Border>
                                     <Button Background="#3484F5" Tag="{Binding .,Mode=OneWay}" Template="{StaticResource BlueClose}" Click="RemoveButton_Click" Margin="-10,-20,0,0" />
