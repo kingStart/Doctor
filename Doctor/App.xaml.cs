@@ -72,14 +72,14 @@ namespace Doctor
             else
             {
 
-                LogHelper.Info("无参数启动--->");
-                System.Windows.MessageBox.Show("启动失败，无效的启动参数", "错误");
-                Environment.Exit(0);
-                return;
+                //LogHelper.Info("无参数启动--->");
+                //System.Windows.MessageBox.Show("启动失败，无效的启动参数", "错误");
+                //Environment.Exit(0);
+                //return;
 
                 //用传过来的参数登陆
-                doctor.doctorName = "南宫医生";
-                doctor.doctorId = "000010008";
+                doctor.doctorName = "幕曙审";
+                doctor.doctorId = "34182593657566";
                 doctor.orgCode = "341825001";
                 doctor.areaCodeCount = "341825";
                 doctor.sourceId = "mmednet_jqkj";

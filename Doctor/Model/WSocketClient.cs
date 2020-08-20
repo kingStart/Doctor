@@ -17,6 +17,14 @@ namespace Doctor
     public class WSocketClient : IDisposable
     {
 
+        public ZhuSu zShu;
+
+        public DefultWindow dcInfo;
+
+        public DefultNo deNo;
+
+        public YsList yList;
+
         #region 向外传递数据事件
         public event Action<string> MessageReceived;
         #endregion
@@ -89,16 +97,21 @@ namespace Doctor
                     DoctorInfo doc = Newtonsoft.Json.JsonConvert.DeserializeObject<DoctorInfo>(datastr);
                     App.Current.Dispatcher.Invoke((Action)(() =>
                     {
+                        
 
-                      
-                        DefultWindow dlg = new DefultWindow(doc);
-                        dlg.WindowStartupLocation = WindowStartupLocation.Manual;
-                        dlg.Left = System.Windows.SystemParameters.PrimaryScreenWidth - 380;
-                        dlg.Top = System.Windows.SystemParameters.PrimaryScreenHeight - 630;
-                        dlg.Topmost = true;
-                        dlg.Show();
+                         if (dcInfo != null)
+                        {
+                            dcInfo.Close();
+                        }
 
-                        App._suspensionWindow._defultWindow = dlg;
+                        dcInfo = new DefultWindow(doc);
+                        dcInfo.WindowStartupLocation = WindowStartupLocation.Manual;
+                        dcInfo.Left = System.Windows.SystemParameters.PrimaryScreenWidth - 380;
+                        dcInfo.Top = System.Windows.SystemParameters.PrimaryScreenHeight - 630;
+                        dcInfo.Topmost = true;
+                        dcInfo.Show();
+
+                        App._suspensionWindow._defultWindow = dcInfo;
                     }));
 
                 }
@@ -107,16 +120,20 @@ namespace Doctor
                     PatientInfo paient = Newtonsoft.Json.JsonConvert.DeserializeObject<PatientInfo>(datastr);
                     App.Current.Dispatcher.Invoke((Action)(() =>
                     {
-                       
+                        if (zShu != null)
+                        {
+                            zShu.Close();
+                        }
 
 
-                        ZhuSu dlg = new ZhuSu(paient);
-                        dlg.WindowStartupLocation = WindowStartupLocation.Manual;
-                        dlg.Left = System.Windows.SystemParameters.PrimaryScreenWidth - 380;
-                        dlg.Top = System.Windows.SystemParameters.PrimaryScreenHeight - 630;
-                        dlg.Topmost = true;
-                        dlg.Show();
-                        App._suspensionWindow._defultWindow = dlg;
+
+                        zShu = new ZhuSu(paient);
+                        zShu.WindowStartupLocation = WindowStartupLocation.Manual;
+                        zShu.Left = System.Windows.SystemParameters.PrimaryScreenWidth - 380;
+                        zShu.Top = System.Windows.SystemParameters.PrimaryScreenHeight - 630;
+                        zShu.Topmost = true;
+                        zShu.Show();
+                        App._suspensionWindow._defultWindow = zShu;
                     }));
                 }
                 else if (page == "disease_list")
@@ -128,27 +145,54 @@ namespace Doctor
                         {
                             //var dlg = new MainWindow(paient.patient);
                             //dlg.Show();
+                            if (yList != null)
+                            {
+                                yList.Close();
+                            }
 
-                            YsList dlg = new YsList(paient);
-                            dlg.WindowStartupLocation = WindowStartupLocation.Manual;
-                            dlg.Left = System.Windows.SystemParameters.PrimaryScreenWidth - 380;
-                            dlg.Top = System.Windows.SystemParameters.PrimaryScreenHeight - 630;
-                            dlg.Topmost = true;
-                            dlg.Show();
-                            App._suspensionWindow._defultWindow = dlg;
+                            yList = new YsList(paient);
+                            yList.WindowStartupLocation = WindowStartupLocation.Manual;
+                            yList.Left = System.Windows.SystemParameters.PrimaryScreenWidth - 380;
+                            yList.Top = System.Windows.SystemParameters.PrimaryScreenHeight - 630;
+                            yList.Topmost = true;
+                            yList.Show();
+                            App._suspensionWindow._defultWindow = yList;
                         }
                         else
                         {
-                           
+                            if (deNo != null)
+                            {
+                                deNo.Close();
+                            }
 
-                            DefultNo dlg = new DefultNo(paient.patient);
-                            dlg.WindowStartupLocation = WindowStartupLocation.Manual;
-                            dlg.Left = System.Windows.SystemParameters.PrimaryScreenWidth - 380;
-                            dlg.Top = System.Windows.SystemParameters.PrimaryScreenHeight - 630;
-                            dlg.Topmost = true;
-                            dlg.Show();
-                            App._suspensionWindow._defultWindow = dlg;
+                            deNo = new DefultNo(paient.patient);
+                            deNo.WindowStartupLocation = WindowStartupLocation.Manual;
+                            deNo.Left = System.Windows.SystemParameters.PrimaryScreenWidth - 380;
+                            deNo.Top = System.Windows.SystemParameters.PrimaryScreenHeight - 630;
+                            deNo.Topmost = true;
+                            deNo.Show();
+                            App._suspensionWindow._defultWindow = deNo;
                         }
+                    }));
+                }
+                else
+                {
+                    SuspectedDisease paient = Newtonsoft.Json.JsonConvert.DeserializeObject<SuspectedDisease>(datastr);
+                    App.Current.Dispatcher.Invoke((Action)(() =>
+                    {
+                        if (deNo != null)
+                        {
+                            deNo.Close();
+                        }
+
+                        deNo = new DefultNo(paient.patient);
+                        deNo.WindowStartupLocation = WindowStartupLocation.Manual;
+                        deNo.Left = System.Windows.SystemParameters.PrimaryScreenWidth - 380;
+                        deNo.Top = System.Windows.SystemParameters.PrimaryScreenHeight - 630;
+                        deNo.Topmost = true;
+                        deNo.Show();
+                        App._suspensionWindow._defultWindow = deNo;
+
                     }));
                 }
             }

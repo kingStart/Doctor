@@ -65,5 +65,7 @@ namespace Doctor.Model
         /// 传染
         /// </summary>
         public string infectious { get; set; }
+
+        public string IsShowIcd { get; set; }
     }
 }

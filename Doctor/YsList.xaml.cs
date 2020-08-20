@@ -74,6 +74,11 @@ namespace Doctor
             if (suspectedDisease != null && suspectedDisease.wmDiseaseDetailSocketParams != null)
             {
                 _MainCount = suspectedDisease.wmDiseaseDetailSocketParams.Count();
+
+                if (_MainCount < 5)
+                {
+                    this.More_Btn.Visibility = Visibility.Hidden;
+                }
                 this.MainCount.Content = "共计：" + _MainCount.ToString();
                 foreach (var wmDIs in suspectedDisease.wmDiseaseDetailSocketParams)
                 {
@@ -101,7 +106,16 @@ namespace Doctor
                     {
                         wmDIs.degreeZ = "Hidden";
                     }
+
+
                     wmDIs.diseaseMatching = wmDIs.diseaseMatching+"%";
+
+
+                    if (string.IsNullOrEmpty(wmDIs.icd10))
+                    {
+                        wmDIs.IsShowIcd= "Visible";
+                    }
+
                 }
                 this.YsListDb.ItemsSource = suspectedDisease.wmDiseaseDetailSocketParams;
             }
@@ -123,6 +137,18 @@ namespace Doctor
 
 
             this.Close();
+        }
+        /// <summary>
+        /// 点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void StackPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Plan dlg = new Plan(suspectedDisease);
+            dlg.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            dlg.Show();
+
         }
     }
 }

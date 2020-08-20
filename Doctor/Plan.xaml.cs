@@ -111,7 +111,12 @@ namespace Doctor
                         wmDIs.degreeZ = "Hidden";
                     }
 
-                 
+                    if (string.IsNullOrEmpty(wmDIs.icd10))
+                    {
+                        wmDIs.IsShowIcd = "Visible";
+                    }
+
+
                 }
                 this.YsListDb.ItemsSource = suspectedDisease.wmDiseaseDetailSocketParams;
 
