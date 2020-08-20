@@ -167,7 +167,7 @@ namespace Doctor
                                            //System.Drawing.Icon icon = new System.Drawing.Icon(iconPath0);//程序图标 
             notifyIcon.Icon = icon0;
             notifyIcon.Visible = true;
-            //notifyIcon.Click += OnNotifyIconClick;
+            notifyIcon.Click += OnNotifyIconClick;
             notifyIcon.ShowBalloonTip(1000);
 
 
