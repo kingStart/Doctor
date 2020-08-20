@@ -79,7 +79,7 @@ namespace Doctor
 
                 //用传过来的参数登陆
                 doctor.doctorName = "南宫医生";
-                doctor.doctorId = "34182554693768";
+                doctor.doctorId = "34182529965224";
                 doctor.orgCode = "341825001";
                 doctor.areaCodeCount = "341825";
                 doctor.sourceId = "mmednet_jqkj";
