@@ -31,7 +31,7 @@ namespace Doctor
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            System.Environment.Exit(0);
+            
         }
         /// <summary>
         /// 窗体可拖动

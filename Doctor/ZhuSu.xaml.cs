@@ -36,7 +36,7 @@ namespace Doctor
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            System.Environment.Exit(0);
+          
         }
 
         private void MinBtn_Click(object sender, RoutedEventArgs e)
