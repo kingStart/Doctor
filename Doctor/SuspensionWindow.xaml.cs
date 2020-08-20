@@ -111,5 +111,12 @@ namespace Doctor
             _defultWindow.Topmost = true;
             this.Hide();
         }
+
+        private void windowIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            _defultWindow.Show();
+            _defultWindow.Topmost = true;
+            this.Hide();
+        }
     }
 }
