@@ -117,6 +117,10 @@ namespace Doctor
                     {
                         wmDIs.IsShowIcd = "Visible";
                     }
+                    else
+                    {
+                        wmDIs.IsShowIcd = "Hidden";
+                    }
 
 
                 }
@@ -161,14 +165,18 @@ namespace Doctor
             List<PaintName> painetList = new List<PaintName>();
             if (!string.IsNullOrEmpty(suspectedDisease.patient.symptom)&& suspectedDisease.patient.symptom.Contains(","))
             {
-                List<string> pList = suspectedDisease.patient.symptom.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                List<string> pList = suspectedDisease.patient.symptom.Split(new[] { ',', '，' }, StringSplitOptions.RemoveEmptyEntries).ToList();
                 foreach (var u in pList)
                 {
                     PaintName p = new PaintName();
                     p.Name = u;
+                    p.IsSelf = true;
                     painetList.Add(p);
                 }
 
+                PaintName p0 = new PaintName();
+                p0.Name = "AAA";
+                p0.IsSelf = false; painetList.Add(p0);
                 painetDb.ItemsSource = painetList;
             }
 
@@ -183,14 +191,13 @@ namespace Doctor
         /// <param name="e"></param>
         private void AddDiseaseBtnSave_Click(object sender, RoutedEventArgs e)
         {
-            //把 painetList 参数 传过去
 
 
             //加载症状
             List<string> list = new List<string>();
             if (!string.IsNullOrEmpty(suspectedDisease.patient.symptom) && suspectedDisease.patient.symptom.Contains(","))
             {
-                list = suspectedDisease.patient.symptom.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                list = suspectedDisease.patient.symptom.Split(new[] { ',', '，' }, StringSplitOptions.RemoveEmptyEntries).ToList();
                 
             }
 
@@ -228,6 +235,17 @@ namespace Doctor
             //加载检查方案
 
             disCheckItem.ItemsSource = currentDiseaseDosageSchedule.diseaseCheckItem;
+
+
+            if (!string.IsNullOrEmpty(currentDiseaseDosageSchedule.commonSymptoms))
+            {
+                var list = currentDiseaseDosageSchedule.commonSymptoms.Split(new[] { ',','，' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                
+
+
+            }
+
+
 
         }
 
@@ -435,5 +453,6 @@ namespace Doctor
 
     public class PaintName {
         public string Name { get; set; }
+        public bool IsSelf { get; set; }
     }
 }

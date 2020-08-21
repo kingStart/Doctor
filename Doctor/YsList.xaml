@@ -50,7 +50,7 @@
                         </StackPanel>
 
                         <StackPanel Grid.Row="2" Orientation="Vertical" >
-                            <ListBox x:Name="YsListDb"      HorizontalContentAlignment="Center" BorderThickness="0" HorizontalAlignment="Center" Width="350" Height="400"  >
+                            <ListBox x:Name="YsListDb" HorizontalContentAlignment="Center" BorderThickness="0" HorizontalAlignment="Center" Width="350" Height="400"  >
 
                                 <ListBox.ItemsPanel>
                                     <ItemsPanelTemplate>
@@ -83,7 +83,7 @@
                         <StackPanel Grid.Row="3" Orientation="Horizontal">
                             <Image HorizontalAlignment="Center" VerticalAlignment="Center" Width="20" Height="20" Source="/Doctor;component/Resources/记录 .png"></Image>
                             <Label x:Name="MainCount" Height="40" Width="120"  FontSize="13" Foreground="Black"  FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="共计：0"/>
-                            <Button  x:Name="More_Btn" Margin="10,0,0,0" Background="White" BorderBrush="White"  FontWeight="Bold" Foreground="#009EFF" Click="Button_Click" HorizontalContentAlignment="Right" Width="200">查看更多>></Button>
+                            <Button  x:Name="More_Btn" Margin="10,0,0,0" Background="White" BorderBrush="White"  FontWeight="Bold" Foreground="#009EFF" Click="MoreButton_Click" HorizontalContentAlignment="Right" Width="200">查看更多>></Button>
                         </StackPanel>
                     </Grid>
                 </StackPanel>

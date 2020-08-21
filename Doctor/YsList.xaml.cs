@@ -114,31 +114,53 @@ namespace Doctor
 
                     if (string.IsNullOrEmpty(wmDIs.icd10))
                     {
-                        wmDIs.IsShowIcd= "Visible";
+                        wmDIs.IsShowIcd = "Visible";
+                    }
+                    else
+                    {
+                        wmDIs.IsShowIcd = "Hidden";
                     }
 
                 }
-                this.YsListDb.ItemsSource = suspectedDisease.wmDiseaseDetailSocketParams;
+
+                if (suspectedDisease.wmDiseaseDetailSocketParams.Count > 4)
+                {
+                    this.YsListDb.ItemsSource = suspectedDisease.wmDiseaseDetailSocketParams.Take(4);
+                }
+                else
+                {
+                    this.YsListDb.ItemsSource = suspectedDisease.wmDiseaseDetailSocketParams;
+                }
+
+                
             }
 
 
         }
         /// <summary>
+        /// 查看更多
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MoreButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.YsListDb.ItemsSource = suspectedDisease.wmDiseaseDetailSocketParams;
+        }
+
+
+        /// <summary>
         /// 查看详情
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void DButton_Click(object sender, RoutedEventArgs e)
         {
-            //
-
-            Plan dlg = new Plan(suspectedDisease,null);
+            Plan dlg = new Plan(suspectedDisease, null);
             dlg.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             dlg.Show();
-
-
             this.Close();
         }
+
         /// <summary>
         /// 点击事件
         /// </summary>
@@ -152,7 +174,7 @@ namespace Doctor
             Plan dlg = new Plan(suspectedDisease, currentDiseaseDosageSchedule);
             dlg.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             dlg.Show();
-
+            this.Close();
         }
     }
 }

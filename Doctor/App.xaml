@@ -11,12 +11,17 @@
         <SolidColorBrush x:Key="ButtonStyle3HoverBackgroundColor" Color="#3B98DE"></SolidColorBrush>
         <SolidColorBrush x:Key="ButtonStyle3HoverForeColor" Color="#FFFFFF"></SolidColorBrush>
         
+        
+        
+        
         <!--Label圆角-->
         <ControlTemplate x:Key="FilletLabel" TargetType="{x:Type Label}">
             <Border BorderBrush="White" BorderThickness="1" CornerRadius="10">
                 <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center"/>
             </Border>
         </ControlTemplate>
+
+
         <!--文本框输入模板-->
         <Style x:Key="txtTest" TargetType="TextBox">
             <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -162,6 +167,17 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style TargetType="{x:Type Label}" x:Key="WhiteButton_Label">  
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=IsSelf }" 
+                     Value="True">
+                    <Setter Property="Background" Value="#3a99f2"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
 
         <Style TargetType="{x:Type Button}" x:Key="WhiteButton">
             <Setter Property="Foreground" Value="Black"/>
