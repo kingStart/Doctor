@@ -78,8 +78,8 @@ namespace Doctor
                 //return;
 
                 //用传过来的参数登陆
-                doctor.doctorName = "幕曙审";
-                doctor.doctorId = "34182593657566";
+                doctor.doctorName = "南宫医生";
+                doctor.doctorId = "000010008";
                 doctor.orgCode = "341825001";
                 doctor.areaCodeCount = "341825";
                 doctor.sourceId = "mmednet_jqkj";
@@ -167,7 +167,7 @@ namespace Doctor
                                            //System.Drawing.Icon icon = new System.Drawing.Icon(iconPath0);//程序图标 
             notifyIcon.Icon = icon0;
             notifyIcon.Visible = true;
-            //notifyIcon.Click += OnNotifyIconClick;
+            notifyIcon.Click += OnNotifyIconClick;
             notifyIcon.ShowBalloonTip(1000);
 
 

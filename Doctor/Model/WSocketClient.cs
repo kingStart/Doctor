@@ -195,6 +195,20 @@ namespace Doctor
 
                     }));
                 }
+                else if (page == "undisease_list")
+                {
+                    SuspectedDisease paient = Newtonsoft.Json.JsonConvert.DeserializeObject<SuspectedDisease>(datastr);
+                    App.Current.Dispatcher.Invoke((Action)(() =>
+                    {
+                        DefultNo dlg = new DefultNo(paient.patient);
+                        dlg.WindowStartupLocation = WindowStartupLocation.Manual;
+                        dlg.Left = System.Windows.SystemParameters.PrimaryScreenWidth - 380;
+                        dlg.Top = System.Windows.SystemParameters.PrimaryScreenHeight - 630;
+                        dlg.Topmost = true;
+                        dlg.Show();
+                        App._suspensionWindow._defultWindow = dlg;
+                    }));
+                }
             }
             //MessageReceived?.Invoke(e.Message);
         }
