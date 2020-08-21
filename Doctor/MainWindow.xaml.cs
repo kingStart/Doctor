@@ -205,6 +205,11 @@ namespace Doctor
                         wmDIs.degreeZ = "Hidden";
                     }
 
+                    if (string.IsNullOrEmpty(wmDIs.icd10))
+                    {
+                        wmDIs.IsShowIcd = "Visible";
+                    }
+
                     wmDIs.diseaseMatching = wmDIs.diseaseMatching + "%";
                     _diagnosisDiseaseList.Add(wmDIs);
                 }
