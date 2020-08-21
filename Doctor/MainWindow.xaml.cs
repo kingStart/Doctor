@@ -134,7 +134,7 @@ namespace Doctor
             }
             else
             {
-                MessageBox.Show("未查询到相关搜索结果");
+                MessageBox.Show("未查询到相关搜索结果","提示");
             }
 
         }
@@ -295,15 +295,42 @@ namespace Doctor
         /// <param name="e"></param>
         private void MoreButton_Click(object sender, RoutedEventArgs e)
         {
-            var item = new SuspectedDisease();
-            item.patient = _patieneInfo;
-            item.wmDiseaseDetailSocketParams = _diagnosisDiseaseList.ToList();
+            var symptomString = "";
 
-            Plan dlg = new Plan(item);
-            dlg.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            dlg.Show();
 
-            this.Close();
+            if (!_diagnosisDiseaseList.Any())
+            {
+                MessageBox.Show("请输入主诉症状进行查询", "提示");
+            }
+
+
+
+
+            if (_symptomResultList != null && _symptomResultList.Any())
+            {
+                foreach (var s in _symptomResultList)
+                {
+                    symptomString += s.symptom + ",";
+                }
+
+                var item = new SuspectedDisease();
+                item.patient = _patieneInfo;
+                item.patient.symptom = symptomString;
+
+
+                item.wmDiseaseDetailSocketParams = _diagnosisDiseaseList.ToList();
+
+                Plan dlg = new Plan(item);
+                dlg.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                dlg.Show();
+
+                this.Close();
+
+            }
+            else
+            {
+                MessageBox.Show("请输入主诉症状进行查询", "提示");
+            }
         }
     }
 }

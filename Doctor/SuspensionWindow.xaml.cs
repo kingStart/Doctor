@@ -107,8 +107,25 @@ namespace Doctor
         /// <param name="e"></param>
         private void RootWindow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            _defultWindow.Show();
-            _defultWindow.Topmost = true;
+
+            App._suspensionWindow._defultWindow.Show();
+            App._suspensionWindow._defultWindow.WindowState = WindowState.Normal;
+            App._suspensionWindow._defultWindow.Topmost = true;
+            App._suspensionWindow._defultWindow.ShowInTaskbar = true;
+
+
+            this.Hide();
+        }
+
+        private void windowIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+            App._suspensionWindow._defultWindow.Show();
+            App._suspensionWindow._defultWindow.WindowState = WindowState.Normal;
+            App._suspensionWindow._defultWindow.Topmost = true;
+            App._suspensionWindow._defultWindow.ShowInTaskbar = true;
+
+
             this.Hide();
         }
     }

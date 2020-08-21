@@ -25,20 +25,34 @@ namespace Doctor
         private ObservableCollection<string> _symptomList = new ObservableCollection<string>() { };
         private PatientInfo _patientInfo = new PatientInfo();
 
+        private List<string> _painetList = new List<string>();//父级窗口带过来的已经选的症状
+
+
         public Search()
         {
             InitializeComponent();
         }
 
-        public Search(PatientInfo patientInfo)
+        public Search(PatientInfo patientInfo, List<string> painetList)
         {
             _patientInfo = patientInfo;
+            _painetList = painetList;//从父级窗口带过来的已经选的症状
             InitializeComponent();
         }
 
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            if(_painetList != null && _painetList.Any())
+            {
+                foreach(var item in _painetList)
+                {
+                    _symptomList.Add(item);
+                }
+            }
+
+
+
             symptomListTiemsControl.ItemsSource = _symptomList;
         }
 

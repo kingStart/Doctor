@@ -21,7 +21,7 @@
         AllowsTransparency="True">
     <Grid>
         <Border BorderThickness="1" BorderBrush="#0096DC">
-            <Image x:Name="windowIcon" VerticalAlignment="Center" HorizontalAlignment="Center" Source="/Doctor;component/Resources/logo.png"></Image>
+            <Image x:Name="windowIcon" VerticalAlignment="Center" HorizontalAlignment="Center" MouseLeftButtonDown="windowIcon_MouseLeftButtonDown" Source="/Doctor;component/Resources/logo.png"></Image>
         </Border>
     </Grid>
 </Window>
