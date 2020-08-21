@@ -23,6 +23,7 @@ namespace Doctor
     public partial class YsList : Window
     {
         private SuspectedDisease suspectedDisease;
+        public DiseaseDosageSchedule currentDiseaseDosageSchedule;
         public static YsList ysList;
         public YsList(SuspectedDisease _suspe)
         {
@@ -131,7 +132,7 @@ namespace Doctor
         {
             //
 
-            Plan dlg = new Plan(suspectedDisease);
+            Plan dlg = new Plan(suspectedDisease,null);
             dlg.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             dlg.Show();
 
@@ -145,7 +146,10 @@ namespace Doctor
         /// <param name="e"></param>
         private void StackPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Plan dlg = new Plan(suspectedDisease);
+            var stackpanel = sender as StackPanel;
+            string icd = stackpanel.Tag.ToString();
+            currentDiseaseDosageSchedule = WebApiService.GetPlanList(icd, suspectedDisease.patient.outpatientId);
+            Plan dlg = new Plan(suspectedDisease, currentDiseaseDosageSchedule);
             dlg.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             dlg.Show();
 

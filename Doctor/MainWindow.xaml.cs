@@ -43,8 +43,8 @@ namespace Doctor
         private ObservableCollection<Symptom> _symptomResultList2 = new ObservableCollection<Symptom>() { };//症状搜索结果集合  分析层症状
         private ObservableCollection<SuspectedDiseaseDetail> _diagnosisDiseaseList = new ObservableCollection<SuspectedDiseaseDetail>() { };//疑似疾病
 
-
-
+        public DiseaseDosageSchedule currentDiseaseDosageSchedule;
+     
         private PatientInfo _patieneInfo;
 
         public MainWindow()
@@ -320,7 +320,7 @@ namespace Doctor
 
                 item.wmDiseaseDetailSocketParams = _diagnosisDiseaseList.ToList();
 
-                Plan dlg = new Plan(item);
+                Plan dlg = new Plan(item,null);
                 dlg.WindowStartupLocation = WindowStartupLocation.CenterScreen;
                 dlg.Show();
 
@@ -331,6 +331,28 @@ namespace Doctor
             {
                 MessageBox.Show("请输入主诉症状进行查询", "提示");
             }
+        }
+
+        private void StackPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var symptomString = "";
+
+            foreach (var s in _symptomResultList)
+            {
+                symptomString += s.symptom + ",";
+            }
+            var item = new SuspectedDisease();
+            item.patient = _patieneInfo;
+            item.patient.symptom = symptomString;
+
+
+            item.wmDiseaseDetailSocketParams = _diagnosisDiseaseList.ToList();
+            var stackpanel = sender as StackPanel;
+            string icd = stackpanel.Tag.ToString();
+            currentDiseaseDosageSchedule = WebApiService.GetPlanList(icd, item.patient.outpatientId);
+            Plan dlg = new Plan(item, currentDiseaseDosageSchedule);
+            dlg.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            dlg.Show();
         }
     }
 }

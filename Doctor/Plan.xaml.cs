@@ -39,12 +39,14 @@ namespace Doctor
 
         public List<ProgramItem> proListItem;
 
-        public Plan(SuspectedDisease _suspe)
+        public Plan(SuspectedDisease _suspe, DiseaseDosageSchedule _DiseaseDosageSchedule)
         {
             InitializeComponent();
             this.suspectedDisease = _suspe;
 
             plan = this;
+
+            currentDiseaseDosageSchedule = _DiseaseDosageSchedule;
 
             //WSocketClient.ShutDownOtherWindow("Plan");
         }
@@ -122,8 +124,14 @@ namespace Doctor
 
                 string icd = suspectedDisease.wmDiseaseDetailSocketParams.FirstOrDefault().icd10;
 
+
+
+                if (currentDiseaseDosageSchedule == null)
+                {
+                    currentDiseaseDosageSchedule = WebApiService.GetPlanList(icd, suspectedDisease.patient.outpatientId);
+                }
                 //加载疾病知识库
-                currentDiseaseDosageSchedule = WebApiService.GetPlanList(icd, suspectedDisease.patient.outpatientId);
+               
                 LinChuang.Text = currentDiseaseDosageSchedule.clinicalManifestation;
                 ZhenDuan.Text = currentDiseaseDosageSchedule.differentialDiagnosis;
                 GaiShu.Text = currentDiseaseDosageSchedule.diseasesummary;
