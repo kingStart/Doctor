@@ -29,16 +29,16 @@ namespace Doctor
 
         private List<PaintName> _symptomsList = new List<PaintName>() { };//初始化加载的时候，用户病例中的症状列表
 
-        public static int SQ1Status=0;
+        public static int SQ1Status = 1;
 
-        public static int SQ2Status = 0;
-        public static int SQ3Status = 0;
-        public static int SQ4Status = 0;
-        public static int SQ5Status = 0;
-        public static int SQ6Status = 0;
-        public static int SQ7Status = 0;
-        public static int SQ8Status = 0;
-        public static int SQ9Status = 0;
+        public static int SQ2Status = 1;
+        public static int SQ3Status = 1;
+        public static int SQ4Status = 1;
+        public static int SQ5Status = 1;
+        public static int SQ6Status = 1;
+        public static int SQ7Status = 1;
+        public static int SQ8Status = 1;
+        public static int SQ9Status = 1;
 
         public List<ProgramItem> proListItem;
 
