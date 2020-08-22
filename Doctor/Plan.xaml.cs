@@ -147,12 +147,12 @@ namespace Doctor
                 Changjian.Text = currentDiseaseDosageSchedule.commonSymptoms;
 
                 //绑定一般治疗方法
-                proListItem = currentDiseaseDosageSchedule.drugProgramAll.Take(4).ToList();
+                proListItem = currentDiseaseDosageSchedule.drugProgram[0].childItem.Take(4).ToList();
                 ProgramMotherList.ItemsSource = proListItem;
 
                 List<ProgramItem> proListItem1 = currentDiseaseDosageSchedule.drugProgramAll.Take(4).FirstOrDefault().childItem;
                 //绑定药物治疗
-                ItemProgramMotherList.ItemsSource = currentDiseaseDosageSchedule.drugProgramAll.Take(4).FirstOrDefault().childItem;
+                ItemProgramMotherList.ItemsSource = currentDiseaseDosageSchedule.drugProgram[1].childItem;
 
                 //加载检查方案
 
@@ -225,12 +225,12 @@ namespace Doctor
             Changjian.Text = currentDiseaseDosageSchedule.commonSymptoms;
 
             //绑定一般治疗方法
-            proListItem = currentDiseaseDosageSchedule.drugProgramAll.Take(4).ToList();
+            proListItem = currentDiseaseDosageSchedule.drugProgram[0].childItem.Take(4).ToList();
             ProgramMotherList.ItemsSource = proListItem;
 
             List<ProgramItem> proListItem1= currentDiseaseDosageSchedule.drugProgramAll.Take(4).FirstOrDefault().childItem;
             //绑定药物治疗
-            ItemProgramMotherList.ItemsSource = currentDiseaseDosageSchedule.drugProgramAll.Take(4).FirstOrDefault().childItem;
+            ItemProgramMotherList.ItemsSource = currentDiseaseDosageSchedule.drugProgram[1].childItem;
 
             //加载检查方案
 

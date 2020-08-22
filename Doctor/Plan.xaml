@@ -126,7 +126,7 @@
                                 <ListBox.ItemTemplate >
 
                                     <DataTemplate>
-                                        <Label MouseLeftButtonDown="Label_MouseLeftButtonDown" Margin="4,4,4,4" VerticalContentAlignment="Center" FontSize="12"  HorizontalContentAlignment="Center" Height="30"  Background="#F4F4F4" Content="{Binding Name}" Style="{StaticResource WhiteButton_Label}"></Label>
+                                        <Label  Margin="4,4,4,4" VerticalContentAlignment="Center" FontSize="12"  HorizontalContentAlignment="Center" Height="30"  Background="#F4F4F4" Content="{Binding Name}" Style="{StaticResource WhiteButton_Label}"></Label>
                                     </DataTemplate>
 
                                 </ListBox.ItemTemplate>
@@ -153,10 +153,10 @@
                                     <Rectangle  HorizontalAlignment="Stretch"  Width="270" VerticalAlignment="Center" Fill="#e6e6e6" Height="1"/>
                                     <StackPanel x:Name="SQ1Panel" >
                                         <Label MaxWidth="255"  FontSize="12" Padding="10,0,0,0">
-                                            <ScrollViewer Width="250" MaxHeight="150" BorderBrush="Brown" BorderThickness="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                                            
                                                 <TextBlock x:Name="LinChuang" MaxWidth="230" TextWrapping="Wrap"
     Text="" />
-                                            </ScrollViewer>
+                                            
 
                                         </Label>
                                     </StackPanel>
@@ -171,10 +171,9 @@
                                     <Rectangle  HorizontalAlignment="Stretch"  Width="270" VerticalAlignment="Center" Fill="#e6e6e6" Height="1"/>
                                     <StackPanel x:Name="SQ2Panel" >
                                         <Label MaxWidth="255"  FontSize="12" Padding="10,0,0,0">
-                                            <ScrollViewer Width="250" MaxHeight="150" BorderBrush="Brown" BorderThickness="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                                                 <TextBlock x:Name="ZhenDuan" MaxWidth="230" TextWrapping="Wrap"
     Text="" />
-                                            </ScrollViewer>
+                                            
 
                                         </Label>
                                     </StackPanel>
@@ -189,9 +188,8 @@
                                     <Rectangle  HorizontalAlignment="Stretch"  Width="270" VerticalAlignment="Center" Fill="#e6e6e6" Height="1"/>
                                     <StackPanel x:Name="SQ3Panel" >
                                         <Label MaxWidth="255"  FontSize="12" Padding="10,0,0,0">
-                                            <ScrollViewer Width="250" MaxHeight="150" BorderBrush="Brown" BorderThickness="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                                                 <TextBlock x:Name="GaiShu" MaxWidth="230" TextWrapping="Wrap" Text="" />
-                                            </ScrollViewer>
+                                            
 
                                         </Label>
                                     </StackPanel>
@@ -206,10 +204,9 @@
                                     <Rectangle  HorizontalAlignment="Stretch"  Width="270" VerticalAlignment="Center" Fill="#e6e6e6" Height="1"/>
                                     <StackPanel x:Name="SQ4Panel" >
                                         <Label MaxWidth="255"  FontSize="12" Padding="10,0,0,0">
-                                            <ScrollViewer Width="250" MaxHeight="150" BorderBrush="Brown" BorderThickness="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                                                 <TextBlock x:Name="JianCha" MaxWidth="230" TextWrapping="Wrap"
     Text="" />
-                                            </ScrollViewer>
+                                            
 
                                         </Label>
                                     </StackPanel>
@@ -224,10 +221,8 @@
                                     <Rectangle  HorizontalAlignment="Stretch"  Width="270" VerticalAlignment="Center" Fill="#e6e6e6" Height="1"/>
                                     <StackPanel x:Name="SQ5Panel" >
                                         <Label MaxWidth="255"  FontSize="12" Padding="10,0,0,0">
-                                            <ScrollViewer Width="250" MaxHeight="150" BorderBrush="Brown" BorderThickness="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                                                 <TextBlock x:Name="YuFang" MaxWidth="230" TextWrapping="Wrap"
     Text="" />
-                                            </ScrollViewer>
 
                                         </Label>
                                     </StackPanel>
@@ -242,11 +237,9 @@
                                     <Rectangle  HorizontalAlignment="Stretch"  Width="270" VerticalAlignment="Center" Fill="#e6e6e6" Height="1"/>
                                     <StackPanel x:Name="SQ6Panel" >
                                         <Label MaxWidth="255"  FontSize="12" Padding="10,0,0,0">
-                                            <ScrollViewer Width="250" MaxHeight="150" BorderBrush="Brown" BorderThickness="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                                                 <TextBlock x:Name="ZhiLiao" MaxWidth="230" TextWrapping="Wrap"
     Text="" />
-                                            </ScrollViewer>
-
+                                            
                                         </Label>
                                     </StackPanel>
 
@@ -261,10 +254,10 @@
                                     <Rectangle  HorizontalAlignment="Stretch"  Width="270" VerticalAlignment="Center" Fill="#e6e6e6" Height="1"/>
                                     <StackPanel x:Name="SQ7Panel" >
                                         <Label MaxWidth="255"  FontSize="12" Padding="10,0,0,0">
-                                            <ScrollViewer Width="250" MaxHeight="150" BorderBrush="Brown" BorderThickness="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                                           
                                                 <TextBlock x:Name="YuanZe" MaxWidth="230" TextWrapping="Wrap"
     Text="" />
-                                            </ScrollViewer>
+                                            
 
                                         </Label>
                                     </StackPanel>
@@ -279,11 +272,10 @@
                                     <Rectangle  HorizontalAlignment="Stretch"  Width="270" VerticalAlignment="Center" Fill="#e6e6e6" Height="1"/>
                                     <StackPanel x:Name="SQ8Panel" >
                                         <Label MaxWidth="255"  FontSize="12" Padding="10,0,0,0">
-                                            <ScrollViewer Width="250" MaxHeight="150" BorderBrush="Brown" BorderThickness="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                                            
                                                 <TextBlock x:Name="LiuXing" MaxWidth="230" TextWrapping="Wrap"
     Text="" />
-                                            </ScrollViewer>
-
+                                            
                                         </Label>
                                     </StackPanel>
 
@@ -297,10 +289,10 @@
                                     <Rectangle  HorizontalAlignment="Stretch"  Width="270" VerticalAlignment="Center" Fill="#e6e6e6" Height="1"/>
                                     <StackPanel x:Name="SQ9Panel" >
                                         <Label MaxWidth="255"  FontSize="12" Padding="10,0,0,0">
-                                            <ScrollViewer Width="250" MaxHeight="150" BorderBrush="Brown" BorderThickness="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                                           
                                                 <TextBlock x:Name="Changjian" MaxWidth="230" TextWrapping="Wrap"
     Text="" />
-                                            </ScrollViewer>
+                                          
 
                                         </Label>
                                     </StackPanel>
@@ -351,7 +343,7 @@
                                     <ListBox.ItemTemplate >
 
                                         <DataTemplate>
-                                            <Label MouseLeftButtonDown="Label_MouseLeftButtonDown" Margin="5,0,0,0" VerticalContentAlignment="Center" FontSize="13"  HorizontalContentAlignment="Center" Height="30" Width="80"  Background="#F4F4F4" Tag="{Binding itemCode}"  Content="{Binding itemName}"></Label>
+                                            <Label  Margin="5,0,0,0" VerticalContentAlignment="Center" FontSize="9"  HorizontalContentAlignment="Center" Height="30" Width="80"  Background="#F4F4F4" Tag="{Binding itemCode}"  Content="{Binding itemName}"></Label>
                                         </DataTemplate>
 
                                     </ListBox.ItemTemplate>
@@ -378,9 +370,9 @@
 
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
-                                                <Label Height="35" Width="140" FontSize="13"  Padding="10" VerticalContentAlignment="Center" VerticalAlignment="Center" Content="{Binding drugInstructionsId}"></Label>
-                                                <Label Height="35" Width="160" FontSize="13"  Padding="10" VerticalContentAlignment="Center" VerticalAlignment="Center" Content="{Binding drugInstructions}"></Label>
-                                                <Button Tag="{Binding drugid}" Click="Button_Click" Background="White" BorderBrush="White"  FontSize="13" FontWeight="Bold" Foreground="#009EFF" HorizontalContentAlignment="Right" Width="60">药品说明</Button>
+                                                <Label Height="35" Width="80" FontSize="11"  Padding="0" VerticalContentAlignment="Center" VerticalAlignment="Center" Content="{Binding itemName}"></Label>
+                                                <Label Height="35" Width="220" FontSize="9"  Padding="0" VerticalContentAlignment="Center" VerticalAlignment="Center" Content="{Binding drugInstructions}"></Label>
+                                                <Button Tag="{Binding drugid}" Click="Button_Click" Background="White" BorderBrush="White"  FontSize="11" FontWeight="Bold" Foreground="#009EFF" HorizontalContentAlignment="Right" Width="60">药品说明</Button>
                                             </StackPanel>
                                         </DataTemplate>
 

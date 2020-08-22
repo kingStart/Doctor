@@ -38,7 +38,7 @@ namespace Doctor.Model
         /// <summary>
         /// 类型1
         /// </summary>
-        public double drugType1 { get; set; }
+        public string drugType1 { get; set; }
 
         /// <summary>
         /// 类型2

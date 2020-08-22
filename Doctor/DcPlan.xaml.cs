@@ -47,9 +47,9 @@ namespace Doctor
         {
             List<ProgramItem> drugProgramAll = _DiseaseDosageSchedule.drugProgramAll;
             //绑定一般治疗方法
-            ProgramMotherList.ItemsSource = drugProgramAll;
+            ProgramMotherList.ItemsSource = _DiseaseDosageSchedule.drugProgram[0].childItem;
 
-            foreach (var drug in drugProgramAll)
+            foreach (var drug in _DiseaseDosageSchedule.drugProgram[1].childItem)
             {
                 drug.itemChidNames = " ";
                 if (drug.childItem != null && drug.childItem.Count() > 0)
@@ -62,7 +62,7 @@ namespace Doctor
                 }
             }
 
-            ItemProgramMotherList.ItemsSource = drugProgramAll;
+            ItemProgramMotherList.ItemsSource = _DiseaseDosageSchedule.drugProgram[1].childItem;
         }
     }
 }

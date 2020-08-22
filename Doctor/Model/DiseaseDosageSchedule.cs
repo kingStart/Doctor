@@ -108,7 +108,7 @@ namespace Doctor.Model
         /// <summary>
         /// 用药方案，具体类型也不详
         /// </summary>
-        public List<object> drugProgram { get; set; }
+        public List<ProgramItem> drugProgram { get; set; }
 
         /// <summary>
         /// 全部治疗方案
