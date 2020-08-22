@@ -47,16 +47,16 @@
                         </StackPanel>
 
                         <StackPanel Grid.Row="2" Orientation="Vertical" >
-                            <ListBox x:Name="YsListDb" HorizontalContentAlignment="Center" BorderThickness="0" HorizontalAlignment="Center" Width="285" Height="520">
+                            <ListBox x:Name="YsListDb" HorizontalContentAlignment="Center" BorderThickness="0" HorizontalAlignment="Center" Width="290" Height="520">
                                 <ListBox.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <WrapPanel Orientation="Vertical" IsItemsHost="True" Width="280"  />
+                                        <WrapPanel Orientation="Vertical" IsItemsHost="True" Width="270"/>
                                     </ItemsPanelTemplate>
                                 </ListBox.ItemsPanel>
                                 <ListBox.ItemTemplate >
 
                                     <DataTemplate>
-                                        <StackPanel Tag="{Binding icd10}" MouseLeftButtonDown="StackPanel_MouseLeftButtonDown" Orientation="Vertical" Background="#F8F8F8" Margin="0,10,0,0">
+                                        <StackPanel Tag="{Binding icd10}" MouseLeftButtonDown="StackPanel_MouseLeftButtonDown" Orientation="Vertical" Background="#F8F8F8" Margin="0,6,0,0">
 
                                             <Label Visibility="{Binding IsShowIcd}" Height="23" Width="60" Background=" #009EFF"  FontSize="9.5" Foreground="White"   HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Center" Content="自定义"/>
                                             
@@ -116,11 +116,11 @@
                         <StackPanel Grid.Row="2" Orientation="Horizontal"  Background="White" >
 
 
-                            <ListBox x:Name="painetDb"  MaxWidth="275"    HorizontalContentAlignment="Center" BorderThickness="0" HorizontalAlignment="Center" Width="280" Height="250"  >
+                            <ListBox x:Name="painetDb" HorizontalContentAlignment="Center" BorderThickness="0" HorizontalAlignment="Center" Width="270" Height="250"  >
 
                                 <ListBox.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <WrapPanel Orientation="Horizontal" IsItemsHost="True" Width="270"  />
+                                        <WrapPanel Orientation="Horizontal" IsItemsHost="True" Width="250"  />
                                     </ItemsPanelTemplate>
                                 </ListBox.ItemsPanel>
                                 <ListBox.ItemTemplate >
@@ -145,13 +145,13 @@
                         <ScrollViewer  Grid.Row="4" Width="270" Height="260" BorderBrush="Brown" BorderThickness="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                             <StackPanel MaxWidth="250" Background="White" Orientation="Vertical">
                                 <StackPanel>
-                                    <StackPanel Orientation="Horizontal" Height="40">
-                                        <Button x:Name="ButtonSQ1" Width="12" Height="12" Margin="10,0,0,0" Click="ButtonSQ1_Click" Template="{StaticResource ShouQi}"></Button>
+                                    <StackPanel Orientation="Horizontal" Height="30">
+                                        <Button x:Name="ButtonSQ1" Width="12" Height="12" Margin="10,0,0,0" Click="ButtonSQ1_Click" Template="{StaticResource ZhanKai}"></Button>
                                         <Label Height="35" Width="200" FontSize="13" FontWeight="Bold"  Padding="10" VerticalContentAlignment="Center" VerticalAlignment="Center">临床缺点</Label>
 
                                     </StackPanel>
                                     <Rectangle  HorizontalAlignment="Stretch"  Width="270" VerticalAlignment="Center" Fill="#e6e6e6" Height="1"/>
-                                    <StackPanel x:Name="SQ1Panel" >
+                                    <StackPanel x:Name="SQ1Panel" Height="0">
                                         <Label MaxWidth="255"  FontSize="12" Padding="10,0,0,0">
                                             
                                                 <TextBlock x:Name="LinChuang" MaxWidth="230" TextWrapping="Wrap"
@@ -163,13 +163,13 @@
 
                                 </StackPanel>
                                 <StackPanel>
-                                    <StackPanel Orientation="Horizontal" Height="40">
-                                        <Button x:Name="ButtonSQ2" Click="ButtonSQ2_Click" Width="12" Height="12" Margin="10,0,0,0" Template="{StaticResource ShouQi}"></Button>
+                                    <StackPanel Orientation="Horizontal" Height="30">
+                                        <Button x:Name="ButtonSQ2" Click="ButtonSQ2_Click" Width="12" Height="12" Margin="10,0,0,0" Template="{StaticResource ZhanKai}"></Button>
                                         <Label Height="35" Width="200" FontSize="13" FontWeight="Bold"  Padding="10" VerticalContentAlignment="Center" VerticalAlignment="Center">疾病诊断</Label>
 
                                     </StackPanel>
                                     <Rectangle  HorizontalAlignment="Stretch"  Width="270" VerticalAlignment="Center" Fill="#e6e6e6" Height="1"/>
-                                    <StackPanel x:Name="SQ2Panel" >
+                                    <StackPanel x:Name="SQ2Panel" Height="0">
                                         <Label MaxWidth="255"  FontSize="12" Padding="10,0,0,0">
                                                 <TextBlock x:Name="ZhenDuan" MaxWidth="230" TextWrapping="Wrap"
     Text="" />
@@ -180,13 +180,13 @@
 
                                 </StackPanel>
                                 <StackPanel>
-                                    <StackPanel Orientation="Horizontal" Height="40">
-                                        <Button x:Name="ButtonSQ3" Click="ButtonSQ3_Click" Width="12" Height="12" Margin="10,0,0,0" Template="{StaticResource ShouQi}"></Button>
+                                    <StackPanel Orientation="Horizontal" Height="30">
+                                        <Button x:Name="ButtonSQ3" Click="ButtonSQ3_Click" Width="12" Height="12" Margin="10,0,0,0" Template="{StaticResource ZhanKai}"></Button>
                                         <Label Height="35" Width="200" FontSize="13" FontWeight="Bold"  Padding="10" VerticalContentAlignment="Center" VerticalAlignment="Center">疾病概述</Label>
 
                                     </StackPanel>
                                     <Rectangle  HorizontalAlignment="Stretch"  Width="270" VerticalAlignment="Center" Fill="#e6e6e6" Height="1"/>
-                                    <StackPanel x:Name="SQ3Panel" >
+                                    <StackPanel x:Name="SQ3Panel" Height="0">
                                         <Label MaxWidth="255"  FontSize="12" Padding="10,0,0,0">
                                                 <TextBlock x:Name="GaiShu" MaxWidth="230" TextWrapping="Wrap" Text="" />
                                             
@@ -196,13 +196,13 @@
 
                                 </StackPanel>
                                 <StackPanel>
-                                    <StackPanel Orientation="Horizontal" Height="40">
-                                        <Button x:Name="ButtonSQ4" Click="ButtonSQ4_Click" Width="12" Height="12" Margin="10,0,0,0" Template="{StaticResource ShouQi}"></Button>
+                                    <StackPanel Orientation="Horizontal" Height="30">
+                                        <Button x:Name="ButtonSQ4" Click="ButtonSQ4_Click" Width="12" Height="12" Margin="10,0,0,0" Template="{StaticResource ZhanKai}"></Button>
                                         <Label Height="35" Width="200" FontSize="13" FontWeight="Bold"  Padding="10" VerticalContentAlignment="Center" VerticalAlignment="Center">辅助检查</Label>
 
                                     </StackPanel>
                                     <Rectangle  HorizontalAlignment="Stretch"  Width="270" VerticalAlignment="Center" Fill="#e6e6e6" Height="1"/>
-                                    <StackPanel x:Name="SQ4Panel" >
+                                    <StackPanel x:Name="SQ4Panel" Height="0">
                                         <Label MaxWidth="255"  FontSize="12" Padding="10,0,0,0">
                                                 <TextBlock x:Name="JianCha" MaxWidth="230" TextWrapping="Wrap"
     Text="" />
@@ -213,13 +213,13 @@
 
                                 </StackPanel>
                                 <StackPanel>
-                                    <StackPanel Orientation="Horizontal" Height="40">
-                                        <Button Width="12" x:Name="ButtonSQ5" Click="ButtonSQ5_Click" Height="12" Margin="10,0,0,0" Template="{StaticResource ShouQi}"></Button>
+                                    <StackPanel Orientation="Horizontal" Height="30">
+                                        <Button Width="12" x:Name="ButtonSQ5" Click="ButtonSQ5_Click" Height="12" Margin="10,0,0,0" Template="{StaticResource ZhanKai}"></Button>
                                         <Label Height="35" Width="200" FontSize="13" FontWeight="Bold"  Padding="10" VerticalContentAlignment="Center" VerticalAlignment="Center">预防和预后</Label>
 
                                     </StackPanel>
                                     <Rectangle  HorizontalAlignment="Stretch"  Width="270" VerticalAlignment="Center" Fill="#e6e6e6" Height="1"/>
-                                    <StackPanel x:Name="SQ5Panel" >
+                                    <StackPanel x:Name="SQ5Panel" Height="0">
                                         <Label MaxWidth="255"  FontSize="12" Padding="10,0,0,0">
                                                 <TextBlock x:Name="YuFang" MaxWidth="230" TextWrapping="Wrap"
     Text="" />
@@ -229,13 +229,13 @@
 
                                 </StackPanel>
                                 <StackPanel>
-                                    <StackPanel Orientation="Horizontal" Height="40">
-                                        <Button Width="12" x:Name="ButtonSQ6" Click="ButtonSQ6_Click" Height="12" Margin="10,0,0,0" Template="{StaticResource ShouQi}"></Button>
+                                    <StackPanel Orientation="Horizontal" Height="30">
+                                        <Button Width="12" x:Name="ButtonSQ6" Click="ButtonSQ6_Click" Height="12" Margin="10,0,0,0" Template="{StaticResource ZhanKai}"></Button>
                                         <Label Height="35" Width="200" FontSize="13" FontWeight="Bold"  Padding="10" VerticalContentAlignment="Center" VerticalAlignment="Center">治疗方案</Label>
 
                                     </StackPanel>
                                     <Rectangle  HorizontalAlignment="Stretch"  Width="270" VerticalAlignment="Center" Fill="#e6e6e6" Height="1"/>
-                                    <StackPanel x:Name="SQ6Panel" >
+                                    <StackPanel x:Name="SQ6Panel" Height="0">
                                         <Label MaxWidth="255"  FontSize="12" Padding="10,0,0,0">
                                                 <TextBlock x:Name="ZhiLiao" MaxWidth="230" TextWrapping="Wrap"
     Text="" />
@@ -246,13 +246,13 @@
                                 </StackPanel>
 
                                 <StackPanel>
-                                    <StackPanel Orientation="Horizontal" Height="40">
-                                        <Button x:Name="ButtonSQ7" Click="ButtonSQ7_Click" Width="12" Height="12" Margin="10,0,0,0" Template="{StaticResource ShouQi}"></Button>
+                                    <StackPanel Orientation="Horizontal" Height="30">
+                                        <Button x:Name="ButtonSQ7" Click="ButtonSQ7_Click" Width="12" Height="12" Margin="10,0,0,0" Template="{StaticResource ZhanKai}"></Button>
                                         <Label Height="35" Width="200" FontSize="13" FontWeight="Bold"  Padding="10" VerticalContentAlignment="Center" VerticalAlignment="Center">治疗原则</Label>
 
                                     </StackPanel>
                                     <Rectangle  HorizontalAlignment="Stretch"  Width="270" VerticalAlignment="Center" Fill="#e6e6e6" Height="1"/>
-                                    <StackPanel x:Name="SQ7Panel" >
+                                    <StackPanel x:Name="SQ7Panel" Height="0">
                                         <Label MaxWidth="255"  FontSize="12" Padding="10,0,0,0">
                                            
                                                 <TextBlock x:Name="YuanZe" MaxWidth="230" TextWrapping="Wrap"
@@ -264,13 +264,13 @@
 
                                 </StackPanel>
                                 <StackPanel>
-                                    <StackPanel Orientation="Horizontal" Height="40">
-                                        <Button x:Name="ButtonSQ8" Click="ButtonSQ8_Click" Width="12" Height="12" Margin="10,0,0,0" Template="{StaticResource ShouQi}"></Button>
+                                    <StackPanel Orientation="Horizontal" Height="30">
+                                        <Button x:Name="ButtonSQ8" Click="ButtonSQ8_Click" Width="12" Height="12" Margin="10,0,0,0" Template="{StaticResource ZhanKai}"></Button>
                                         <Label Height="35" Width="200" FontSize="13" FontWeight="Bold"  Padding="10" VerticalContentAlignment="Center" VerticalAlignment="Center">流行病学</Label>
 
                                     </StackPanel>
                                     <Rectangle  HorizontalAlignment="Stretch"  Width="270" VerticalAlignment="Center" Fill="#e6e6e6" Height="1"/>
-                                    <StackPanel x:Name="SQ8Panel" >
+                                    <StackPanel x:Name="SQ8Panel" Height="0">
                                         <Label MaxWidth="255"  FontSize="12" Padding="10,0,0,0">
                                             
                                                 <TextBlock x:Name="LiuXing" MaxWidth="230" TextWrapping="Wrap"
@@ -281,13 +281,13 @@
 
                                 </StackPanel>
                                 <StackPanel>
-                                    <StackPanel Orientation="Horizontal" Height="40">
-                                        <Button x:Name="ButtonSQ9" Click="ButtonSQ9_Click" Width="12" Height="12" Margin="10,0,0,0" Template="{StaticResource ShouQi}"></Button>
+                                    <StackPanel Orientation="Horizontal" Height="30">
+                                        <Button x:Name="ButtonSQ9" Click="ButtonSQ9_Click" Width="12" Height="12" Margin="10,0,0,0" Template="{StaticResource ZhanKai}"></Button>
                                         <Label Height="35" Width="200" FontSize="13" FontWeight="Bold"  Padding="10" VerticalContentAlignment="Center" VerticalAlignment="Center">常见症状</Label>
 
                                     </StackPanel>
                                     <Rectangle  HorizontalAlignment="Stretch"  Width="270" VerticalAlignment="Center" Fill="#e6e6e6" Height="1"/>
-                                    <StackPanel x:Name="SQ9Panel" >
+                                    <StackPanel x:Name="SQ9Panel" Height="0">
                                         <Label MaxWidth="255"  FontSize="12" Padding="10,0,0,0">
                                            
                                                 <TextBlock x:Name="Changjian" MaxWidth="230" TextWrapping="Wrap"
@@ -337,7 +337,7 @@
 
                                     <ListBox.ItemsPanel>
                                         <ItemsPanelTemplate>
-                                            <WrapPanel Orientation="Horizontal" IsItemsHost="True" Width="380"  />
+                                            <WrapPanel Orientation="Horizontal" IsItemsHost="True" Width="370"  />
                                         </ItemsPanelTemplate>
                                     </ListBox.ItemsPanel>
                                     <ListBox.ItemTemplate >
@@ -363,7 +363,7 @@
 
                                     <ListBox.ItemsPanel>
                                         <ItemsPanelTemplate>
-                                            <WrapPanel Orientation="Vertical" IsItemsHost="True" Width="380"  />
+                                            <WrapPanel Orientation="Vertical" IsItemsHost="True" Width="370"  />
                                         </ItemsPanelTemplate>
                                     </ListBox.ItemsPanel>
                                     <ListBox.ItemTemplate >
@@ -396,7 +396,7 @@
 
                                 <ListBox.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <WrapPanel Orientation="Horizontal" IsItemsHost="True" Width="390"  />
+                                        <WrapPanel Orientation="Horizontal" IsItemsHost="True" Width="370"  />
                                     </ItemsPanelTemplate>
                                 </ListBox.ItemsPanel>
                                 <ListBox.ItemTemplate >

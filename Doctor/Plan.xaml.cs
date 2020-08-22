@@ -26,16 +26,19 @@ namespace Doctor
         public DiseaseDosageSchedule currentDiseaseDosageSchedule;
         public static Plan plan;
 
-        public static int SQ1Status=0;
 
-        public static int SQ2Status = 0;
-        public static int SQ3Status = 0;
-        public static int SQ4Status = 0;
-        public static int SQ5Status = 0;
-        public static int SQ6Status = 0;
-        public static int SQ7Status = 0;
-        public static int SQ8Status = 0;
-        public static int SQ9Status = 0;
+        private List<PaintName> _symptomsList = new List<PaintName>() { };//初始化加载的时候，用户病例中的症状列表
+
+        public static int SQ1Status = 1;
+
+        public static int SQ2Status = 1;
+        public static int SQ3Status = 1;
+        public static int SQ4Status = 1;
+        public static int SQ5Status = 1;
+        public static int SQ6Status = 1;
+        public static int SQ7Status = 1;
+        public static int SQ8Status = 1;
+        public static int SQ9Status = 1;
 
         public List<ProgramItem> proListItem;
 
@@ -155,14 +158,14 @@ namespace Doctor
                 ItemProgramMotherList.ItemsSource = currentDiseaseDosageSchedule.drugProgram[1].childItem;
 
                 //加载检查方案
-
                 disCheckItem.ItemsSource = currentDiseaseDosageSchedule.diseaseCheckItem;
+
             }
 
 
 
+
             //加载症状
-            List<PaintName> painetList = new List<PaintName>();
             if (!string.IsNullOrEmpty(suspectedDisease.patient.symptom)&& suspectedDisease.patient.symptom.Contains(","))
             {
                 List<string> pList = suspectedDisease.patient.symptom.Split(new[] { ',', '，' }, StringSplitOptions.RemoveEmptyEntries).ToList();
@@ -171,17 +174,38 @@ namespace Doctor
                     PaintName p = new PaintName();
                     p.Name = u;
                     p.IsSelf = true;
-                    painetList.Add(p);
+                    _symptomsList.Add(p);
+                }
+            }
+
+            var newList = new List<PaintName>() { };
+            newList.AddRange(_symptomsList);
+
+            //疑似病例中的症状列表
+            if (!string.IsNullOrEmpty(currentDiseaseDosageSchedule.commonSymptoms))
+            {
+                var list = currentDiseaseDosageSchedule.commonSymptoms.Split(new[] { ',', '，' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+
+                foreach (var item in list)
+                {
+                    var exitItem = _symptomsList.Where(p => p.Name == item).FirstOrDefault();
+                    if (exitItem == null)
+                    {
+                        PaintName p = new PaintName();
+                        p.Name = item;
+                        p.IsSelf = false;
+                        newList.Add(p);
+                    }
                 }
 
-                PaintName p0 = new PaintName();
-                p0.Name = "AAA";
-                p0.IsSelf = false; painetList.Add(p0);
-                painetDb.ItemsSource = painetList;
             }
 
 
-           
+            painetDb.ItemsSource = newList;
+
+
+
+
 
         }
         /// <summary>
@@ -237,16 +261,27 @@ namespace Doctor
             disCheckItem.ItemsSource = currentDiseaseDosageSchedule.diseaseCheckItem;
 
 
+
+            var newList = new List<PaintName>() { };
+            newList.AddRange(_symptomsList);
+            //疑似病例中的症状列表
             if (!string.IsNullOrEmpty(currentDiseaseDosageSchedule.commonSymptoms))
             {
-                var list = currentDiseaseDosageSchedule.commonSymptoms.Split(new[] { ',','，' }, StringSplitOptions.RemoveEmptyEntries).ToList();
-                
+                var list = currentDiseaseDosageSchedule.commonSymptoms.Split(new[] { ',', '，' }, StringSplitOptions.RemoveEmptyEntries).ToList();
 
-
+                foreach (var item in list)
+                {
+                    var exitItem = _symptomsList.Where(p => p.Name == item).FirstOrDefault();
+                    if (exitItem == null)
+                    {
+                        PaintName p = new PaintName();
+                        p.Name = item;
+                        p.IsSelf = false;
+                        newList.Add(p);
+                    }
+                }
             }
-
-
-
+            painetDb.ItemsSource = newList;
         }
 
         private void Label_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

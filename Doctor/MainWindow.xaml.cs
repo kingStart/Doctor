@@ -213,7 +213,15 @@ namespace Doctor
                     wmDIs.diseaseMatching = wmDIs.diseaseMatching + "%";
                     _diagnosisDiseaseList.Add(wmDIs);
                 }
-                this.YsListDb.ItemsSource = suspectedDisease;
+                if (_diagnosisDiseaseList.Count > 4)
+                {
+                    this.YsListDb.ItemsSource = _diagnosisDiseaseList.Take(4);
+                }
+                else
+                {
+                    this.YsListDb.ItemsSource = _diagnosisDiseaseList;
+                }
+
                 this.totalCountLabel.Content = "共计：" + suspectedDisease.Count();
             }
 
@@ -300,42 +308,51 @@ namespace Doctor
         /// <param name="e"></param>
         private void MoreButton_Click(object sender, RoutedEventArgs e)
         {
-            var symptomString = "";
-
-
-            if (!_diagnosisDiseaseList.Any())
+            if(_diagnosisDiseaseList.Any() && _diagnosisDiseaseList.Count > 4)
             {
-                MessageBox.Show("请输入主诉症状进行查询", "提示");
-            }
-
-
-
-
-            if (_symptomResultList != null && _symptomResultList.Any())
-            {
-                foreach (var s in _symptomResultList)
-                {
-                    symptomString += s.symptom + ",";
-                }
-
-                var item = new SuspectedDisease();
-                item.patient = _patieneInfo;
-                item.patient.symptom = symptomString;
-
-
-                item.wmDiseaseDetailSocketParams = _diagnosisDiseaseList.ToList();
-
-                Plan dlg = new Plan(item,null);
-                dlg.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-                dlg.Show();
-
-                this.Close();
-
+                this.YsListDb.ItemsSource = _diagnosisDiseaseList;
             }
             else
             {
-                MessageBox.Show("请输入主诉症状进行查询", "提示");
+                MessageBox.Show("没有更多的疑似病例了", "提示");
             }
+
+            //var symptomString = "";
+
+
+            //if (!_diagnosisDiseaseList.Any())
+            //{
+            //    MessageBox.Show("请输入主诉症状进行查询", "提示");
+            //}
+
+
+
+
+            //if (_symptomResultList != null && _symptomResultList.Any())
+            //{
+            //    foreach (var s in _symptomResultList)
+            //    {
+            //        symptomString += s.symptom + ",";
+            //    }
+
+            //    var item = new SuspectedDisease();
+            //    item.patient = _patieneInfo;
+            //    item.patient.symptom = symptomString;
+
+
+            //    item.wmDiseaseDetailSocketParams = _diagnosisDiseaseList.ToList();
+
+            //    Plan dlg = new Plan(item,null);
+            //    dlg.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            //    dlg.Show();
+
+            //    this.Close();
+
+            //}
+            //else
+            //{
+            //    MessageBox.Show("请输入主诉症状进行查询", "提示");
+            //}
         }
 
         private void StackPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
