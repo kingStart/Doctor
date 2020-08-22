@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 
@@ -10,6 +11,7 @@ namespace Doctor.Service
     public static class WebApiService
     {
 
+        private static string url = ConfigurationManager.AppSettings["ApiUrl"];
         /// <summary>
         /// 登陆
         /// </summary>
@@ -18,7 +20,7 @@ namespace Doctor.Service
         public static DoctorInfo LoginUser(DoctorInfo doctorInfo)
         {
             var json = JsonConvert.SerializeObject(doctorInfo);
-            var postContent = HttpHelper.PostJson("http://103.85.170.99:10001/api/assistant/user/login", json);
+            var postContent = HttpHelper.PostJson(url + "/api/assistant/user/login", json);
 
             //转换结果
             var result = JsonConvert.DeserializeObject<WebApiResult>(postContent);
@@ -50,7 +52,7 @@ namespace Doctor.Service
             dic.Add("age", patientInfo.age.Replace("岁",""));
             dic.Add("outpatientId", patientInfo.outpatientId);
 
-            var postContent = HttpHelper.Post("http://103.85.170.99:10001/api/assistant/wm/querySymptomList", dic);
+            var postContent = HttpHelper.Post(url + "/api/assistant/wm/querySymptomList", dic);
 
 
             //转换结果
@@ -93,7 +95,7 @@ namespace Doctor.Service
                 dic.Add("outpatientId", patientInfo.outpatientId);//门诊流水号
             }
 
-            var postContent = HttpHelper.Post("http://103.85.170.99:10001/api/assistant/wm/getHealthData", dic);
+            var postContent = HttpHelper.Post(url + "/api/assistant/wm/getHealthData", dic);
 
             //转换结果
             var result = JsonConvert.DeserializeObject<WebApiResult>(postContent);
@@ -137,7 +139,7 @@ namespace Doctor.Service
             var json = JsonConvert.SerializeObject(item);
 
 
-            var postContent = HttpHelper.PostJson("http://103.85.170.99:10001/api/assistant/wm/queryDiseaseBySymptom?doctorToken="+ App.doctor.doctorToken + "&timestamp=" + TimeHelper.GetTimeStamp() + "&outpatientId="+ patientInfo.outpatientId + "&doctorId=" + App.doctor.doctorId + "", json);
+            var postContent = HttpHelper.PostJson(url + "/api/assistant/wm/queryDiseaseBySymptom?doctorToken=" + App.doctor.doctorToken + "&timestamp=" + TimeHelper.GetTimeStamp() + "&outpatientId="+ patientInfo.outpatientId + "&doctorId=" + App.doctor.doctorId + "", json);
 
 
             //转换结果
@@ -163,7 +165,7 @@ namespace Doctor.Service
         {
             var desease = new Disease();
 
-            var postContent = HttpHelper.PostJson("http://103.85.170.99:10001/api/assistant/wm/addDisease?diseaseName="+ diseaseName + "&symptoms="+ symptoms + "&doctorId="+ App.doctor.doctorId + "&doctorToken=" + App.doctor.doctorToken + "&timestamp=" + TimeHelper.GetTimeStamp() + "&outpatientId=" + outpatientId , "");
+            var postContent = HttpHelper.PostJson(url + "/api/assistant/wm/addDisease?diseaseName=" + diseaseName + "&symptoms="+ symptoms + "&doctorId="+ App.doctor.doctorId + "&doctorToken=" + App.doctor.doctorToken + "&timestamp=" + TimeHelper.GetTimeStamp() + "&outpatientId=" + outpatientId , "");
 
 
             //转换结果
@@ -191,7 +193,7 @@ namespace Doctor.Service
             dic.Add("timestamp", TimeHelper.GetTimeStamp());//时间戳
             dic.Add("outpatientId", outpatientId);//诊断号
 
-            var postContent = HttpHelper.Post("http://103.85.170.99:10001/api/assistant/wm/getDiseaseDosageSchedule ", dic);
+            var postContent = HttpHelper.Post(url + "/api/assistant/wm/getDiseaseDosageSchedule ", dic);
 
             //转换结果
             var result = JsonConvert.DeserializeObject<WebApiResult>(postContent);
@@ -223,7 +225,7 @@ namespace Doctor.Service
             dic.Add("timestamp", TimeHelper.GetTimeStamp());//时间戳
             dic.Add("outpatientId", outpatientId);//诊断号
 
-            var postContent = HttpHelper.Post("http://103.85.170.99:10001/api/assistant/wm/getDrugKnowledageBase", dic);
+            var postContent = HttpHelper.Post(url + "/api/assistant/wm/getDrugKnowledageBase", dic);
 
             //转换结果
             var result = JsonConvert.DeserializeObject<WebApiResult>(postContent);

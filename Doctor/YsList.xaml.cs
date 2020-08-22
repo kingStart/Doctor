@@ -31,8 +31,10 @@ namespace Doctor
             InitializeComponent();
             this.suspectedDisease = _suspe;
             ysList = this;
+            App._suspensionWindow._defultWindow?.Close();
+            App._suspensionWindow._defultWindow = this;
 
-            WSocketClient.ShutDownOtherWindow("YsList");
+            //WSocketClient.ShutDownOtherWindow("YsList");
         }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)

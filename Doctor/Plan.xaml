@@ -15,7 +15,7 @@
             <Label x:Name="titleLabel" FontWeight="Bold"  Margin="0,0,0,0.4" HorizontalContentAlignment="Left"  Foreground="White"  FontSize="15" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="30"   Width="417">全科医生机器人辅助诊断系统</Label>
             <Button   Template="{StaticResource MaxBtn}" Margin="510,0,0,0" Visibility="Hidden"/>
             <Button  Click="MinBtn_Click"  Template="{StaticResource MinBtn}" Margin="5,0,0,0" />
-            <Button  Click="CloseBtn_Click"  Template="{StaticResource CloseBtn}" Margin="5,0,0,0" />
+            <Button  Click="MinBtn_Click"  Template="{StaticResource CloseBtn}" Margin="5,0,0,0" />
         </StackPanel>
         <StackPanel  Grid.Row="1" Background="#e6e6e6">
             <Grid>
@@ -107,8 +107,8 @@
                         </StackPanel>
                         <StackPanel Grid.Row="1" Orientation="Vertical"   Background="White" >
                             <StackPanel Orientation="Horizontal">
-                                <Label Height="35" Width="260" FontSize="13"  Padding="10" VerticalContentAlignment="Center" VerticalAlignment="Center">主诉症状</Label>
-
+                                <Label Height="35" Width="160" FontSize="13"  Padding="10" VerticalContentAlignment="Center" VerticalAlignment="Center">主诉症状</Label>
+                                
                             </StackPanel>
                             <Rectangle  HorizontalAlignment="Stretch"  Width="270" VerticalAlignment="Center" Fill="#000000" Height="2"/>
 
@@ -126,7 +126,7 @@
                                 <ListBox.ItemTemplate >
 
                                     <DataTemplate>
-                                        <Label  Margin="4,4,4,4" VerticalContentAlignment="Center" FontSize="12"  HorizontalContentAlignment="Center" Height="30"  Background="#F4F4F4" Content="{Binding Name}" Style="{StaticResource WhiteButton_Label}"></Label>
+                                        <Label  Margin="4,4,4,4" VerticalContentAlignment="Center" FontSize="12"  HorizontalContentAlignment="Center" Height="30"  Content="{Binding Name}" Style="{StaticResource WhiteButton_Label}"></Label>
                                     </DataTemplate>
 
                                 </ListBox.ItemTemplate>
@@ -343,7 +343,7 @@
                                     <ListBox.ItemTemplate >
 
                                         <DataTemplate>
-                                            <Label  Margin="5,0,0,0" VerticalContentAlignment="Center" FontSize="9"  HorizontalContentAlignment="Center" Height="30" Width="80"  Background="#F4F4F4" Tag="{Binding itemCode}"  Content="{Binding itemName}"></Label>
+                                            <Label  Margin="5,0,0,0" VerticalContentAlignment="Center" FontSize="9"  HorizontalContentAlignment="Center" Height="30"  Background="#F4F4F4" Tag="{Binding itemCode}"  Content="{Binding itemName}"></Label>
                                         </DataTemplate>
 
                                     </ListBox.ItemTemplate>
@@ -402,7 +402,7 @@
                                 <ListBox.ItemTemplate >
 
                                     <DataTemplate>
-                                        <Border CornerRadius="5"  Height="30" Width="80" Margin="5,0,0,0"  BorderThickness="3" BorderBrush="#F4F4F4">
+                                        <Border CornerRadius="5"  Height="30" Margin="4,4,4,4"  BorderThickness="2" BorderBrush="#F4F4F4">
                                             <Label VerticalContentAlignment="Center"  HorizontalContentAlignment="Center"  Background="#F4F4F4" Content="{Binding itemName}" ></Label>
 
                                         </Border>

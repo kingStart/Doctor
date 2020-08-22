@@ -30,8 +30,10 @@ namespace Doctor
             pInfo = _pInfo;
             InitializeComponent();
             zhuSu = this;
+            App._suspensionWindow._defultWindow?.Close();
+            App._suspensionWindow._defultWindow = this;
 
-            WSocketClient.ShutDownOtherWindow("ZhuSu");
+            //WSocketClient.ShutDownOtherWindow("ZhuSu");
         }
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
         {

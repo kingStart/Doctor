@@ -93,7 +93,7 @@ namespace Doctor
 
 
             doctor = WebApiService.LoginUser(doctor);
-            string socketUrl = url + doctor.doctorId + "/" + doctor.doctorToken;
+            string socketUrl = url + "/his/doctor/websocket/" + doctor.doctorId + "/" + doctor.doctorToken;
 
             WSocketClient client = new WSocketClient(socketUrl);
 

@@ -110,8 +110,6 @@ namespace Doctor
                         dcInfo.Top = System.Windows.SystemParameters.PrimaryScreenHeight - 630;
                         dcInfo.Topmost = true;
                         dcInfo.Show();
-
-                        App._suspensionWindow._defultWindow = dcInfo;
                     }));
 
                 }
@@ -133,7 +131,6 @@ namespace Doctor
                         zShu.Top = System.Windows.SystemParameters.PrimaryScreenHeight - 630;
                         zShu.Topmost = true;
                         zShu.Show();
-                        App._suspensionWindow._defultWindow = zShu;
                     }));
                 }
                 else if (page == "disease_list")
@@ -156,7 +153,6 @@ namespace Doctor
                             yList.Top = System.Windows.SystemParameters.PrimaryScreenHeight - 630;
                             yList.Topmost = true;
                             yList.Show();
-                            App._suspensionWindow._defultWindow = yList;
                         }
                         else
                         {
@@ -171,7 +167,6 @@ namespace Doctor
                             deNo.Top = System.Windows.SystemParameters.PrimaryScreenHeight - 630;
                             deNo.Topmost = true;
                             deNo.Show();
-                            App._suspensionWindow._defultWindow = deNo;
                         }
                     }));
                 }
@@ -191,7 +186,6 @@ namespace Doctor
                         deNo.Top = System.Windows.SystemParameters.PrimaryScreenHeight - 630;
                         deNo.Topmost = true;
                         deNo.Show();
-                        App._suspensionWindow._defultWindow = deNo;
 
                     }));
                 }
@@ -309,16 +303,26 @@ namespace Doctor
                 }
                
             }
-            if (Name != "YsList")
+            
+            if (Name != "Plan")
+            {
+                if (Plan.plan != null)
+                {
+                    Plan.plan.Close();
+                }
+
+            }
+
+            if (Name != "MainWindow")
             {
                 if (YsList.ysList != null)
                 {
                     YsList.ysList.Close();
                 }
-               
+
             }
-            
-           
+
+
         }
     }
 }

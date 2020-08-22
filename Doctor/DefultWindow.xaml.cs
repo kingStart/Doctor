@@ -31,11 +31,16 @@ namespace Doctor
         public static DefultWindow defultWindow;
         public DefultWindow(DoctorInfo doctor)
         {
+
             this._doctor = doctor;
             //icon();
             InitializeComponent();
 
             defultWindow = this;
+
+            App._suspensionWindow._defultWindow?.Close();
+            App._suspensionWindow._defultWindow = this;
+            //WSocketClient.ShutDownOtherWindow("DefultWindow");
         }
 
         

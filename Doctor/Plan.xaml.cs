@@ -48,9 +48,12 @@ namespace Doctor
             this.suspectedDisease = _suspe;
 
             plan = this;
+            App._suspensionWindow._defultWindow?.Close();
+            App._suspensionWindow._defultWindow = this;
 
             currentDiseaseDosageSchedule = _DiseaseDosageSchedule;
 
+            //WSocketClient.ShutDownOtherWindow("Plan");
             //WSocketClient.ShutDownOtherWindow("Plan");
         }
 
@@ -155,7 +158,15 @@ namespace Doctor
 
                 List<ProgramItem> proListItem1 = currentDiseaseDosageSchedule.drugProgramAll.Take(4).FirstOrDefault().childItem;
                 //绑定药物治疗
-                ItemProgramMotherList.ItemsSource = currentDiseaseDosageSchedule.drugProgram[1].childItem;
+                if (currentDiseaseDosageSchedule.drugProgram.Count >= 2)
+                {
+                    ItemProgramMotherList.ItemsSource = currentDiseaseDosageSchedule.drugProgram[1].childItem;
+                }
+                else
+                {
+                    ItemProgramMotherList.ItemsSource = null;
+                }
+
 
                 //加载检查方案
                 disCheckItem.ItemsSource = currentDiseaseDosageSchedule.diseaseCheckItem;
@@ -253,8 +264,18 @@ namespace Doctor
             ProgramMotherList.ItemsSource = proListItem;
 
             List<ProgramItem> proListItem1= currentDiseaseDosageSchedule.drugProgramAll.Take(4).FirstOrDefault().childItem;
+            ////绑定药物治疗
+            //ItemProgramMotherList.ItemsSource = currentDiseaseDosageSchedule.drugProgram[1].childItem;
+
             //绑定药物治疗
-            ItemProgramMotherList.ItemsSource = currentDiseaseDosageSchedule.drugProgram[1].childItem;
+            if (currentDiseaseDosageSchedule.drugProgram.Count >= 2)
+            {
+                ItemProgramMotherList.ItemsSource = currentDiseaseDosageSchedule.drugProgram[1].childItem;
+            }
+            else
+            {
+                ItemProgramMotherList.ItemsSource = null;
+            }
 
             //加载检查方案
 

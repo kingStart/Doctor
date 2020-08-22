@@ -46,6 +46,7 @@ namespace Doctor
         public DiseaseDosageSchedule currentDiseaseDosageSchedule;
      
         private PatientInfo _patieneInfo;
+        public static MainWindow mainWindow;
 
         public MainWindow()
         {
@@ -56,6 +57,11 @@ namespace Doctor
         {
             _patieneInfo = patientInfo;
             InitializeComponent();
+            mainWindow = this;
+            App._suspensionWindow._defultWindow?.Close();
+            App._suspensionWindow._defultWindow = this;
+
+            //WSocketClient.ShutDownOtherWindow("MainWindow");
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -375,6 +381,7 @@ namespace Doctor
             Plan dlg = new Plan(item, currentDiseaseDosageSchedule);
             dlg.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             dlg.Show();
+            this.Close();
         }
     }
 }
