@@ -27,7 +27,7 @@ namespace Doctor
         public static Plan plan;
 
 
-        private List<PaintName> _symptomsList = new List<PaintName>() { };//初始化加载的时候，用户病例中的症状列表
+        private List<string> _symptomsList = new List<string>() { };//初始化加载的时候，用户病例中的症状列表
 
         public static int SQ1Status = 1;
 
@@ -176,21 +176,17 @@ namespace Doctor
 
 
 
-            //加载症状
+            //socket传过来的症状
             if (!string.IsNullOrEmpty(suspectedDisease.patient.symptom)&& suspectedDisease.patient.symptom.Contains(","))
             {
                 List<string> pList = suspectedDisease.patient.symptom.Split(new[] { ',', '，' }, StringSplitOptions.RemoveEmptyEntries).ToList();
                 foreach (var u in pList)
                 {
-                    PaintName p = new PaintName();
-                    p.Name = u;
-                    p.IsSelf = true;
-                    _symptomsList.Add(p);
+                    _symptomsList.Add(u);
                 }
             }
 
             var newList = new List<PaintName>() { };
-            newList.AddRange(_symptomsList);
 
             //疑似病例中的症状列表
             if (!string.IsNullOrEmpty(currentDiseaseDosageSchedule.commonSymptoms))
@@ -199,14 +195,19 @@ namespace Doctor
 
                 foreach (var item in list)
                 {
-                    var exitItem = _symptomsList.Where(p => p.Name == item).FirstOrDefault();
-                    if (exitItem == null)
+
+                    PaintName p0 = new PaintName();
+                    p0.Name = item;
+                    
+                    if (_symptomsList.Contains(item))
                     {
-                        PaintName p = new PaintName();
-                        p.Name = item;
-                        p.IsSelf = false;
-                        newList.Add(p);
+                        p0.IsSelf = true;
                     }
+                    else
+                    {
+                        p0.IsSelf = false;
+                    }
+                    newList.Add(p0);
                 }
 
             }
@@ -284,7 +285,7 @@ namespace Doctor
 
 
             var newList = new List<PaintName>() { };
-            newList.AddRange(_symptomsList);
+
             //疑似病例中的症状列表
             if (!string.IsNullOrEmpty(currentDiseaseDosageSchedule.commonSymptoms))
             {
@@ -292,16 +293,24 @@ namespace Doctor
 
                 foreach (var item in list)
                 {
-                    var exitItem = _symptomsList.Where(p => p.Name == item).FirstOrDefault();
-                    if (exitItem == null)
+
+                    PaintName p0 = new PaintName();
+                    p0.Name = item;
+
+                    if (_symptomsList.Contains(item))
                     {
-                        PaintName p = new PaintName();
-                        p.Name = item;
-                        p.IsSelf = false;
-                        newList.Add(p);
+                        p0.IsSelf = true;
                     }
+                    else
+                    {
+                        p0.IsSelf = false;
+                    }
+                    newList.Add(p0);
                 }
+
             }
+
+
             painetDb.ItemsSource = newList;
         }
 
