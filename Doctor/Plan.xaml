@@ -47,16 +47,16 @@
                         </StackPanel>
 
                         <StackPanel Grid.Row="2" Orientation="Vertical" >
-                            <ListBox x:Name="YsListDb" HorizontalContentAlignment="Center" BorderThickness="0" HorizontalAlignment="Center" Width="285" Height="520">
+                            <ListBox x:Name="YsListDb" HorizontalContentAlignment="Center" BorderThickness="0" HorizontalAlignment="Center" Width="290" Height="520">
                                 <ListBox.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <WrapPanel Orientation="Vertical" IsItemsHost="True" Width="280"  />
+                                        <WrapPanel Orientation="Vertical" IsItemsHost="True" Width="270"/>
                                     </ItemsPanelTemplate>
                                 </ListBox.ItemsPanel>
                                 <ListBox.ItemTemplate >
 
                                     <DataTemplate>
-                                        <StackPanel Tag="{Binding icd10}" MouseLeftButtonDown="StackPanel_MouseLeftButtonDown" Orientation="Vertical" Background="#F8F8F8" Margin="0,10,0,0">
+                                        <StackPanel Tag="{Binding icd10}" MouseLeftButtonDown="StackPanel_MouseLeftButtonDown" Orientation="Vertical" Background="#F8F8F8" Margin="0,6,0,0">
 
                                             <Label Visibility="{Binding IsShowIcd}" Height="23" Width="60" Background=" #009EFF"  FontSize="9.5" Foreground="White"   HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Center" Content="自定义"/>
                                             
@@ -116,17 +116,17 @@
                         <StackPanel Grid.Row="2" Orientation="Horizontal"  Background="White" >
 
 
-                            <ListBox x:Name="painetDb"  MaxWidth="275"    HorizontalContentAlignment="Center" BorderThickness="0" HorizontalAlignment="Center" Width="280" Height="250"  >
+                            <ListBox x:Name="painetDb" HorizontalContentAlignment="Center" BorderThickness="0" HorizontalAlignment="Center" Width="270" Height="250"  >
 
                                 <ListBox.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <WrapPanel Orientation="Horizontal" IsItemsHost="True" Width="270"  />
+                                        <WrapPanel Orientation="Horizontal" IsItemsHost="True" Width="250"  />
                                     </ItemsPanelTemplate>
                                 </ListBox.ItemsPanel>
                                 <ListBox.ItemTemplate >
 
                                     <DataTemplate>
-                                        <Label MouseLeftButtonDown="Label_MouseLeftButtonDown" Margin="4,4,4,4" VerticalContentAlignment="Center" FontSize="12"  HorizontalContentAlignment="Center" Height="30"  Background="#F4F4F4" Content="{Binding Name}" Style="{StaticResource WhiteButton_Label}"></Label>
+                                        <Label Margin="4,4,4,4" VerticalContentAlignment="Center" FontSize="12"  HorizontalContentAlignment="Center" Height="30" Content="{Binding Name}" Style="{StaticResource WhiteButton_Label}" Tag="{Binding Name}"></Label>
                                     </DataTemplate>
 
                                 </ListBox.ItemTemplate>
@@ -345,7 +345,7 @@
 
                                     <ListBox.ItemsPanel>
                                         <ItemsPanelTemplate>
-                                            <WrapPanel Orientation="Horizontal" IsItemsHost="True" Width="380"  />
+                                            <WrapPanel Orientation="Horizontal" IsItemsHost="True" Width="370"  />
                                         </ItemsPanelTemplate>
                                     </ListBox.ItemsPanel>
                                     <ListBox.ItemTemplate >
@@ -371,7 +371,7 @@
 
                                     <ListBox.ItemsPanel>
                                         <ItemsPanelTemplate>
-                                            <WrapPanel Orientation="Vertical" IsItemsHost="True" Width="380"  />
+                                            <WrapPanel Orientation="Vertical" IsItemsHost="True" Width="370"  />
                                         </ItemsPanelTemplate>
                                     </ListBox.ItemsPanel>
                                     <ListBox.ItemTemplate >
@@ -404,7 +404,7 @@
 
                                 <ListBox.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <WrapPanel Orientation="Horizontal" IsItemsHost="True" Width="390"  />
+                                        <WrapPanel Orientation="Horizontal" IsItemsHost="True" Width="370"  />
                                     </ItemsPanelTemplate>
                                 </ListBox.ItemsPanel>
                                 <ListBox.ItemTemplate >

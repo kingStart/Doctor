@@ -168,11 +168,14 @@
             </Setter>
         </Style>
 
-        <Style TargetType="{x:Type Label}" x:Key="WhiteButton_Label">  
+        <Style TargetType="{x:Type Label}" x:Key="WhiteButton_Label">
+            <Setter Property="Background" Value="#F4F4F4"/>
             <Style.Triggers>
-                <DataTrigger Binding="{Binding Path=IsSelf }" 
-                     Value="True">
-                    <Setter Property="Background" Value="#3a99f2"/>
+                <DataTrigger Binding="{Binding Path=IsSelf }" Value="True">
+                    <Setter Property="Background" Value="#3A99F2"/>
+                </DataTrigger>
+
+                <DataTrigger Binding="{Binding Path=IsSelf }" Value="True">
                     <Setter Property="Foreground" Value="White"/>
                 </DataTrigger>
             </Style.Triggers>
