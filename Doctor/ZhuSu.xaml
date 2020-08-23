@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Doctor"
         mc:Ignorable="d"
-        WindowStyle="None" AllowDrop="True" Title="ZhuSu" Loaded="Window_Loaded" ResizeMode="NoResize"  MouseLeftButtonDown="Window_MouseLeftButtonDown"  BorderThickness="0"  Height="600" Width="350">
+        WindowStyle="None" AllowDrop="True" Title="全科医生机器人辅助诊断系统" Loaded="Window_Loaded" ResizeMode="NoResize"  MouseLeftButtonDown="Window_MouseLeftButtonDown"  BorderThickness="0"  Height="600" Width="350">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
@@ -33,9 +33,10 @@
                 </StackPanel>
                 <StackPanel Grid.Row="2" HorizontalAlignment="Center" Orientation="Vertical">
 
-                    <Label FontSize="14" FontWeight="Bold" Foreground="#999999" HorizontalContentAlignment="Center">可点击右上角关闭按钮最小化窗口，需要时</Label>
-                    <Label FontSize="14" FontWeight="Bold" HorizontalContentAlignment="Center" Foreground="#999999">点击“AI辅诊”将我唤醒。</Label>
-                 
+                    <!--<Label FontSize="14" FontWeight="Bold" Foreground="#999999" HorizontalContentAlignment="Center">可点击右上角关闭按钮最小化窗口，需要时</Label>
+                    <Label FontSize="14" FontWeight="Bold" HorizontalContentAlignment="Center" Foreground="#999999">点击“AI辅诊”将我唤醒。</Label>-->
+                    <Label FontSize="14" FontWeight="Bold" Foreground="#999999" HorizontalContentAlignment="Center">您还没有输入主诉信息</Label>
+                    <Label FontSize="14" FontWeight="Bold" HorizontalContentAlignment="Center" Foreground="#999999">请在电子病历中填写</Label>
                 </StackPanel>
             </Grid>
         </StackPanel>

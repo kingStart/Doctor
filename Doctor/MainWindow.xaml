@@ -9,7 +9,7 @@
         xmlns:acb="http://wpfcontrols.com/"
         xmlns:providers="clr-namespace:Doctor.Providers" 
         mc:Ignorable="d"
-        WindowStyle="None" AllowDrop="True" ResizeMode="NoResize"   BorderThickness="0"  Height="700" Width="1000" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+        WindowStyle="None" AllowDrop="True" ResizeMode="NoResize"   BorderThickness="0"  Height="700" Width="1000" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" Title="全科医生机器人辅助诊断系统">
 
     <Window.Resources>
         <TextBlock x:Key="LoadingContent" Text="加载中..." Margin="5" FontSize="14" />
