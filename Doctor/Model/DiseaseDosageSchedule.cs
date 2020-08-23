@@ -199,6 +199,12 @@ namespace Doctor.Model
         public string itemChidNames { get; set; }
 
 
+        /// <summary>
+        /// 根据 drugid 是否为null 来显示/隐藏 药品说明 按钮
+        /// </summary>
+        public string showDrugId { get; set; }
+
+
     }
 
 }

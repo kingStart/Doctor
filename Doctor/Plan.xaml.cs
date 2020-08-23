@@ -161,6 +161,20 @@ namespace Doctor
                 if (currentDiseaseDosageSchedule.drugProgram.Count >= 2)
                 {
                     ItemProgramMotherList.ItemsSource = currentDiseaseDosageSchedule.drugProgram[1].childItem;
+                    var tList = currentDiseaseDosageSchedule.drugProgram[1].childItem;
+
+                    foreach (var item in tList)
+                    {
+                        if (string.IsNullOrEmpty(item.drugid))
+                        {
+                            item.showDrugId = "Hidden";
+                        }
+                        else
+                        {
+                            item.showDrugId = "Visibility";
+                        }
+                    }
+
                 }
                 else
                 {
@@ -201,13 +215,30 @@ namespace Doctor
                     
                     if (_symptomsList.Contains(item))
                     {
-                        p0.IsSelf = true;
                     }
                     else
                     {
                         p0.IsSelf = false;
                     }
                     newList.Add(p0);
+                }
+
+                var index = 0;
+                foreach (var item in list)
+                {
+
+                    PaintName p0 = new PaintName();
+                    p0.Name = item;
+
+                    if (_symptomsList.Contains(item))
+                    {
+                        
+                        p0.IsSelf = true;
+
+                        newList.Insert(index, p0);
+                        index++;
+                    }
+                    
                 }
 
             }
@@ -271,6 +302,21 @@ namespace Doctor
             //绑定药物治疗
             if (currentDiseaseDosageSchedule.drugProgram.Count >= 2)
             {
+
+                var tList = currentDiseaseDosageSchedule.drugProgram[1].childItem;
+
+                foreach(var item in tList)
+                {
+                    if (string.IsNullOrEmpty(item.drugid))
+                    {
+                        item.showDrugId = "Hidden";
+                    }
+                    else
+                    {
+                        item.showDrugId = "Visibility";
+                    }
+                }
+
                 ItemProgramMotherList.ItemsSource = currentDiseaseDosageSchedule.drugProgram[1].childItem;
             }
             else
@@ -299,13 +345,30 @@ namespace Doctor
 
                     if (_symptomsList.Contains(item))
                     {
-                        p0.IsSelf = true;
                     }
                     else
                     {
                         p0.IsSelf = false;
                     }
                     newList.Add(p0);
+                }
+
+                var index = 0;
+                foreach (var item in list)
+                {
+
+                    PaintName p0 = new PaintName();
+                    p0.Name = item;
+
+                    if (_symptomsList.Contains(item))
+                    {
+
+                        p0.IsSelf = true;
+
+                        newList.Insert(index, p0);
+                        index++;
+                    }
+
                 }
 
             }
