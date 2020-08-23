@@ -27,13 +27,13 @@ namespace Doctor
         // 这里的URL配置成你websocket服务端的地址就好了
         private static string url = ConfigurationManager.AppSettings["WebSocketUrl"];
         public static DoctorInfo doctor;
+        public static PatientInfo _patieneInfo;
 
 
         public static SuspensionWindow _suspensionWindow;
 
         protected override void OnStartup(StartupEventArgs e)
         {
-
 
             //var n = new SuspensionWindow();
             //n.ShowDialog();
@@ -104,6 +104,8 @@ namespace Doctor
             icon();
 
             _suspensionWindow = new SuspensionWindow();
+
+
 
 
             var dlg = new DefultWindow(doctor);

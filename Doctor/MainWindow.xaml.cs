@@ -72,7 +72,7 @@ namespace Doctor
             this.PatientLabel.Content = "「 " + _patieneInfo.patientName + "   " + sex + "   " + _patieneInfo.age + " 」";
 
 
-            searchText.OnSearch += SearchText_OnSearch;
+            //searchText.OnSearch += SearchText_OnSearch;
 
             //_symptomList.Add("感冒");
             //_symptomList.Add("发烧");
@@ -117,33 +117,57 @@ namespace Doctor
 
         }
 
-        private void SearchText_OnSearch(object sender, SearchEventArgs e)
+        private void TbxInput_OnKeyDown(object sender, KeyEventArgs e)
         {
-            //搜索症状
-            var text = searchText.GetText();
-            
-            if (string.IsNullOrEmpty(text))
+
+            if (e.Key == Key.Enter)
             {
-                return;
-            }
-            var list = WebApiService.QuerySymptomList(text, _patieneInfo);
-
-
-
-
-            if (list.Any())
-            {
-                foreach (var item in list)
+                var symptom = t1.SelectedItem as Symptom;
+                t1.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+                if (symptom != null)
                 {
-                    _symptomResultList.Add(item);
+                    _symptomResultList.Add(symptom);
+                    t1.Editor.Text = "";
                 }
+
+
+
+                UpdateList();
             }
-            else
-            {
-                MessageBox.Show("未查询到相关搜索结果","提示");
-            }
+
 
         }
+
+
+
+        //private void SearchText_OnSearch(object sender, SearchEventArgs e)
+        //{
+        //    //搜索症状
+        //    //var text = searchText.GetText();
+        //    var text = "";
+
+        //    if (string.IsNullOrEmpty(text))
+        //    {
+        //        return;
+        //    }
+        //    var list = WebApiService.QuerySymptomList(text, _patieneInfo);
+
+
+
+
+        //    if (list.Any())
+        //    {
+        //        foreach (var item in list)
+        //        {
+        //            _symptomResultList.Add(item);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("未查询到相关搜索结果","提示");
+        //    }
+
+        //}
 
         private void MinBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -169,6 +193,7 @@ namespace Doctor
         /// <param name="e"></param>
         private void SearchSymptomDisease_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            return;
             var label = sender as Label;
             var sn = label.Content.ToString();
 
@@ -259,6 +284,8 @@ namespace Doctor
             {
                 _symptomResultList.Remove(obj);
             }
+
+            UpdateList();
         }
 
 
@@ -291,7 +318,94 @@ namespace Doctor
 
             _symptomResultList.Add(item);
 
+            UpdateList();
+
         }
+
+        private void UpdateList()
+        {
+            App.Current.Dispatcher.Invoke((Action)(() =>
+            {
+                var sn = string.Empty;
+                //发出请求，查询
+                foreach (var s in _symptomResultList)
+                {
+                    sn = s.symptom + ",";
+                }
+
+                var list = WebApiService.QueryDiseaseBySymptom(sn, _patieneInfo);
+
+
+                var suspectedDisease = list.diagnosisDisease;
+                var sList = list.concomitant;
+
+                _diagnosisDiseaseList.Clear();
+
+                //加载疑似病例模块
+                if (suspectedDisease != null && suspectedDisease.Any())
+                {
+
+                    foreach (var wmDIs in suspectedDisease)
+                    {
+                        if (wmDIs.degree.Contains("危"))
+                        {
+                            wmDIs.degreeWei = "Visible";
+                        }
+                        else
+                        {
+                            wmDIs.degreeWei = "Hidden";
+                        }
+                        if (wmDIs.degree.Contains("急"))
+                        {
+                            wmDIs.degreeJi = "Visible";
+                        }
+                        else
+                        {
+                            wmDIs.degreeJi = "Hidden";
+                        }
+                        if (wmDIs.degree.Contains("重"))
+                        {
+                            wmDIs.degreeZ = "Visible";
+                        }
+                        else
+                        {
+                            wmDIs.degreeZ = "Hidden";
+                        }
+
+                        if (string.IsNullOrEmpty(wmDIs.icd10))
+                        {
+                            wmDIs.IsShowIcd = "Visible";
+                        }
+                        else
+                        {
+                            wmDIs.IsShowIcd = "Hidden";
+                        }
+
+                        wmDIs.diseaseMatching = wmDIs.diseaseMatching + "%";
+                        _diagnosisDiseaseList.Add(wmDIs);
+                    }
+                    if (_diagnosisDiseaseList.Count > 4)
+                    {
+                        this.YsListDb.ItemsSource = _diagnosisDiseaseList.Take(4);
+                    }
+                    else
+                    {
+                        this.YsListDb.ItemsSource = _diagnosisDiseaseList;
+                    }
+
+                    this.totalCountLabel.Content = "共计：" + suspectedDisease.Count();
+                }
+
+                _symptomResultList2.Clear();
+                foreach (var item in sList)
+                {
+                    _symptomResultList2.Add(item);
+                }
+            }));
+
+            
+        }
+
 
         private void SymptomCheckBox_Click(object sender, RoutedEventArgs e)
         {

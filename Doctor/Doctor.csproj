@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>Doctor</RootNamespace>
     <AssemblyName>Doctor</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -28,6 +28,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>x64</PlatformTarget>
@@ -38,6 +39,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -47,6 +49,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>logo.ico</ApplicationIcon>
@@ -60,6 +63,7 @@
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -70,8 +74,21 @@
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoCompleteTextBox, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoCompleteTextBox.1.1.1\lib\net452\AutoCompleteTextBox.dll</HintPath>
+    </Reference>
+    <Reference Include="Julmar.Core">
+      <HintPath>lib\Julmar.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Julmar.Wpf.Behaviors">
+      <HintPath>lib\Julmar.Wpf.Behaviors.dll</HintPath>
+    </Reference>
+    <Reference Include="JulMar.Wpf.Helpers">
+      <HintPath>lib\JulMar.Wpf.Helpers.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net40-full\log4net.dll</HintPath>
     </Reference>
@@ -122,6 +139,7 @@
     <Compile Include="Model\Disease.cs" />
     <Compile Include="Model\DrugKnowledageBase.cs" />
     <Compile Include="Model\QueryDiseaseBySymptomParams.cs" />
+    <Compile Include="Providers\StateSuggestionProvider.cs" />
     <Compile Include="Service\CommonHelper.cs" />
     <Compile Include="Service\HttpHelper.cs" />
     <Compile Include="Model\WSocketClient.cs" />
@@ -150,6 +168,9 @@
     <Compile Include="Service\WindowsHelper.cs" />
     <Compile Include="SuspensionWindow.xaml.cs">
       <DependentUpon>SuspensionWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TWindwo.xaml.cs">
+      <DependentUpon>TWindwo.xaml</DependentUpon>
     </Compile>
     <Compile Include="YpExplain.xaml.cs">
       <DependentUpon>YpExplain.xaml</DependentUpon>
@@ -182,6 +203,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="SuspensionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TWindwo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -298,6 +323,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="lib\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

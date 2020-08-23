@@ -116,6 +116,7 @@ namespace Doctor
                 else if (page == "patient_info")
                 {
                     PatientInfo paient = Newtonsoft.Json.JsonConvert.DeserializeObject<PatientInfo>(datastr);
+                    App._patieneInfo = paient;
                     App.Current.Dispatcher.Invoke((Action)(() =>
                     {
                         if (zShu != null)
@@ -124,6 +125,9 @@ namespace Doctor
                         }
 
 
+                        //TWindwo d = new TWindwo();
+                        //d.Show();
+                        //return;
 
                         zShu = new ZhuSu(paient);
                         zShu.WindowStartupLocation = WindowStartupLocation.Manual;
@@ -136,6 +140,8 @@ namespace Doctor
                 else if (page == "disease_list")
                 {
                     SuspectedDisease paient = Newtonsoft.Json.JsonConvert.DeserializeObject<SuspectedDisease>(datastr);
+
+                    App._patieneInfo = paient.patient;
                     App.Current.Dispatcher.Invoke((Action)(() =>
                     {
                         if (paient.wmDiseaseDetailSocketParams != null && paient.wmDiseaseDetailSocketParams.Count() > 0)
@@ -173,6 +179,8 @@ namespace Doctor
                 else
                 {
                     SuspectedDisease paient = Newtonsoft.Json.JsonConvert.DeserializeObject<SuspectedDisease>(datastr);
+                    App._patieneInfo = paient.patient;
+
                     App.Current.Dispatcher.Invoke((Action)(() =>
                     {
                         if (deNo != null)
