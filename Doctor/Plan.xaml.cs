@@ -240,7 +240,7 @@ namespace Doctor
 
             Search dlg = new Search(suspectedDisease.patient, list);
             dlg.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            dlg.Show();
+            dlg.ShowDialog();
         }
 
         private void StackPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -503,7 +503,7 @@ namespace Doctor
 
                 YpExplain dlg = new YpExplain(drugID, outpatientId);
                 dlg.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-                dlg.Show();
+                dlg.ShowDialog();
             }
           
         }
@@ -512,7 +512,7 @@ namespace Doctor
         {
             DcPlan dlg = new DcPlan(currentDiseaseDosageSchedule);
             dlg.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            dlg.Show();
+            dlg.ShowDialog();
         }
     }
 
