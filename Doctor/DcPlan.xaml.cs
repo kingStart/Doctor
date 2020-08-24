@@ -42,27 +42,43 @@ namespace Doctor
         {
             this.DragMove();
         }
-
+            
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             List<ProgramItem> drugProgramAll = _DiseaseDosageSchedule.drugProgramAll;
-            //绑定一般治疗方法
-            ProgramMotherList.ItemsSource = _DiseaseDosageSchedule.drugProgram[0].childItem;
 
-            foreach (var drug in _DiseaseDosageSchedule.drugProgram[1].childItem)
+            foreach(var item in drugProgramAll)
             {
-                drug.itemChidNames = " ";
-                if (drug.childItem != null && drug.childItem.Count() > 0)
+                if(item.childItem==null || !item.childItem.Any())
                 {
-                    foreach (var item in drug.childItem)
-                    {
-                        drug.itemChidNames = drug.itemChidNames + item.itemName + " ";
-                    }
-                   
+                    item.showLabel = "Visibility";
+                    item.showList = "Collapsed";
+                }
+                else
+                {
+                    item.showLabel = "Collapsed";
+                    item.showList = "Visibility";
                 }
             }
+            
 
-            ItemProgramMotherList.ItemsSource = _DiseaseDosageSchedule.drugProgram[1].childItem;
+            //绑定一般治疗方法
+            ProgramMotherList.ItemsSource = drugProgramAll;
+
+            //foreach (var drug in _DiseaseDosageSchedule.drugProgram[1].childItem)
+            //{
+            //    drug.itemChidNames = " ";
+            //    if (drug.childItem != null && drug.childItem.Count() > 0)
+            //    {
+            //        foreach (var item in drug.childItem)
+            //        {
+            //            drug.itemChidNames = drug.itemChidNames + item.itemName + " ";
+            //        }
+                   
+            //    }
+            //}
+
+            //ItemProgramMotherList.ItemsSource = _DiseaseDosageSchedule.drugProgram[1].childItem;
         }
     }
 }

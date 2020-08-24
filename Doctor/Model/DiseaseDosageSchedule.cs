@@ -205,6 +205,16 @@ namespace Doctor.Model
         public string showDrugId { get; set; }
 
 
+        /// <summary>
+        ///显示列表
+        /// </summary>
+        public string showList { get; set; }
+
+        /// <summary>
+        /// 显示【无】这个标签
+        /// </summary>
+        public string showLabel { get; set; }
+
     }
 
 }

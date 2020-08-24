@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Doctor"
         mc:Ignorable="d"
-        WindowStyle="None" AllowDrop="True" Loaded="Window_Loaded" MouseLeftButtonDown="Window_MouseLeftButtonDown" ResizeMode="NoResize"   BorderThickness="0"  Height="500" Width="800">
+        WindowStyle="None" AllowDrop="True" Loaded="Window_Loaded" MouseLeftButtonDown="Window_MouseLeftButtonDown" ResizeMode="NoResize"   BorderThickness="0"  Height="600" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
@@ -17,76 +17,45 @@
             <Button  Click="Button_Click"  Template="{StaticResource CloseWindwoBtn}" Margin="360,0,0,0" />
         </StackPanel>
         <StackPanel  Grid.Row="1" Background="White">
-            <StackPanel Orientation="Horizontal" >
-                <Label Height="40" Width="320" FontSize="16" FontWeight="Bold" Padding="10" VerticalContentAlignment="Center" VerticalAlignment="Center">一般治疗</Label>
-               
-            </StackPanel>
-            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
-                
-                <ListBox x:Name="ProgramMotherList"    HorizontalContentAlignment="Center" BorderThickness="0" HorizontalAlignment="Center" Width="800" Height="40"  >
-
-                    <ListBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel Orientation="Horizontal" IsItemsHost="True" Width="780"  />
-                        </ItemsPanelTemplate>
-                    </ListBox.ItemsPanel>
-                    <ListBox.ItemTemplate >
-
-                        <DataTemplate>
-                            <Label  Margin="5,0,0,0" VerticalContentAlignment="Center" FontSize="13"  HorizontalContentAlignment="Center" Height="30" Width="80"  Background="#F4F4F4" Tag="{Binding itemCode}"  Content="{Binding itemName}"></Label>
-                        </DataTemplate>
-
-                    </ListBox.ItemTemplate>
-
-                </ListBox>
-
-
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" >
-                <Label Height="40" Width="320" FontSize="16" FontWeight="Bold" Padding="10" VerticalContentAlignment="Center" VerticalAlignment="Center">药物治疗</Label>
-
-            </StackPanel>
-            <StackPanel>
-                <ListBox x:Name="ItemProgramMotherList"    HorizontalContentAlignment="Center" BorderThickness="0" HorizontalAlignment="Center" Width="800" Height="340"  >
-
+            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">                
+                <ListBox x:Name="ProgramMotherList" HorizontalContentAlignment="Center" BorderThickness="0" HorizontalAlignment="Center" Width="800" Height="560">
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel Orientation="Vertical" IsItemsHost="True" Width="780"  />
                         </ItemsPanelTemplate>
                     </ListBox.ItemsPanel>
                     <ListBox.ItemTemplate >
-
                         <DataTemplate>
-                            <StackPanel>
-                                <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
-                                    <Label VerticalContentAlignment="Center" FontSize="15" Padding="20,0,0,0" Foreground="#009EFF" FontWeight="Bold" HorizontalContentAlignment="Left" Height="40" Width="25"  Background="#F4F4F4" >I</Label>
-                                    <Label VerticalContentAlignment="Center" FontSize="15" HorizontalContentAlignment="Left" Height="40" Width="778"  Background="#F4F4F4" Content="{Binding itemName}" ></Label>
-
-
+                            <WrapPanel Orientation="Vertical">
+                                <Label Height="40" Width="320" FontSize="16" FontWeight="Bold" Padding="10" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Content="{Binding itemName}"></Label>
+                                <StackPanel>
+                                    <TextBlock Visibility="{Binding showLabel}" x:Name="TextBlock3" Width="760" Padding="10" Background="LightGray">无</TextBlock>
+                                    <ListBox Visibility="{Binding showList}" ItemsSource="{Binding childItem}" HorizontalContentAlignment="Center" BorderThickness="0" HorizontalAlignment="Left" Width="800" Height="auto">
+                                        <ListBox.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <WrapPanel Orientation="Horizontal" IsItemsHost="True" Width="780">
+                                                    
+                                                </WrapPanel>
+                                            </ItemsPanelTemplate>
+                                        </ListBox.ItemsPanel>
+                                        <ListBox.ItemTemplate >
+                                            <DataTemplate>
+                                                <Label Margin="5,0,0,0" VerticalContentAlignment="Center" FontSize="13"  HorizontalContentAlignment="Center" Height="30"  Background="#F4F4F4" Tag="{Binding itemCode}"  Content="{Binding itemName}"></Label>                                            
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
                                 </StackPanel>
-                                <StackPanel Margin="0,0,0,0" Orientation="Horizontal">
-                                    <Label MaxWidth="900" FontSize="14" Margin="0,10,0,0" Padding="20,0,0,0">
-                                        <TextBlock  TextWrapping="Wrap" Text="{Binding itemChidNames}" />
-                                    </Label>
-
-
-                                </StackPanel>
-                            </StackPanel>
+                            </WrapPanel>
+                            
+                            
                         </DataTemplate>
-
                     </ListBox.ItemTemplate>
-
                 </ListBox>
-
-
-              
-                
-                
             </StackPanel>
-        
-          
-          
            
+
+
+
         </StackPanel>
        
     </Grid>
