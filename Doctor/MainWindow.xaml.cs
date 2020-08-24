@@ -241,7 +241,7 @@ namespace Doctor
                         wmDIs.IsShowIcd = "Visible";
                     }
 
-                    wmDIs.diseaseMatching = wmDIs.diseaseMatching + "%";
+                    wmDIs.diseaseMatching = string.IsNullOrEmpty(wmDIs.diseaseMatching) ? "--" : wmDIs.diseaseMatching + "%";
                     _diagnosisDiseaseList.Add(wmDIs);
                 }
                 if (_diagnosisDiseaseList.Count > 4)
@@ -381,7 +381,7 @@ namespace Doctor
                             wmDIs.IsShowIcd = "Hidden";
                         }
 
-                        wmDIs.diseaseMatching = wmDIs.diseaseMatching + "%";
+                        wmDIs.diseaseMatching = string.IsNullOrEmpty(wmDIs.diseaseMatching)?"--" : wmDIs.diseaseMatching + "%";
                         _diagnosisDiseaseList.Add(wmDIs);
                     }
                     if (_diagnosisDiseaseList.Count > 4)

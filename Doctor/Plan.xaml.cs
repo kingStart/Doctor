@@ -100,7 +100,7 @@ namespace Doctor
                     }
                     else
                     {
-                        wmDIs.degreeWei = "Hidden";
+                        wmDIs.degreeWei = "Collapsed";
                     }
                     if (wmDIs.degree.Contains("急"))
                     {
@@ -108,7 +108,7 @@ namespace Doctor
                     }
                     else
                     {
-                        wmDIs.degreeJi = "Hidden";
+                        wmDIs.degreeJi = "Collapsed";
                     }
                     if (wmDIs.degree.Contains("重"))
                     {
@@ -116,7 +116,7 @@ namespace Doctor
                     }
                     else
                     {
-                        wmDIs.degreeZ = "Hidden";
+                        wmDIs.degreeZ = "Collapsed";
                     }
 
                     if (string.IsNullOrEmpty(wmDIs.icd10))
@@ -128,6 +128,10 @@ namespace Doctor
                         wmDIs.IsShowIcd = "Hidden";
                     }
 
+
+
+
+                    wmDIs.diseaseMatching = string.IsNullOrEmpty(wmDIs.diseaseMatching) ? "--" : wmDIs.diseaseMatching + "%";
 
                 }
                 this.YsListDb.ItemsSource = suspectedDisease.wmDiseaseDetailSocketParams;

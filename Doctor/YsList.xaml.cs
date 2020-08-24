@@ -111,7 +111,7 @@ namespace Doctor
                     }
 
 
-                    wmDIs.diseaseMatching = wmDIs.diseaseMatching+"%";
+                    wmDIs.diseaseMatching = string.IsNullOrEmpty(wmDIs.diseaseMatching) ? "--" : wmDIs.diseaseMatching + "%";
 
 
                     if (string.IsNullOrEmpty(wmDIs.icd10))
