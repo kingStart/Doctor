@@ -283,7 +283,7 @@ namespace Doctor
             _searchDlg.Owner = this;
             _searchDlg.ShowDialog();
             _searchDlg.ShowInTaskbar = false;
-            _searchDlg.Topmost = true;
+            //_searchDlg.Topmost = true;
         }
 
         private void StackPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -585,7 +585,7 @@ namespace Doctor
                 _ypExplainDlg.WindowStartupLocation = WindowStartupLocation.CenterScreen; _ypExplainDlg.Owner = this;
                 _ypExplainDlg.ShowDialog();
                 _ypExplainDlg.ShowInTaskbar = false; ;
-                _ypExplainDlg.Topmost = true;
+                //_ypExplainDlg.Topmost = true;
             }
           
         }
@@ -596,7 +596,7 @@ namespace Doctor
             _dcPlanDlg.WindowStartupLocation = WindowStartupLocation.CenterScreen; _dcPlanDlg.Owner = this;
             _dcPlanDlg.ShowDialog();
             _dcPlanDlg.ShowInTaskbar = false; ;
-            _dcPlanDlg.Topmost = true;
+            //_dcPlanDlg.Topmost = true;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

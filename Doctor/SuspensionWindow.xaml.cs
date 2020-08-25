@@ -58,24 +58,24 @@ namespace Doctor
             _defultWindow.Show();
             _defultWindow.WindowState = WindowState.Normal;
             _defultWindow.ShowInTaskbar = true;
-            _defultWindow.Topmost = true;
-            if(_defultWindow is Plan)
-            {
-                var window = _defultWindow as Plan;
+            //_defultWindow.Topmost = true;
+            //if(_defultWindow is Plan)
+            //{
+            //    var window = _defultWindow as Plan;
 
-                if (window._ypExplainDlg != null)
-                {
-                    window._ypExplainDlg.Topmost = true;
-                }
-                if (window._dcPlanDlg != null)
-                {
-                    window._dcPlanDlg.Topmost = true;
-                }
-                if (window._searchDlg != null)
-                {
-                    window._searchDlg.Topmost = true;
-                }
-            }
+            //    if (window._ypExplainDlg != null)
+            //    {
+            //        window._ypExplainDlg.Topmost = true;
+            //    }
+            //    if (window._dcPlanDlg != null)
+            //    {
+            //        window._dcPlanDlg.Topmost = true;
+            //    }
+            //    if (window._searchDlg != null)
+            //    {
+            //        window._searchDlg.Topmost = true;
+            //    }
+            //}
 
         }
         private void closeMenu_Click(object sender, EventArgs e)
@@ -128,7 +128,7 @@ namespace Doctor
 
             App._suspensionWindow._defultWindow.Show();
             App._suspensionWindow._defultWindow.WindowState = WindowState.Normal;
-            App._suspensionWindow._defultWindow.Topmost = true;
+            //App._suspensionWindow._defultWindow.Topmost = true;
             App._suspensionWindow._defultWindow.ShowInTaskbar = true;
 
         }
@@ -138,7 +138,7 @@ namespace Doctor
 
             App._suspensionWindow._defultWindow.Show();
             App._suspensionWindow._defultWindow.WindowState = WindowState.Normal;
-            App._suspensionWindow._defultWindow.Topmost = true;
+            //App._suspensionWindow._defultWindow.Topmost = true;
             App._suspensionWindow._defultWindow.ShowInTaskbar = true;
 
 

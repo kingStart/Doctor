@@ -80,17 +80,17 @@ namespace Doctor
             else
             {
 
-                LogHelper.Info("无参数启动--->");
-                System.Windows.MessageBox.Show("需要您从HIS系统中登陆唤起", "提示");
-                Environment.Exit(0);
-                return;
+                //LogHelper.Info("无参数启动--->");
+                //System.Windows.MessageBox.Show("需要您从HIS系统中登陆唤起", "提示");
+                //Environment.Exit(0);
+                //return;
 
-                ////用传过来的参数登陆
-                //doctor.doctorName = "南宫医生";
-                //doctor.doctorId = "000010008";
-                //doctor.orgCode = "341825001";
-                //doctor.areaCodeCount = "341825";
-                //doctor.sourceId = "mmednet_jqkj";
+                //用传过来的参数登陆
+                doctor.doctorName = "南宫医生";
+                doctor.doctorId = "000010008";
+                doctor.orgCode = "341825001";
+                doctor.areaCodeCount = "341825";
+                doctor.sourceId = "mmednet_jqkj";
             }
             doctor.doctorToken = "";
             doctor.doctorSex = "";
@@ -126,7 +126,7 @@ namespace Doctor
             dlg.WindowStartupLocation = WindowStartupLocation.Manual;
             dlg.Left = System.Windows.SystemParameters.PrimaryScreenWidth - 380;
             dlg.Top = System.Windows.SystemParameters.PrimaryScreenHeight - 630;
-            dlg.Topmost = true;
+            //dlg.Topmost = true;
             dlg.Show();
 
 
@@ -206,26 +206,26 @@ namespace Doctor
         {
             App._suspensionWindow._defultWindow.Show();
             App._suspensionWindow._defultWindow.WindowState = WindowState.Normal;
-            App._suspensionWindow._defultWindow.Topmost = true;
+            //App._suspensionWindow._defultWindow.Topmost = true;
             App._suspensionWindow._defultWindow.ShowInTaskbar = true;
 
-            if (App._suspensionWindow._defultWindow is Plan)
-            {
-                var window = App._suspensionWindow._defultWindow as Plan;
+            //if (App._suspensionWindow._defultWindow is Plan)
+            //{
+            //    var window = App._suspensionWindow._defultWindow as Plan;
 
-                if (window._ypExplainDlg != null)
-                {
-                    window._ypExplainDlg.Topmost = true;
-                }
-                if (window._dcPlanDlg != null)
-                {
-                    window._dcPlanDlg.Topmost = true;
-                }
-                if (window._searchDlg != null)
-                {
-                    window._searchDlg.Topmost = true;
-                }
-            }
+            //    if (window._ypExplainDlg != null)
+            //    {
+            //        window._ypExplainDlg.Topmost = true;
+            //    }
+            //    if (window._dcPlanDlg != null)
+            //    {
+            //        window._dcPlanDlg.Topmost = true;
+            //    }
+            //    if (window._searchDlg != null)
+            //    {
+            //        window._searchDlg.Topmost = true;
+            //    }
+            //}
         }
 
         /// <summary>
