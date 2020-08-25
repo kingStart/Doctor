@@ -497,5 +497,16 @@ namespace Doctor
             dlg.Show();
             this.Close();
         }
+
+
+        /// <summary>
+        /// 拖动窗体
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TitleStackPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
     }
 }
