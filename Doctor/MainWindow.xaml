@@ -60,9 +60,8 @@
                                     <StackPanel Orientation="Horizontal">
                                         <Label Height="40" Width="400" FontSize="14"  FontWeight="Bold" VerticalContentAlignment="Center" VerticalAlignment="Center">主诉症状</Label>
                                         <!--<local:SearchText Height="25" Width="300" x:Name="searchText"></local:SearchText>-->
-                                        <acb:AutoCompleteTextBox HorizontalAlignment="Stretch"   x:Name="t1" KeyDown="TbxInput_OnKeyDown"                                     
-                                                 MaxLength="50" Width="280"
-                                                 CharacterCasing="Upper"
+                                        <acb:AutoCompleteTextBox HorizontalAlignment="Stretch" x:Name="acSearchTextBox"   
+                                                 Width="280"
                                                  DisplayMember="symptom"
                                                  Height="30"
                                                  Margin="0,0,6,0"
@@ -89,7 +88,7 @@
                                                 <DataTemplate>
                                                     <StackPanel Orientation="Horizontal" Margin="6,4,6,4">
                                                         <Border CornerRadius="5" Height="30" Width="auto" BorderThickness="3" BorderBrush="#F4F4F4">
-                                                            <Label VerticalContentAlignment="Center"  HorizontalContentAlignment="Center"  Background="#F4F4F4" HorizontalAlignment="Left" Width="auto" Content="{Binding symptom}" MouseLeftButtonDown="SearchSymptomDisease_MouseLeftButtonDown"></Label>
+                                                            <Label VerticalContentAlignment="Center"  HorizontalContentAlignment="Center"  Background="#F4F4F4" HorizontalAlignment="Left" Width="auto" Content="{Binding symptom}"></Label>
                                                         </Border>
                                                         <Button Background="#3484F5"  Template="{StaticResource BlueClose}" Margin="-10,-20,0,0" Click="DeleteSymptomButton_Click" Tag="{Binding symptom,Mode=OneWay}"/>
                                                     </StackPanel>
@@ -387,9 +386,11 @@
                                             <Label  Visibility="{Binding IsShowIcd}" Height="23" Width="60" Background=" #009EFF"  FontSize="9.5" Foreground="White" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Center" Content="自定义"/>
                                             <StackPanel Height="40" Orientation="Horizontal">
                                                 <Label Height="40" Width="90" Margin="5,0,0,0" FontSize="12"  FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding disease}"/>
-                                                <Image Width="20" Visibility="{Binding degreeJi}"    Height="25" Source="/Doctor;component/Resources/急.png"></Image>
-                                                <Image Width="20" Visibility="{Binding degreeWei}"  Height="25" Source="/Doctor;component/Resources/危.png"></Image>
-                                                <Image Width="20" Visibility="{Binding degreeZ}"  Height="25" Source="/Doctor;component/Resources/重.png"></Image>
+                                                <StackPanel Width="60" Height="25">
+                                                    <Image Width="20" Visibility="{Binding degreeJi}"    Height="25" Source="/Doctor;component/Resources/急.png"></Image>
+                                                    <Image Width="20" Visibility="{Binding degreeWei}"  Height="25" Source="/Doctor;component/Resources/危.png"></Image>
+                                                    <Image Width="20" Visibility="{Binding degreeZ}"  Height="25" Source="/Doctor;component/Resources/重.png"></Image>
+                                                </StackPanel>
                                                 <Label Height="40" Width="55" Margin="5,0,0,5" FontSize="13"  FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="置信度："/>
                                                 <Label Height="40"  Width="50"  FontSize="13" Foreground="#009EFF"  FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="{Binding diseaseMatching}"/>
                                             </StackPanel>

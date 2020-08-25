@@ -21,6 +21,11 @@ namespace Doctor
     /// </summary>
     public partial class Plan : Window
     {
+        public YpExplain _ypExplainDlg;
+        public DcPlan _dcPlanDlg;
+        public Search _searchDlg;
+
+
         private SuspectedDisease suspectedDisease;
 
         public DiseaseDosageSchedule currentDiseaseDosageSchedule;
@@ -125,13 +130,13 @@ namespace Doctor
                     }
                     else
                     {
-                        wmDIs.IsShowIcd = "Hidden";
+                        wmDIs.IsShowIcd = "Collapsed";
                     }
 
 
 
-
-                    wmDIs.diseaseMatching = string.IsNullOrEmpty(wmDIs.diseaseMatching) ? "--" : wmDIs.diseaseMatching + "%";
+                    //这里传过来的diseaseMatching是上个页面传过来的，已经经过处理了，所以不需要在去添加百分号
+                    //wmDIs.diseaseMatching = string.IsNullOrEmpty(wmDIs.diseaseMatching) ? "--" : wmDIs.diseaseMatching + "%";
 
                 }
                 this.YsListDb.ItemsSource = suspectedDisease.wmDiseaseDetailSocketParams;
@@ -171,7 +176,7 @@ namespace Doctor
                     {
                         if (string.IsNullOrEmpty(item.drugid))
                         {
-                            item.showDrugId = "Hidden";
+                            item.showDrugId = "Collapsed";
                         }
                         else
                         {
@@ -273,9 +278,12 @@ namespace Doctor
             }
 
 
-            Search dlg = new Search(suspectedDisease.patient, list);
-            dlg.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            dlg.ShowDialog();
+            _searchDlg = new Search(suspectedDisease.patient, list);
+            _searchDlg.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            _searchDlg.Owner = this;
+            _searchDlg.ShowDialog();
+            _searchDlg.ShowInTaskbar = false;
+            _searchDlg.Topmost = true;
         }
 
         private void StackPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -285,6 +293,11 @@ namespace Doctor
 
             //加载疾病知识库
             currentDiseaseDosageSchedule =  WebApiService.GetPlanList(icd, suspectedDisease.patient.outpatientId);
+            if (currentDiseaseDosageSchedule == null)
+            {
+                return;
+            }
+
             LinChuang.Text = currentDiseaseDosageSchedule.clinicalManifestation;
             ZhenDuan.Text = currentDiseaseDosageSchedule.differentialDiagnosis;
             GaiShu.Text = currentDiseaseDosageSchedule.diseasesummary;
@@ -313,7 +326,7 @@ namespace Doctor
                 {
                     if (string.IsNullOrEmpty(item.drugid))
                     {
-                        item.showDrugId = "Hidden";
+                        item.showDrugId = "Collapsed";
                     }
                     else
                     {
@@ -568,18 +581,29 @@ namespace Doctor
                 string outpatientId = suspectedDisease.patient.outpatientId;
 
 
-                YpExplain dlg = new YpExplain(drugID, outpatientId);
-                dlg.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-                dlg.ShowDialog();
+                _ypExplainDlg = new YpExplain(drugID, outpatientId);
+                _ypExplainDlg.WindowStartupLocation = WindowStartupLocation.CenterScreen; _ypExplainDlg.Owner = this;
+                _ypExplainDlg.ShowDialog();
+                _ypExplainDlg.ShowInTaskbar = false; ;
+                _ypExplainDlg.Topmost = true;
             }
           
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            DcPlan dlg = new DcPlan(currentDiseaseDosageSchedule);
-            dlg.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            dlg.ShowDialog();
+            _dcPlanDlg = new DcPlan(currentDiseaseDosageSchedule);
+            _dcPlanDlg.WindowStartupLocation = WindowStartupLocation.CenterScreen; _dcPlanDlg.Owner = this;
+            _dcPlanDlg.ShowDialog();
+            _dcPlanDlg.ShowInTaskbar = false; ;
+            _dcPlanDlg.Topmost = true;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            _ypExplainDlg?.Close();
+            _searchDlg?.Close();
+            _dcPlanDlg?.Close();
         }
     }
 

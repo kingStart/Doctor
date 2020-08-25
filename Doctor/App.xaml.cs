@@ -60,6 +60,14 @@ namespace Doctor
 
                     LogHelper.Info("解密后启动参数--->" + paramsString);
 
+                    if (paramsList.Length < 5)
+                    {
+                        LogHelper.Info("无效的参数启动--->");
+                        System.Windows.MessageBox.Show("调用失败，请检查调用参数", "提示");
+                        Environment.Exit(0);
+                        return;
+                    }
+
                     //用传过来的参数登陆
                     doctor.doctorName = paramsList[0];
                     doctor.doctorId = paramsList[1];
@@ -73,7 +81,7 @@ namespace Doctor
             {
 
                 LogHelper.Info("无参数启动--->");
-                System.Windows.MessageBox.Show("启动失败，无效的启动参数", "错误");
+                System.Windows.MessageBox.Show("需要您从HIS系统中登陆唤起", "提示");
                 Environment.Exit(0);
                 return;
 
@@ -93,6 +101,12 @@ namespace Doctor
 
 
             doctor = WebApiService.LoginUser(doctor);
+            if (doctor == null)
+            {
+                Environment.Exit(0);
+                return;
+            }
+
             string socketUrl = url + "/his/doctor/websocket/" + doctor.doctorId + "/" + doctor.doctorToken;
 
             WSocketClient client = new WSocketClient(socketUrl);
@@ -194,6 +208,24 @@ namespace Doctor
             App._suspensionWindow._defultWindow.WindowState = WindowState.Normal;
             App._suspensionWindow._defultWindow.Topmost = true;
             App._suspensionWindow._defultWindow.ShowInTaskbar = true;
+
+            if (App._suspensionWindow._defultWindow is Plan)
+            {
+                var window = App._suspensionWindow._defultWindow as Plan;
+
+                if (window._ypExplainDlg != null)
+                {
+                    window._ypExplainDlg.Topmost = true;
+                }
+                if (window._dcPlanDlg != null)
+                {
+                    window._dcPlanDlg.Topmost = true;
+                }
+                if (window._searchDlg != null)
+                {
+                    window._searchDlg.Topmost = true;
+                }
+            }
         }
 
         /// <summary>

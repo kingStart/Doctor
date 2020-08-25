@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Text;
+using System.Windows;
 
 namespace Doctor.Service
 {
@@ -20,14 +21,27 @@ namespace Doctor.Service
         public static DoctorInfo LoginUser(DoctorInfo doctorInfo)
         {
             var json = JsonConvert.SerializeObject(doctorInfo);
-            var postContent = HttpHelper.PostJson(url + "/api/assistant/user/login", json);
 
-            //转换结果
-            var result = JsonConvert.DeserializeObject<WebApiResult>(postContent);
+            try
+            {
+                var postContent = HttpHelper.PostJson(url + "/api/assistant/user/login", json);
 
-            var result_doctor = JsonConvert.DeserializeObject<DoctorInfo>(result.data.ToString());
 
-            return result_doctor;
+
+                //转换结果
+                var result = JsonConvert.DeserializeObject<WebApiResult>(postContent);
+
+                var result_doctor = JsonConvert.DeserializeObject<DoctorInfo>(result.data.ToString());
+
+                return result_doctor;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("登陆失败", "错误");
+                return null;
+            }
+
+           
         }
 
 
@@ -52,22 +66,27 @@ namespace Doctor.Service
             dic.Add("age", patientInfo.age.Replace("岁",""));
             dic.Add("outpatientId", patientInfo.outpatientId);
 
-            var postContent = HttpHelper.Post(url + "/api/assistant/wm/querySymptomList", dic);
-
-
-            //转换结果
-            var result = JsonConvert.DeserializeObject<WebApiResult>(postContent);
-            if (result.data != null)
+            try
             {
-                var result_symptomList = JsonConvert.DeserializeObject<List<Symptom>>(result.data.ToString());
-
-                if (result_symptomList != null && result_symptomList.Any())
+                var postContent = HttpHelper.Post(url + "/api/assistant/wm/querySymptomList", dic);
+                //转换结果
+                var result = JsonConvert.DeserializeObject<WebApiResult>(postContent);
+                if (result.data != null)
                 {
-                    list = result_symptomList;
+                    var result_symptomList = JsonConvert.DeserializeObject<List<Symptom>>(result.data.ToString());
+
+                    if (result_symptomList != null && result_symptomList.Any())
+                    {
+                        list = result_symptomList;
+                    }
                 }
+
             }
-           
-            return list;
+            catch(Exception ex)
+            {
+                MessageBox.Show("搜索症状失败", "错误");
+            }
+            return list; 
         }
 
 
@@ -95,21 +114,30 @@ namespace Doctor.Service
                 dic.Add("outpatientId", patientInfo.outpatientId);//门诊流水号
             }
 
-            var postContent = HttpHelper.Post(url + "/api/assistant/wm/getHealthData", dic);
+            try {
 
-            //转换结果
-            var result = JsonConvert.DeserializeObject<WebApiResult>(postContent);
-            if (result.data != null)
-            {
-                var result_healthData = JsonConvert.DeserializeObject<HealthData>(result.data.ToString());
+                var postContent = HttpHelper.Post(url + "/api/assistant/wm/getHealthData", dic);
 
-                if (result_healthData != null )
+                //转换结果
+                var result = JsonConvert.DeserializeObject<WebApiResult>(postContent);
+                if (result.data != null)
                 {
-                    healthData = result_healthData;
+                    var result_healthData = JsonConvert.DeserializeObject<HealthData>(result.data.ToString());
+
+                    if (result_healthData != null)
+                    {
+                        healthData = result_healthData;
+                    }
+                    return healthData;
                 }
-                return healthData;
+                return null;
             }
-            return null;
+            catch (Exception ex)
+            {
+                MessageBox.Show("查询患者体征数据失败", "错误");
+                return null;
+            }
+
         }
 
 
@@ -138,20 +166,26 @@ namespace Doctor.Service
 
             var json = JsonConvert.SerializeObject(item);
 
+            try {
+                var postContent = HttpHelper.PostJson(url + "/api/assistant/wm/queryDiseaseBySymptom?doctorToken=" + App.doctor.doctorToken + "&timestamp=" + TimeHelper.GetTimeStamp() + "&outpatientId=" + patientInfo.outpatientId + "&doctorId=" + App.doctor.doctorId + "", json);
 
-            var postContent = HttpHelper.PostJson(url + "/api/assistant/wm/queryDiseaseBySymptom?doctorToken=" + App.doctor.doctorToken + "&timestamp=" + TimeHelper.GetTimeStamp() + "&outpatientId="+ patientInfo.outpatientId + "&doctorId=" + App.doctor.doctorId + "", json);
 
-
-            //转换结果
-            var result = JsonConvert.DeserializeObject<WebApiResult>(postContent);
-            if (result.data != null)
-            {
-                var result_desease = JsonConvert.DeserializeObject<Disease>(result.data.ToString());
-
-                if (result_desease != null)
+                //转换结果
+                var result = JsonConvert.DeserializeObject<WebApiResult>(postContent);
+                if (result.data != null)
                 {
-                    desease = result_desease;
+                    var result_desease = JsonConvert.DeserializeObject<Disease>(result.data.ToString());
+
+                    if (result_desease != null)
+                    {
+                        desease = result_desease;
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("查询症状相关数据失败", "错误");
+                return null;
             }
 
             return desease;
@@ -163,19 +197,26 @@ namespace Doctor.Service
         /// <returns></returns>
         public static bool AddDisease(string diseaseName, string symptoms,string outpatientId)
         {
-            var desease = new Disease();
-
-            var postContent = HttpHelper.PostJson(url + "/api/assistant/wm/addDisease?diseaseName=" + diseaseName + "&symptoms="+ symptoms + "&doctorId="+ App.doctor.doctorId + "&doctorToken=" + App.doctor.doctorToken + "&timestamp=" + TimeHelper.GetTimeStamp() + "&outpatientId=" + outpatientId , "");
-
-
-            //转换结果
-            var result = JsonConvert.DeserializeObject<WebApiResult>(postContent);
-            if (result.msg != null && (result.msg == "SUCCESS" || result.msg == "Success" || result.msg == "success"))
+            try
             {
-                return true;
+                var postContent = HttpHelper.PostJson(url + "/api/assistant/wm/addDisease?diseaseName=" + diseaseName + "&symptoms=" + symptoms + "&doctorId=" + App.doctor.doctorId + "&doctorToken=" + App.doctor.doctorToken + "&timestamp=" + TimeHelper.GetTimeStamp() + "&outpatientId=" + outpatientId, "");
+
+
+                //转换结果
+                var result = JsonConvert.DeserializeObject<WebApiResult>(postContent);
+                if (result.msg != null && (result.msg == "SUCCESS" || result.msg == "Success" || result.msg == "success"))
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("添加疾病失败", "错误");
+                return false;
             }
 
-            return false;
         }
 
 
@@ -192,27 +233,37 @@ namespace Doctor.Service
             dic.Add("doctorId", App.doctor.doctorId);//医生id
             dic.Add("timestamp", TimeHelper.GetTimeStamp());//时间戳
             dic.Add("outpatientId", outpatientId);//诊断号
-
-            var postContent = HttpHelper.Post(url + "/api/assistant/wm/getDiseaseDosageSchedule ", dic);
-
-            //转换结果
-            var result = JsonConvert.DeserializeObject<WebApiResult>(postContent);
-            if (result.data != null)
+            try
             {
-                var result_healthData = JsonConvert.DeserializeObject<DiseaseDosageSchedule>(result.data.ToString());
+                var postContent = HttpHelper.Post(url + "/api/assistant/wm/getDiseaseDosageSchedule ", dic);
 
-                if (result_healthData != null)
+                //转换结果
+                var result = JsonConvert.DeserializeObject<WebApiResult>(postContent);
+                if (result.data != null)
                 {
-                    dSchedule = result_healthData;
+                    var result_healthData = JsonConvert.DeserializeObject<DiseaseDosageSchedule>(result.data.ToString());
+
+                    if (result_healthData != null)
+                    {
+                        dSchedule = result_healthData;
+                    }
+                    return dSchedule;
                 }
-                return dSchedule;
+                return null;
             }
-            return null;
+            catch(Exception ex)
+            {
+                MessageBox.Show("获取疾病知识库失败", "错误");
+                return null;
+            }
+
+            
+            
         }
 
 
         /// <summary>
-        /// 获取疾病知识库
+        /// 获取药品详情
         /// </summary>
         public static DrugKnowledageBase GetDrug(string drugid, string outpatientId)
         {
@@ -225,21 +276,30 @@ namespace Doctor.Service
             dic.Add("timestamp", TimeHelper.GetTimeStamp());//时间戳
             dic.Add("outpatientId", outpatientId);//诊断号
 
-            var postContent = HttpHelper.Post(url + "/api/assistant/wm/getDrugKnowledageBase", dic);
-
-            //转换结果
-            var result = JsonConvert.DeserializeObject<WebApiResult>(postContent);
-            if (result.data != null)
+            try
             {
-                var result_healthData = JsonConvert.DeserializeObject<DrugKnowledageBase>(result.data.ToString());
+                var postContent = HttpHelper.Post(url + "/api/assistant/wm/getDrugKnowledageBase", dic);
 
-                if (result_healthData != null)
+                //转换结果
+                var result = JsonConvert.DeserializeObject<WebApiResult>(postContent);
+                if (result.data != null)
                 {
-                    dSchedule = result_healthData;
+                    var result_healthData = JsonConvert.DeserializeObject<DrugKnowledageBase>(result.data.ToString());
+
+                    if (result_healthData != null)
+                    {
+                        dSchedule = result_healthData;
+                    }
+                    return dSchedule;
                 }
-                return dSchedule;
+                return null;
             }
-            return null;
+            catch (Exception ex)
+            {
+                MessageBox.Show("获取药品详情失败", "错误");
+                return null;
+            }
+
         }
 
     }

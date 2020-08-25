@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -14,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfControls.Editors;
 
 namespace Doctor
 {
@@ -72,39 +74,12 @@ namespace Doctor
             this.PatientLabel.Content = "「 " + _patieneInfo.patientName + "   " + sex + "   " + _patieneInfo.age + " 」";
 
 
-            //searchText.OnSearch += SearchText_OnSearch;
-
-            //_symptomList.Add("感冒");
-            //_symptomList.Add("发烧");
-            //_symptomList.Add("感冒感冒感冒");
-            //_symptomList.Add("发烧");
-            //_symptomList.Add("瞌睡");
-            //_symptomList.Add("劳累");
-            //_symptomList.Add("劳累");
-            //_symptomList.Add("感冒");
-            //_symptomList.Add("发烧");
-            //_symptomList.Add("感冒");
-            //_symptomList.Add("感冒感冒感冒");
-            //_symptomList.Add("感冒");
-            //_symptomList.Add("发烧");
-            //_symptomList.Add("感冒感冒感冒");
-            //_symptomList.Add("发烧");
-            //_symptomList.Add("感冒");
-            //_symptomList.Add("感冒感冒感冒");
-            //_symptomList.Add("感冒");
-            //_symptomList.Add("发烧");
-
-            //symptomListBox.ItemsSource = _symptomList;
-            //DataContext = this;
-
 
             //查询患者体征数据
             var healthData = WebApiService.QueryHealthData(_patieneInfo);
             if (healthData != null)
             {
                 this.DataContext = healthData;
-                //healthData = new HealthData();
-                //healthData.bloodGlucose = "100";
             }
 
 
@@ -113,61 +88,29 @@ namespace Doctor
             symptomResultListBox.ItemsSource = _symptomResultList2;
 
 
-
+            acSearchTextBox.ValueSelected += AcSearchTextBox_ValueSelected;
 
         }
 
-        private void TbxInput_OnKeyDown(object sender, KeyEventArgs e)
+        private void AcSearchTextBox_ValueSelected(object sender, RoutedEventArgs e)
         {
-
-            if (e.Key == Key.Enter)
+            var t1 = sender as AutoCompleteTextBox;
+            var symptom = t1.SelectedItem as Symptom;
+            if (symptom != null)
             {
-                var symptom = t1.SelectedItem as Symptom;
-                t1.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
-                if (symptom != null)
+                t1.Editor.Text = "";
+                t1.SelectedItem = null;
+
+                if (_symptomResultList.Where(p => p.symptom == symptom.symptom).FirstOrDefault() == null)
                 {
                     _symptomResultList.Add(symptom);
-                    t1.Editor.Text = "";
+                    UpdateList();
                 }
-
-
-
-                UpdateList();
             }
-
-
         }
 
+        
 
-
-        //private void SearchText_OnSearch(object sender, SearchEventArgs e)
-        //{
-        //    //搜索症状
-        //    //var text = searchText.GetText();
-        //    var text = "";
-
-        //    if (string.IsNullOrEmpty(text))
-        //    {
-        //        return;
-        //    }
-        //    var list = WebApiService.QuerySymptomList(text, _patieneInfo);
-
-
-
-
-        //    if (list.Any())
-        //    {
-        //        foreach (var item in list)
-        //        {
-        //            _symptomResultList.Add(item);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("未查询到相关搜索结果","提示");
-        //    }
-
-        //}
 
         private void MinBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -183,87 +126,6 @@ namespace Doctor
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-
-        }
-
-        /// <summary>
-        /// 点击主诉症状的某一项
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void SearchSymptomDisease_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            return;
-            var label = sender as Label;
-            var sn = label.Content.ToString();
-
-            var re = WebApiService.QueryDiseaseBySymptom(sn,_patieneInfo);
-
-
-            var suspectedDisease = re.diagnosisDisease;
-            var sList = re.concomitant;
-
-            _diagnosisDiseaseList.Clear();
-
-            //加载疑似病例模块
-            if (suspectedDisease != null && suspectedDisease.Any())
-            {
-
-                foreach (var wmDIs in suspectedDisease)
-                {
-                    if (wmDIs.degree.Contains("危"))
-                    {
-                        wmDIs.degreeWei = "Visible";
-                    }
-                    else
-                    {
-                        wmDIs.degreeWei = "Hidden";
-                    }
-                    if (wmDIs.degree.Contains("急"))
-                    {
-                        wmDIs.degreeJi = "Visible";
-                    }
-                    else
-                    {
-                        wmDIs.degreeJi = "Hidden";
-                    }
-                    if (wmDIs.degree.Contains("重"))
-                    {
-                        wmDIs.degreeZ = "Visible";
-                    }
-                    else
-                    {
-                        wmDIs.degreeZ = "Hidden";
-                    }
-
-                    if (string.IsNullOrEmpty(wmDIs.icd10))
-                    {
-                        wmDIs.IsShowIcd = "Visible";
-                    }
-
-                    wmDIs.diseaseMatching = string.IsNullOrEmpty(wmDIs.diseaseMatching) ? "--" : wmDIs.diseaseMatching + "%";
-                    _diagnosisDiseaseList.Add(wmDIs);
-                }
-                if (_diagnosisDiseaseList.Count > 4)
-                {
-                    this.YsListDb.ItemsSource = _diagnosisDiseaseList.Take(4);
-                }
-                else
-                {
-                    this.YsListDb.ItemsSource = _diagnosisDiseaseList;
-                }
-
-                this.totalCountLabel.Content = "共计：" + suspectedDisease.Count();
-            }
-
-            if(sList != null && sList.Any())
-            {
-                _symptomResultList2.Clear();
-                foreach (var item in sList)
-                {
-                    _symptomResultList2.Add(item);
-                }
-            }
 
         }
 
@@ -287,9 +149,6 @@ namespace Doctor
 
             UpdateList();
         }
-
-
-
 
         /// <summary>
         /// 点击症状分析层的某一项
@@ -316,9 +175,11 @@ namespace Doctor
             var item = new Symptom();
             item.symptom = btn.Content.ToString();
 
-            _symptomResultList.Add(item);
-
-            UpdateList();
+            if (_symptomResultList.Where(p => p.symptom == item.symptom).FirstOrDefault() == null)
+            {
+                _symptomResultList.Add(item);
+                UpdateList();
+            }
 
         }
 
@@ -333,13 +194,26 @@ namespace Doctor
                     sn = s.symptom + ",";
                 }
 
+                if (string.IsNullOrEmpty(sn))
+                {
+                    _diagnosisDiseaseList.Clear();
+
+                    _symptomResultList2.Clear();
+
+                    this.YsListDb.ItemsSource = _diagnosisDiseaseList;
+                    this.totalCountLabel.Content = "共计：0" ;
+
+
+
+                    return;
+                }
+
                 var list = WebApiService.QueryDiseaseBySymptom(sn, _patieneInfo);
 
 
                 var suspectedDisease = list.diagnosisDisease;
                 var sList = list.concomitant;
 
-                _diagnosisDiseaseList.Clear();
 
                 //加载疑似病例模块
                 if (suspectedDisease != null && suspectedDisease.Any())
@@ -353,7 +227,7 @@ namespace Doctor
                         }
                         else
                         {
-                            wmDIs.degreeWei = "Hidden";
+                            wmDIs.degreeWei = "Collapsed";
                         }
                         if (wmDIs.degree.Contains("急"))
                         {
@@ -361,7 +235,7 @@ namespace Doctor
                         }
                         else
                         {
-                            wmDIs.degreeJi = "Hidden";
+                            wmDIs.degreeJi = "Collapsed";
                         }
                         if (wmDIs.degree.Contains("重"))
                         {
@@ -369,7 +243,7 @@ namespace Doctor
                         }
                         else
                         {
-                            wmDIs.degreeZ = "Hidden";
+                            wmDIs.degreeZ = "Collapsed";
                         }
 
                         if (string.IsNullOrEmpty(wmDIs.icd10))
@@ -378,7 +252,7 @@ namespace Doctor
                         }
                         else
                         {
-                            wmDIs.IsShowIcd = "Hidden";
+                            wmDIs.IsShowIcd = "Collapsed";
                         }
 
                         wmDIs.diseaseMatching = string.IsNullOrEmpty(wmDIs.diseaseMatching)?"--" : wmDIs.diseaseMatching + "%";
@@ -397,9 +271,12 @@ namespace Doctor
                 }
 
                 _symptomResultList2.Clear();
-                foreach (var item in sList)
+                if(sList!=null && sList.Any())
                 {
-                    _symptomResultList2.Add(item);
+                    foreach (var item in sList)
+                    {
+                        _symptomResultList2.Add(item);
+                    }
                 }
             }));
 

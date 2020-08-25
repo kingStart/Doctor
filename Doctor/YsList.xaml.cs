@@ -91,7 +91,7 @@ namespace Doctor
                     }
                     else
                     {
-                        wmDIs.degreeWei = "Hidden";
+                        wmDIs.degreeWei = "Collapsed";
                     }
                     if (wmDIs.degree.Contains("急"))
                     {
@@ -99,7 +99,7 @@ namespace Doctor
                     }
                     else
                     {
-                        wmDIs.degreeJi = "Hidden";
+                        wmDIs.degreeJi = "Collapsed";
                     }
                     if (wmDIs.degree.Contains("重"))
                     {
@@ -107,7 +107,7 @@ namespace Doctor
                     }
                     else
                     {
-                        wmDIs.degreeZ = "Hidden";
+                        wmDIs.degreeZ = "Collapsed";
                     }
 
 
@@ -120,7 +120,7 @@ namespace Doctor
                     }
                     else
                     {
-                        wmDIs.IsShowIcd = "Hidden";
+                        wmDIs.IsShowIcd = "Collapsed";
                     }
 
                 }

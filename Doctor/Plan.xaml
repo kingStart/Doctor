@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Doctor"
         mc:Ignorable="d"
-        WindowStyle="None" Title="全科医生机器人辅助诊断系统" AllowDrop="True" ResizeMode="NoResize" Loaded="Window_Loaded" MouseLeftButtonDown="Window_MouseLeftButtonDown"   BorderThickness="0"  Height="700" Width="1000">
+        WindowStyle="None" Title="全科医生机器人辅助诊断系统" AllowDrop="True" ResizeMode="NoResize" Loaded="Window_Loaded" MouseLeftButtonDown="Window_MouseLeftButtonDown" Closing="Window_Closing"   BorderThickness="0"  Height="700" Width="1000">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
@@ -62,9 +62,11 @@
                                             
                                             <StackPanel Height="40" Orientation="Horizontal">
                                                 <Label Height="40" Width="90"  FontSize="11"  FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding disease}"/>
-                                                <Image Width="20" Visibility="{Binding degreeJi}"    Height="25" Source="/Doctor;component/Resources/急.png"></Image>
-                                                <Image Width="20" Visibility="{Binding degreeWei}"  Height="25" Source="/Doctor;component/Resources/危.png"></Image>
-                                                <Image Width="20" Visibility="{Binding degreeZ}"  Height="25" Source="/Doctor;component/Resources/重.png"></Image>
+                                                <StackPanel Width="60" Height="25">
+                                                    <Image Width="20" Visibility="{Binding degreeJi}"    Height="25" Source="/Doctor;component/Resources/急.png"></Image>
+                                                    <Image Width="20" Visibility="{Binding degreeWei}"  Height="25" Source="/Doctor;component/Resources/危.png"></Image>
+                                                    <Image Width="20" Visibility="{Binding degreeZ}"  Height="25" Source="/Doctor;component/Resources/重.png"></Image>
+                                                </StackPanel>
                                                 <Label Height="40" Width="55"   FontSize="13"  FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="置信度："/>
                                                 <Label Height="40"  Width="50"  FontSize="13" Foreground="#009EFF"  FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="{Binding diseaseMatching}"/>
                                             </StackPanel>
