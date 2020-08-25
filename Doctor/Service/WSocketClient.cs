@@ -110,6 +110,7 @@ namespace Doctor
                         dcInfo.Top = System.Windows.SystemParameters.PrimaryScreenHeight - 630;
                         dcInfo.Topmost = true;
                         dcInfo.Show();
+                        dcInfo.Topmost = false;
                     }));
 
                 }
@@ -135,6 +136,7 @@ namespace Doctor
                         zShu.Top = System.Windows.SystemParameters.PrimaryScreenHeight - 630;
                         zShu.Topmost = true;
                         zShu.Show();
+                        zShu.Topmost = false;
                     }));
                 }
                 else if (page == "disease_list")
@@ -159,6 +161,7 @@ namespace Doctor
                             yList.Top = System.Windows.SystemParameters.PrimaryScreenHeight - 630;
                             yList.Topmost = true;
                             yList.Show();
+                            yList.Topmost = false;
                         }
                         else
                         {
@@ -173,10 +176,11 @@ namespace Doctor
                             deNo.Top = System.Windows.SystemParameters.PrimaryScreenHeight - 630;
                             deNo.Topmost = true;
                             deNo.Show();
+                            deNo.Topmost = false;
                         }
                     }));
                 }
-                else
+                else if(page == "undisease_list")
                 {
                     SuspectedDisease paient = Newtonsoft.Json.JsonConvert.DeserializeObject<SuspectedDisease>(datastr);
                     App._patieneInfo = paient.patient;
@@ -194,6 +198,7 @@ namespace Doctor
                         deNo.Top = System.Windows.SystemParameters.PrimaryScreenHeight - 630;
                         deNo.Topmost = true;
                         deNo.Show();
+                        deNo.Topmost = false;
 
                     }));
                 }

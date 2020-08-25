@@ -22,12 +22,29 @@ namespace Doctor
     {
         public Window _defultWindow;
 
+        private static SuspensionWindow staticInstance = null;
+
         public SuspensionWindow()
         {
-            InitializeComponent();
-        
+            InitializeComponent(); 
+            this.Closed += WindowOnClosed;
+
         }
-        
+        private void WindowOnClosed(object sender, System.EventArgs e)
+        {
+            staticInstance = null;
+        }
+
+        public static SuspensionWindow GetInstance()
+        {
+            if (staticInstance == null)
+            {
+                staticInstance = new SuspensionWindow();
+            }
+
+            return staticInstance;
+        }
+
         public SuspensionWindow(DefultWindow defultWindow)
         {
             _defultWindow = defultWindow;

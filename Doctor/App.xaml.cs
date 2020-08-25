@@ -117,7 +117,7 @@ namespace Doctor
             base.OnStartup(e);
             icon();
 
-            _suspensionWindow = new SuspensionWindow();
+            _suspensionWindow = SuspensionWindow.GetInstance();
 
 
 
@@ -126,9 +126,10 @@ namespace Doctor
             dlg.WindowStartupLocation = WindowStartupLocation.Manual;
             dlg.Left = System.Windows.SystemParameters.PrimaryScreenWidth - 380;
             dlg.Top = System.Windows.SystemParameters.PrimaryScreenHeight - 630;
-            //dlg.Topmost = true;
+            
             dlg.Show();
-
+            dlg.Topmost = true;
+            dlg.Topmost = false;
 
             _suspensionWindow._defultWindow = dlg;
 
@@ -206,8 +207,9 @@ namespace Doctor
         {
             App._suspensionWindow._defultWindow.Show();
             App._suspensionWindow._defultWindow.WindowState = WindowState.Normal;
-            //App._suspensionWindow._defultWindow.Topmost = true;
+            App._suspensionWindow._defultWindow.Topmost = true;
             App._suspensionWindow._defultWindow.ShowInTaskbar = true;
+            App._suspensionWindow._defultWindow.Topmost = false;
 
             //if (App._suspensionWindow._defultWindow is Plan)
             //{
