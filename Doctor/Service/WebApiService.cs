@@ -253,6 +253,9 @@ namespace Doctor.Service
             }
             catch(Exception ex)
             {
+                LogHelper.Info("获取疾病知识库失败");
+                LogHelper.Info("/api/assistant/wm/getDiseaseDosageSchedule-->");
+                LogHelper.Info(JsonConvert.SerializeObject(dic));
                 MessageBox.Show("获取疾病知识库失败", "错误");
                 return null;
             }
