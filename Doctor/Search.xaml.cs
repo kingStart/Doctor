@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfControls.Editors;
 
 namespace Doctor
 {
@@ -50,10 +51,34 @@ namespace Doctor
                     _symptomList.Add(item);
                 }
             }
-
-
-
             symptomListTiemsControl.ItemsSource = _symptomList;
+
+
+            acSearchTextBox.ValueSelected += AcSearchTextBox_ValueSelected;
+        }
+
+        /// <summary>
+        /// 模糊搜索查询关键字
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AcSearchTextBox_ValueSelected(object sender, RoutedEventArgs e)
+        {
+            var t1 = sender as AutoCompleteTextBox;
+            var symptom = t1.SelectedItem as Symptom;
+            if (symptom != null)
+            {
+                t1.Editor.Text = "";
+                t1.SelectedItem = null;
+
+                if (!_symptomList.Contains(symptom.symptom))
+                {
+                    _symptomList.Add(symptom.symptom);
+
+                    acSearchTextBox.Editor.Text = "";
+                    acSearchTextBox.SelectedItem = null;
+                }
+            }
         }
 
 
@@ -108,7 +133,7 @@ namespace Doctor
         
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            var s = sTextBox.Text.Trim();
+            var s = acSearchTextBox.Editor.Text.Trim();
             if (string.IsNullOrEmpty(s)) 
             {
                 return;
@@ -122,8 +147,8 @@ namespace Doctor
 
             _symptomList.Add(s);
 
-            sTextBox.Text = "";
-            sTextBox.Focus();
+            acSearchTextBox.Editor.Text = "";
+            acSearchTextBox.SelectedItem = null;
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)

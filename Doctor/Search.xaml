@@ -4,8 +4,19 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Doctor"
+        xmlns:acb="http://wpfcontrols.com/"
+        xmlns:providers="clr-namespace:Doctor.Providers" 
         mc:Ignorable="d"
         WindowStyle="None" AllowDrop="True" ResizeMode="NoResize"   BorderThickness="0"  Height="400" Width="500" Loaded="Window_Loaded">
+    <Window.Resources>
+        <TextBlock x:Key="LoadingContent" Text="加载中..." Margin="5" FontSize="14" />
+        <providers:StateSuggestionProvider x:Key="StateSuggestionProvider"/>
+        <DataTemplate x:Key="StateTemplate">
+            <Grid>
+                <TextBlock Text="{Binding Path=symptom}"></TextBlock>
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
@@ -17,11 +28,11 @@
             <Button Template="{StaticResource CloseWindwoBtn}" Margin="60,0,0,0" Click="CancelButton_Click" />
         </StackPanel>
         <StackPanel  Grid.Row="1" Background="White" Orientation="Vertical">
-            <StackPanel Height="50" Margin="0,30,0,0"  VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal">
+            <StackPanel Height="50" Margin="0,20,0,0"  VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal">
                 <Label FontSize="16" FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Width="120">疾病名称:</Label>
                 <TextBox Height="30" Width="300" MaxLines="1" FontSize="16" VerticalContentAlignment="Center" x:Name="diseaseNameTextBox"></TextBox>
             </StackPanel>
-            <Label Margin="40,10,0,0" FontSize="16"  HorizontalAlignment="Left" FontWeight="Bold" VerticalContentAlignment="Center" Width="310">常见症状:</Label>
+            <Label Margin="40,0,0,0" FontSize="16"  HorizontalAlignment="Left" FontWeight="Bold" VerticalContentAlignment="Center" Width="310">常见症状:</Label>
             <StackPanel Margin="40,10,0,0" Orientation="Horizontal" HorizontalAlignment="Left" Width="410">
                 <ScrollViewer Height="100" VerticalScrollBarVisibility="Auto" Width="410">
                     <ItemsControl Width="390" x:Name="symptomListTiemsControl" BorderThickness="0">
@@ -45,11 +56,21 @@
                 
                 
             </StackPanel>
-            <StackPanel Height="30" Margin="50,30,0,0"  VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal">
-                <TextBox Height="30" Width="300" MaxLines="1" FontSize="16" VerticalContentAlignment="Center" x:Name="sTextBox"></TextBox>
+            <StackPanel Height="30" Margin="50,10,0,0"  VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal">
+                <acb:AutoCompleteTextBox HorizontalAlignment="Stretch" x:Name="acSearchTextBox"   
+                                                 Width="300"
+                                                 DisplayMember="symptom"
+                                                 Height="30"
+                                                 Margin="0,0,6,0"
+                                                 Provider="{StaticResource ResourceKey=StateSuggestionProvider}"
+                                                 ItemTemplate="{StaticResource ResourceKey=StateTemplate}"
+                                                 LoadingContent="{StaticResource LoadingContent}"
+                                                 SelectedItem="{Binding symptom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                                 Watermark="请输入症状">
+                </acb:AutoCompleteTextBox>
                 <Button Style="{StaticResource ButtonStyle3}" FontSize="15" Height="30" Width="60" Margin="10,0,0,0" Click="AddButton_Click" >添加</Button>
             </StackPanel>
-            <StackPanel Height="50" Margin="0,30,0,0"  VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+            <StackPanel Height="50" Margin="0,60,0,0"  VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
                 <Button Style="{StaticResource QuxiaoButton}" Background="#D9D9D9" FontSize="15" Height="30" Width="60" Margin="10,0,0,0" Click="CancelButton_Click" >取消</Button>
                 <Button Style="{StaticResource ButtonStyle3}" FontSize="15" Height="30" Width="60" Margin="10,0,0,0" Click="SaveButton_Click" >保存</Button>
             </StackPanel>
