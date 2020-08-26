@@ -74,9 +74,16 @@ namespace Doctor
             this.ShowInTaskbar = false;
             this.Hide();
 
+            if (App._suspensionWindow ==null)
+            {
+                App._suspensionWindow = SuspensionWindow.GetInstance();
+                
+            }
             App._suspensionWindow.Left = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Width / (CommonHelper.GetScale()) - 100;
             App._suspensionWindow.Top = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Height / (CommonHelper.GetScale()) - 100;
             App._suspensionWindow.Show();
+
+
         }
 
         /// <summary>
