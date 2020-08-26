@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Text;
+using System.Web;
 using System.Windows;
 
 namespace Doctor.Service
@@ -228,7 +229,7 @@ namespace Doctor.Service
             var dSchedule = new DiseaseDosageSchedule();
             
             Dictionary<string, string> dic = new Dictionary<string, string>() { };
-            dic.Add("icd10", dicID);//令牌
+            dic.Add("icd10", HttpUtility.UrlEncode(dicID));// 这个参数 URL 编码一下
             dic.Add("doctorToken", App.doctor.doctorToken);//令牌
             dic.Add("doctorId", App.doctor.doctorId);//医生id
             dic.Add("timestamp", TimeHelper.GetTimeStamp());//时间戳
