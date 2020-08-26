@@ -7,7 +7,7 @@
         xmlns:acb="http://wpfcontrols.com/"
         xmlns:providers="clr-namespace:Doctor.Providers" 
         mc:Ignorable="d"
-        WindowStyle="None" AllowDrop="True" ResizeMode="NoResize"   BorderThickness="0"  Height="400" Width="500" Loaded="Window_Loaded">
+        WindowStyle="None" AllowDrop="True" ResizeMode="NoResize"   BorderThickness="2"  Height="400" Width="500" Loaded="Window_Loaded"  BorderBrush="#3484F5">
     <Window.Resources>
         <TextBlock x:Key="LoadingContent" Text="加载中..." Margin="5" FontSize="14" />
         <providers:StateSuggestionProvider x:Key="StateSuggestionProvider"/>
