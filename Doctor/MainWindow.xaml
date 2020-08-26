@@ -9,7 +9,7 @@
         xmlns:acb="http://wpfcontrols.com/"
         xmlns:providers="clr-namespace:Doctor.Providers" 
         mc:Ignorable="d"
-        WindowStyle="None" AllowDrop="True" ResizeMode="NoResize"   BorderThickness="0"  Height="700" Width="1000" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" Title="全科医生机器人辅助诊断系统">
+        WindowStyle="None" AllowDrop="True" ResizeMode="NoResize"   BorderThickness="2" BorderBrush="#3484F5"  Height="700" Width="1000" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" Title="全科医生机器人辅助诊断系统">
 
     <Window.Resources>
         <TextBlock x:Key="LoadingContent" Text="加载中..." Margin="5" FontSize="14" />
@@ -47,7 +47,7 @@
                             <RowDefinition Height="*"></RowDefinition>
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" Orientation="Horizontal">
-                            <Label Height="40" Width="300" FontSize="14"  FontWeight="Bold" Background="White" VerticalContentAlignment="Center" VerticalAlignment="Center">基本信息</Label>
+                            <Label Padding="20,0,0,0" Height="40" Width="300" FontSize="14"  FontWeight="Bold" Background="White" VerticalContentAlignment="Center" VerticalAlignment="Center">基本信息</Label>
                             <Label Height="40"  Width="400" Background="White" Foreground="#3484F5"  FontSize="14" FontWeight="Bold"  VerticalContentAlignment="Center" VerticalAlignment="Center" x:Name="PatientLabel">「 张三三   男   36岁 」</Label>
                         </StackPanel>
                         <StackPanel Grid.Row="1" Orientation="Horizontal" Background="White">
@@ -58,7 +58,7 @@
                                 </Grid.RowDefinitions>
                                 <StackPanel Grid.Row="0" Orientation="Vertical"  >
                                     <StackPanel Orientation="Horizontal">
-                                        <Label Height="40" Width="400" FontSize="14"  FontWeight="Bold" VerticalContentAlignment="Center" VerticalAlignment="Center">主诉症状</Label>
+                                        <Label Padding="20,0,0,0" Height="40" Width="400" FontSize="14"  FontWeight="Bold" VerticalContentAlignment="Center" VerticalAlignment="Center">主诉症状</Label>
                                         <!--<local:SearchText Height="25" Width="300" x:Name="searchText"></local:SearchText>-->
                                         <acb:AutoCompleteTextBox HorizontalAlignment="Stretch" x:Name="acSearchTextBox"   
                                                  Width="280"
@@ -214,7 +214,7 @@
                                 </Grid.RowDefinitions>
                                 <StackPanel Grid.Row="0" Orientation="Vertical"  >
                                     <StackPanel Orientation="Horizontal">
-                                        <Label Height="40" Width="400" FontSize="14"  FontWeight="Bold" VerticalContentAlignment="Center" VerticalAlignment="Center">症状分层分析（请根据问诊情况点击选择相关症状）</Label>
+                                        <Label Padding="20,0,0,0" Height="40" Width="400" FontSize="14"  FontWeight="Bold" VerticalContentAlignment="Center" VerticalAlignment="Center">症状分层分析（请根据问诊情况点击选择相关症状）</Label>
                                       
                                     </StackPanel>
                                     <Rectangle  HorizontalAlignment="Stretch"  Width="700" VerticalAlignment="Center" Fill="Black" Height="1"/>
@@ -298,7 +298,7 @@
                                 </Grid.RowDefinitions>
                                 <StackPanel Grid.Row="0" Orientation="Vertical"  >
                                     <StackPanel Orientation="Horizontal">
-                                        <Label Height="40" Width="400" FontSize="14"  FontWeight="Bold" VerticalContentAlignment="Center" VerticalAlignment="Center">体征数据</Label>
+                                        <Label Padding="20,0,0,0" Height="40" Width="400" FontSize="14"  FontWeight="Bold" VerticalContentAlignment="Center" VerticalAlignment="Center">体征数据</Label>
 
                                     </StackPanel>
                                     <Rectangle  HorizontalAlignment="Stretch"  Width="700" VerticalAlignment="Center" Fill="Black" Height="1"/>
@@ -381,7 +381,7 @@
                                 <ListBox.ItemTemplate >
 
                                     <DataTemplate>
-                                        <StackPanel Tag="{Binding icd10}" MouseLeftButtonDown="StackPanel_MouseLeftButtonDown" Orientation="Vertical" Background="#F8F8F8" Margin="0,10,0,0">
+                                        <StackPanel Tag="{Binding icd10}" MouseLeftButtonDown="StackPanel_MouseLeftButtonDown" Orientation="Vertical"  Margin="0,10,0,0">
 
                                             <Label  Visibility="{Binding IsShowIcd}" Height="23" Width="60" Background=" #009EFF"  FontSize="9.5" Foreground="White" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Center" Content="自定义"/>
                                             <StackPanel Height="40" Orientation="Horizontal">

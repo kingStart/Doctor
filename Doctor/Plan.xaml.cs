@@ -288,7 +288,11 @@ namespace Doctor
 
         private void StackPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+
+       
+
             var stackpanel = sender as StackPanel;
+            //stackpanel.Background = System.Windows.Media.Brushes.BlueViolet;
             string icd = stackpanel.Tag.ToString();
 
             //加载疾病知识库
@@ -604,6 +608,174 @@ namespace Doctor
             _ypExplainDlg?.Close();
             _searchDlg?.Close();
             _dcPlanDlg?.Close();
+        }
+
+        private void ButtonSQ1_Click(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void StackPanel_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
+        {
+            if (SQ1Status == 0)
+            {
+                SQ1Status = 1;
+                this.ButtonSQ1.Template = this.FindResource("ZhanKai") as ControlTemplate;
+                SQ1Panel.Visibility = Visibility.Hidden;
+                SQ1Panel.Height = 0;
+            }
+            else
+            {
+                this.ButtonSQ1.Template = this.FindResource("ShouQi") as ControlTemplate;
+                SQ1Panel.Visibility = Visibility.Visible;
+                SQ1Status = 0;
+                SQ1Panel.Height = 150;
+            }
+        }
+
+        private void StackPanel_MouseLeftButtonDown_2(object sender, MouseButtonEventArgs e)
+        {
+            if (SQ2Status == 0)
+            {
+                SQ2Status = 1;
+                this.ButtonSQ2.Template = this.FindResource("ZhanKai") as ControlTemplate;
+                SQ2Panel.Visibility = Visibility.Hidden;
+                SQ2Panel.Height = 0;
+            }
+            else
+            {
+                this.ButtonSQ2.Template = this.FindResource("ShouQi") as ControlTemplate;
+                SQ2Panel.Visibility = Visibility.Visible;
+                SQ2Status = 0;
+                SQ2Panel.Height = 150;
+            }
+        }
+
+        private void StackPanel_MouseLeftButtonDown_3(object sender, MouseButtonEventArgs e)
+        {
+            if (SQ3Status == 0)
+            {
+                SQ3Status = 1;
+                this.ButtonSQ3.Template = this.FindResource("ZhanKai") as ControlTemplate;
+                SQ3Panel.Visibility = Visibility.Hidden;
+                SQ3Panel.Height = 0;
+            }
+            else
+            {
+                this.ButtonSQ3.Template = this.FindResource("ShouQi") as ControlTemplate;
+                SQ3Panel.Visibility = Visibility.Visible;
+                SQ3Status = 0;
+                SQ3Panel.Height = 150;
+            }
+        }
+
+        private void StackPanel_MouseLeftButtonDown_4(object sender, MouseButtonEventArgs e)
+        {
+            if (SQ4Status == 0)
+            {
+                SQ4Status = 1;
+                this.ButtonSQ4.Template = this.FindResource("ZhanKai") as ControlTemplate;
+                SQ4Panel.Visibility = Visibility.Hidden;
+                SQ4Panel.Height = 0;
+            }
+            else
+            {
+                this.ButtonSQ4.Template = this.FindResource("ShouQi") as ControlTemplate;
+                SQ4Panel.Visibility = Visibility.Visible;
+                SQ4Status = 0;
+                SQ4Panel.Height = 150;
+            }
+        }
+
+        private void StackPanel_MouseLeftButtonDown_5(object sender, MouseButtonEventArgs e)
+        {
+            if (SQ5Status == 0)
+            {
+                SQ5Status = 1;
+                this.ButtonSQ5.Template = this.FindResource("ZhanKai") as ControlTemplate;
+                SQ5Panel.Visibility = Visibility.Hidden;
+                SQ5Panel.Height = 0;
+            }
+            else
+            {
+                this.ButtonSQ5.Template = this.FindResource("ShouQi") as ControlTemplate;
+                SQ5Panel.Visibility = Visibility.Visible;
+                SQ5Status = 0;
+                SQ5Panel.Height = 150;
+            }
+        }
+
+        private void StackPanel_MouseLeftButtonDown_6(object sender, MouseButtonEventArgs e)
+        {
+            if (SQ6Status == 0)
+            {
+                SQ6Status = 1;
+                this.ButtonSQ6.Template = this.FindResource("ZhanKai") as ControlTemplate;
+                SQ6Panel.Visibility = Visibility.Hidden;
+                SQ6Panel.Height = 0;
+            }
+            else
+            {
+                this.ButtonSQ6.Template = this.FindResource("ShouQi") as ControlTemplate;
+                SQ6Panel.Visibility = Visibility.Visible;
+                SQ6Status = 0;
+                SQ6Panel.Height = 150;
+            }
+        }
+
+        private void StackPanel_MouseLeftButtonDown_7(object sender, MouseButtonEventArgs e)
+        {
+            if (SQ7Status == 0)
+            {
+                SQ7Status = 1;
+                this.ButtonSQ7.Template = this.FindResource("ZhanKai") as ControlTemplate;
+                SQ7Panel.Visibility = Visibility.Hidden;
+                SQ7Panel.Height = 0;
+            }
+            else
+            {
+                this.ButtonSQ7.Template = this.FindResource("ShouQi") as ControlTemplate;
+                SQ7Panel.Visibility = Visibility.Visible;
+                SQ7Status = 0;
+                SQ7Panel.Height = 150;
+            }
+
+        }
+
+        private void StackPanel_MouseLeftButtonDown_8(object sender, MouseButtonEventArgs e)
+        {
+            if (SQ8Status == 0)
+            {
+                SQ8Status = 1;
+                this.ButtonSQ8.Template = this.FindResource("ZhanKai") as ControlTemplate;
+                SQ8Panel.Visibility = Visibility.Hidden;
+                SQ8Panel.Height = 0;
+            }
+            else
+            {
+                this.ButtonSQ8.Template = this.FindResource("ShouQi") as ControlTemplate;
+                SQ8Panel.Visibility = Visibility.Visible;
+                SQ8Status = 0;
+                SQ8Panel.Height = 150;
+            }
+        }
+
+        private void StackPanel_MouseLeftButtonDown_9(object sender, MouseButtonEventArgs e)
+        {
+            if (SQ9Status == 0)
+            {
+                SQ9Status = 1;
+                this.ButtonSQ9.Template = this.FindResource("ZhanKai") as ControlTemplate;
+                SQ9Panel.Visibility = Visibility.Hidden;
+                SQ9Panel.Height = 0;
+            }
+            else
+            {
+                this.ButtonSQ9.Template = this.FindResource("ShouQi") as ControlTemplate;
+                SQ9Panel.Visibility = Visibility.Visible;
+                SQ9Status = 0;
+                SQ9Panel.Height = 150;
+            }
         }
     }
 
