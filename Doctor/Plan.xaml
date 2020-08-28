@@ -65,7 +65,7 @@
                                 <ListBox.ItemTemplate >
 
                                     <DataTemplate>
-                                        <StackPanel  Tag="{Binding icd10}" MouseLeftButtonDown="StackPanel_MouseLeftButtonDown" Orientation="Vertical"  Margin="0,6,0,0">
+                                        <StackPanel Background="Transparent"  Tag="{Binding icd10}" MouseLeftButtonDown="StackPanel_MouseLeftButtonDown" Orientation="Vertical"  Margin="0,6,0,0">
 
                                             <Label Visibility="{Binding IsShowIcd}" Height="23" Width="60" Background=" #009EFF"  FontSize="9.5" Foreground="White"   HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Center" Content="自定义"/>
                                             

@@ -335,9 +335,9 @@ namespace Doctor
 
             if (Name != "MainWindow")
             {
-                if (YsList.ysList != null)
+                if (MainWindow.mainWindow != null)
                 {
-                    YsList.ysList.Close();
+                    MainWindow.mainWindow.Close();
                 }
 
             }

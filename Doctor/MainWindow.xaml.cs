@@ -24,7 +24,6 @@ namespace Doctor
     /// </summary>
     public partial class MainWindow : Window
     {
-
         /*
          1. 输入症状后搜索 症状集合及分层分析的数据  请求“api/assistant/wm/querySymptomList
 
@@ -53,6 +52,7 @@ namespace Doctor
         public MainWindow()
         {
             InitializeComponent();
+            mainWindow = this;
         }
 
         public MainWindow(PatientInfo patientInfo)

@@ -169,28 +169,42 @@ namespace Doctor
                 Changjian.Text = currentDiseaseDosageSchedule.commonSymptoms;
 
                 //绑定一般治疗方法
-                proListItem = currentDiseaseDosageSchedule.drugProgram[0].childItem.Take(4).ToList();
-                ProgramMotherList.ItemsSource = proListItem;
 
-                List<ProgramItem> proListItem1 = currentDiseaseDosageSchedule.drugProgramAll.Take(4).FirstOrDefault().childItem;
+                if (currentDiseaseDosageSchedule.drugProgram.Count > 0)
+                {
+                    if (currentDiseaseDosageSchedule.drugProgram[0].childItem != null && currentDiseaseDosageSchedule.drugProgram[0].childItem.Any())
+                    {
+                        proListItem = currentDiseaseDosageSchedule.drugProgram[0].childItem.Take(4).ToList();
+                        ProgramMotherList.ItemsSource = proListItem;
+                    }
+                    else
+                    {
+                        ProgramMotherList.ItemsSource = null;
+                    }
+                    
+                }
+
+
+
                 //绑定药物治疗
                 if (currentDiseaseDosageSchedule.drugProgram.Count >= 2)
                 {
                     ItemProgramMotherList.ItemsSource = currentDiseaseDosageSchedule.drugProgram[1].childItem;
                     var tList = currentDiseaseDosageSchedule.drugProgram[1].childItem;
-
-                    foreach (var item in tList)
+                    if (tList != null)
                     {
-                        if (string.IsNullOrEmpty(item.drugid))
+                        foreach (var item in tList)
                         {
-                            item.showDrugId = "Collapsed";
-                        }
-                        else
-                        {
-                            item.showDrugId = "Visibility";
+                            if (string.IsNullOrEmpty(item.drugid))
+                            {
+                                item.showDrugId = "Collapsed";
+                            }
+                            else
+                            {
+                                item.showDrugId = "Visibility";
+                            }
                         }
                     }
-
                 }
                 else
                 {
@@ -320,32 +334,43 @@ namespace Doctor
             Changjian.Text = currentDiseaseDosageSchedule.commonSymptoms;
 
             //绑定一般治疗方法
-            proListItem = currentDiseaseDosageSchedule.drugProgram[0].childItem.Take(4).ToList();
-            ProgramMotherList.ItemsSource = proListItem;
 
-            List<ProgramItem> proListItem1= currentDiseaseDosageSchedule.drugProgramAll.Take(4).FirstOrDefault().childItem;
-            ////绑定药物治疗
-            //ItemProgramMotherList.ItemsSource = currentDiseaseDosageSchedule.drugProgram[1].childItem;
+            if (currentDiseaseDosageSchedule.drugProgram.Count > 0)
+            {
+                if (currentDiseaseDosageSchedule.drugProgram[0].childItem != null && currentDiseaseDosageSchedule.drugProgram[0].childItem.Any())
+                {
+                    proListItem = currentDiseaseDosageSchedule.drugProgram[0].childItem.Take(4).ToList();
+                    ProgramMotherList.ItemsSource = proListItem;
+                }
+                else
+                {
+                    ProgramMotherList.ItemsSource = null;
+                }
+
+            }
 
             //绑定药物治疗
             if (currentDiseaseDosageSchedule.drugProgram.Count >= 2)
             {
 
                 var tList = currentDiseaseDosageSchedule.drugProgram[1].childItem;
-
-                foreach(var item in tList)
+                if (tList != null)
                 {
-                    if (string.IsNullOrEmpty(item.drugid))
+                    foreach (var item in tList)
                     {
-                        item.showDrugId = "Collapsed";
+                        if (string.IsNullOrEmpty(item.drugid))
+                        {
+                            item.showDrugId = "Collapsed";
+                        }
+                        else
+                        {
+                            item.showDrugId = "Visibility";
+                        }
                     }
-                    else
-                    {
-                        item.showDrugId = "Visibility";
-                    }
-                }
 
-                ItemProgramMotherList.ItemsSource = currentDiseaseDosageSchedule.drugProgram[1].childItem;
+                    ItemProgramMotherList.ItemsSource = currentDiseaseDosageSchedule.drugProgram[1].childItem;
+                }
+               
             }
             else
             {

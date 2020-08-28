@@ -34,6 +34,24 @@ namespace Doctor
 
         protected override void OnStartup(StartupEventArgs e)
         {
+#if DEBUG
+            url = "ws://103.85.170.99:10001";
+#endif
+
+            /*
+             调试使用配置文件：
+             <!--WebSocket服务地址-->
+            <add key="WebSocketUrl" value="ws://103.85.170.99:10001"/>
+            <!--API地址-->
+            <add key="ApiUrl" value="http://103.85.170.99:10001"/>
+
+            正式发布使用配置文件
+            <!--WebSocket服务地址-->
+            <add key="WebSocketUrl" value="sw://10.10.10.29"/>
+            <!--API地址-->
+            <add key="ApiUrl" value="http://10.10.10.29"/>
+
+             */
 
             //var n = new SuspensionWindow();
             //n.ShowDialog();
@@ -205,11 +223,30 @@ namespace Doctor
 
         private void OnNotifyIconClick(object sender, EventArgs e)
         {
-            App._suspensionWindow._defultWindow.Show();
-            App._suspensionWindow._defultWindow.WindowState = WindowState.Normal;
-            App._suspensionWindow._defultWindow.Topmost = true;
-            App._suspensionWindow._defultWindow.ShowInTaskbar = true;
-            App._suspensionWindow._defultWindow.Topmost = false;
+            try
+            {
+                App._suspensionWindow._defultWindow.Show();
+                App._suspensionWindow._defultWindow.WindowState = WindowState.Normal;
+                App._suspensionWindow._defultWindow.Topmost = true;
+                App._suspensionWindow._defultWindow.ShowInTaskbar = true;
+                App._suspensionWindow._defultWindow.Topmost = false;
+            }
+            catch(Exception ex)
+            {
+                App._suspensionWindow?.Close();
+                App._suspensionWindow = SuspensionWindow.GetInstance();
+
+                var dlg = new DefultWindow(doctor);
+                dlg.WindowStartupLocation = WindowStartupLocation.Manual;
+                dlg.Left = System.Windows.SystemParameters.PrimaryScreenWidth - 380;
+                dlg.Top = System.Windows.SystemParameters.PrimaryScreenHeight - 630;
+
+                dlg.Show();
+                dlg.Topmost = true;
+                dlg.Topmost = false;
+
+                _suspensionWindow._defultWindow = dlg;
+            }
 
             //if (App._suspensionWindow._defultWindow is Plan)
             //{

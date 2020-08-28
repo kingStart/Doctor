@@ -12,8 +12,12 @@ namespace Doctor.Service
 {
     public static class WebApiService
     {
-
+#if DEBUG
+        private static string url = "http://103.85.170.99:10001";
+#else
         private static string url = ConfigurationManager.AppSettings["ApiUrl"];
+#endif
+        //private static string url = ConfigurationManager.AppSettings["ApiUrl"];
         /// <summary>
         /// 登陆
         /// </summary>
