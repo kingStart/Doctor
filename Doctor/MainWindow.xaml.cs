@@ -193,12 +193,12 @@ namespace Doctor
                 {
                     sn = s.symptom + ",";
                 }
+                _diagnosisDiseaseList.Clear();
+                _symptomResultList2.Clear();
 
                 if (string.IsNullOrEmpty(sn))
                 {
-                    _diagnosisDiseaseList.Clear();
 
-                    _symptomResultList2.Clear();
 
                     this.YsListDb.ItemsSource = _diagnosisDiseaseList;
                     this.totalCountLabel.Content = "共计：0" ;

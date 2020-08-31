@@ -115,7 +115,7 @@ namespace Doctor
             var symptomString = "";
             foreach (var item in _symptomList)
             {
-                symptomString += item;
+                symptomString += item + ",";
             }
 
             var result = WebApiService.AddDisease(diseaseName, symptomString, _patientInfo.outpatientId);

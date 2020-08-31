@@ -98,17 +98,21 @@ namespace Doctor
             else
             {
 
-                //LogHelper.Info("无参数启动--->");
-                //System.Windows.MessageBox.Show("需要您从HIS系统中登陆唤起", "提示");
-                //Environment.Exit(0);
-                //return;
-
+#if DEBUG
                 //用传过来的参数登陆
                 doctor.doctorName = "南宫医生";
                 doctor.doctorId = "000010008";
                 doctor.orgCode = "341825001";
                 doctor.areaCodeCount = "341825";
                 doctor.sourceId = "mmednet_jqkj";
+#else
+
+                LogHelper.Info("无参数启动--->");
+                System.Windows.MessageBox.Show("需要您从HIS系统中登陆唤起", "提示");
+                Environment.Exit(0);
+                return;
+#endif
+
             }
             doctor.doctorToken = "";
             doctor.doctorSex = "";
