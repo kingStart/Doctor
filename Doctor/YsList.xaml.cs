@@ -125,9 +125,9 @@ namespace Doctor
 
                 }
 
-                if (suspectedDisease.wmDiseaseDetailSocketParams.Count > 4)
+                if (suspectedDisease.wmDiseaseDetailSocketParams.Count > 7)
                 {
-                    this.YsListDb.ItemsSource = suspectedDisease.wmDiseaseDetailSocketParams.Take(4);
+                    this.YsListDb.ItemsSource = suspectedDisease.wmDiseaseDetailSocketParams.Take(7);
                 }
                 else
                 {

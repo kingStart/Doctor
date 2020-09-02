@@ -262,16 +262,19 @@ namespace Doctor
                         wmDIs.diseaseMatching = string.IsNullOrEmpty(wmDIs.diseaseMatching)?"--" : wmDIs.diseaseMatching + "%";
                         _diagnosisDiseaseList.Add(wmDIs);
                     }
-                    if (_diagnosisDiseaseList.Count > 4)
+                    if (_diagnosisDiseaseList.Count > 7)
                     {
-                        this.YsListDb.ItemsSource = _diagnosisDiseaseList.Take(4);
+                        this.YsListDb.ItemsSource = _diagnosisDiseaseList.Take(7);
                     }
                     else
                     {
                         this.YsListDb.ItemsSource = _diagnosisDiseaseList;
                     }
-
                     this.totalCountLabel.Content = "共计：" + suspectedDisease.Count();
+                }
+                else
+                {
+                    this.totalCountLabel.Content = "共计：0";
                 }
 
                 _symptomResultList2.Clear();
