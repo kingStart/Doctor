@@ -70,7 +70,7 @@
                                             <Label Visibility="{Binding IsShowIcd}" Height="23" Width="60" Background=" #009EFF"  FontSize="9.5" Foreground="White"   HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Center" Content="自定义"/>
                                             
                                             <StackPanel Height="40" Orientation="Horizontal">
-                                                <Label Height="40" Width="90"  FontSize="11"  FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding disease}"/>
+                                                <Label Height="40" Width="90"  FontSize="11"  FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="{Binding disease}"/>
                                                 <StackPanel Width="60" Height="25">
                                                     <Image Width="20" Visibility="{Binding degreeJi}"    Height="25" Source="/Doctor;component/Resources/急.png"></Image>
                                                     <Image Width="20" Visibility="{Binding degreeWei}"  Height="25" Source="/Doctor;component/Resources/危.png"></Image>
@@ -163,12 +163,9 @@
                                     </StackPanel>
                                     <Rectangle  HorizontalAlignment="Stretch"  Width="270" VerticalAlignment="Center" Fill="#e6e6e6" Height="1"/>
                                     <StackPanel x:Name="SQ1Panel" Height="0">
-                                        <Label MaxWidth="255"  FontSize="12" Padding="10,0,0,0">
-                                            
+                                        <Label Height="Auto" FontSize="12" Padding="10,0,0,0">
                                                 <TextBlock x:Name="LinChuang" MaxWidth="230" TextWrapping="Wrap"
     Text="" />
-                                            
-
                                         </Label>
                                     </StackPanel>
 
@@ -181,7 +178,7 @@
                                     </StackPanel>
                                     <Rectangle  HorizontalAlignment="Stretch"  Width="270" VerticalAlignment="Center" Fill="#e6e6e6" Height="1"/>
                                     <StackPanel x:Name="SQ2Panel" Height="0">
-                                        <Label MaxWidth="255"  FontSize="12" Padding="10,0,0,0">
+                                        <Label  Height="Auto"  FontSize="12" Padding="10,0,0,0">
                                                 <TextBlock x:Name="ZhenDuan" MaxWidth="230" TextWrapping="Wrap"
     Text="" />
                                             
@@ -198,7 +195,7 @@
                                     </StackPanel>
                                     <Rectangle  HorizontalAlignment="Stretch"  Width="270" VerticalAlignment="Center" Fill="#e6e6e6" Height="1"/>
                                     <StackPanel x:Name="SQ3Panel" Height="0">
-                                        <Label MaxWidth="255"  FontSize="12" Padding="10,0,0,0">
+                                        <Label  Height="Auto"  FontSize="12" Padding="10,0,0,0">
                                                 <TextBlock x:Name="GaiShu" MaxWidth="230" TextWrapping="Wrap" Text="" />
                                             
 
@@ -214,7 +211,7 @@
                                     </StackPanel>
                                     <Rectangle  HorizontalAlignment="Stretch"  Width="270" VerticalAlignment="Center" Fill="#e6e6e6" Height="1"/>
                                     <StackPanel x:Name="SQ4Panel" Height="0">
-                                        <Label MaxWidth="255"  FontSize="12" Padding="10,0,0,0">
+                                        <Label  Height="Auto"  FontSize="12" Padding="10,0,0,0">
                                                 <TextBlock x:Name="JianCha" MaxWidth="230" TextWrapping="Wrap"
     Text="" />
                                             
@@ -231,7 +228,7 @@
                                     </StackPanel>
                                     <Rectangle  HorizontalAlignment="Stretch"  Width="270" VerticalAlignment="Center" Fill="#e6e6e6" Height="1"/>
                                     <StackPanel x:Name="SQ5Panel" Height="0">
-                                        <Label MaxWidth="255"  FontSize="12" Padding="10,0,0,0">
+                                        <Label  Height="Auto"  FontSize="12" Padding="10,0,0,0">
                                                 <TextBlock x:Name="YuFang" MaxWidth="230" TextWrapping="Wrap"
     Text="" />
 
@@ -247,7 +244,7 @@
                                     </StackPanel>
                                     <Rectangle  HorizontalAlignment="Stretch"  Width="270" VerticalAlignment="Center" Fill="#e6e6e6" Height="1"/>
                                     <StackPanel x:Name="SQ6Panel" Height="0">
-                                        <Label MaxWidth="255"  FontSize="12" Padding="10,0,0,0">
+                                        <Label  Height="Auto"  FontSize="12" Padding="10,0,0,0">
                                                 <TextBlock x:Name="ZhiLiao" MaxWidth="230" TextWrapping="Wrap"
     Text="" />
                                             
@@ -264,7 +261,7 @@
                                     </StackPanel>
                                     <Rectangle  HorizontalAlignment="Stretch"  Width="270" VerticalAlignment="Center" Fill="#e6e6e6" Height="1"/>
                                     <StackPanel x:Name="SQ7Panel" Height="0">
-                                        <Label MaxWidth="255"  FontSize="12" Padding="10,0,0,0">
+                                        <Label  Height="Auto"  FontSize="12" Padding="10,0,0,0">
                                            
                                                 <TextBlock x:Name="YuanZe" MaxWidth="230" TextWrapping="Wrap"
     Text="" />
@@ -282,7 +279,7 @@
                                     </StackPanel>
                                     <Rectangle  HorizontalAlignment="Stretch"  Width="270" VerticalAlignment="Center" Fill="#e6e6e6" Height="1"/>
                                     <StackPanel x:Name="SQ8Panel" Height="0">
-                                        <Label MaxWidth="255"  FontSize="12" Padding="10,0,0,0">
+                                        <Label  Height="Auto"  FontSize="12" Padding="10,0,0,0">
                                             
                                                 <TextBlock x:Name="LiuXing" MaxWidth="230" TextWrapping="Wrap"
     Text="" />
@@ -299,7 +296,7 @@
                                     </StackPanel>
                                     <Rectangle  HorizontalAlignment="Stretch"  Width="270" VerticalAlignment="Center" Fill="#e6e6e6" Height="1"/>
                                     <StackPanel x:Name="SQ9Panel" Height="0">
-                                        <Label MaxWidth="255"  FontSize="12" Padding="10,0,0,0">
+                                        <Label  Height="Auto"  FontSize="12" Padding="10,0,0,0">
                                            
                                                 <TextBlock x:Name="Changjian" MaxWidth="230" TextWrapping="Wrap"
     Text="" />
@@ -382,7 +379,7 @@
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
                                                 <Label  Height="35" Width="80" FontSize="11"  VerticalContentAlignment="Center" VerticalAlignment="Center" >
-                                                    <TextBlock TextTrimming="CharacterEllipsis" Text="{Binding itemName}">
+                                                    <TextBlock TextTrimming="CharacterEllipsis"  Text="{Binding itemName}">
                                                         
                                                     </TextBlock>
                                                 </Label>

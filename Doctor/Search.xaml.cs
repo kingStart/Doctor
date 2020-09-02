@@ -156,5 +156,9 @@ namespace Doctor
             this.Close();
         }
 
+        private void titleLabel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
+        }
     }
 }

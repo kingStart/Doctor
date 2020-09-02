@@ -85,35 +85,6 @@ namespace Doctor
                 this.MainCount.Content = "共计：" + _MainCount.ToString();
                 foreach (var wmDIs in suspectedDisease.wmDiseaseDetailSocketParams)
                 {
-                    if (wmDIs.degree.Contains("危"))
-                    {
-                        wmDIs.degreeWei = "Visible";
-                    }
-                    else
-                    {
-                        wmDIs.degreeWei = "Collapsed";
-                    }
-                    if (wmDIs.degree.Contains("急"))
-                    {
-                        wmDIs.degreeJi = "Visible";
-                    }
-                    else
-                    {
-                        wmDIs.degreeJi = "Collapsed";
-                    }
-                    if (wmDIs.degree.Contains("重"))
-                    {
-                        wmDIs.degreeZ = "Visible";
-                    }
-                    else
-                    {
-                        wmDIs.degreeZ = "Collapsed";
-                    }
-
-
-                    wmDIs.diseaseMatching = string.IsNullOrEmpty(wmDIs.diseaseMatching) ? "--" : wmDIs.diseaseMatching + "%";
-
-
                     if (string.IsNullOrEmpty(wmDIs.icd10))
                     {
                         wmDIs.IsShowIcd = "Visible";
@@ -121,7 +92,36 @@ namespace Doctor
                     else
                     {
                         wmDIs.IsShowIcd = "Collapsed";
+
+                        //自定义的疾病，没有以下属性
+
+                        if (wmDIs.degree.Contains("危"))
+                        {
+                            wmDIs.degreeWei = "Visible";
+                        }
+                        else
+                        {
+                            wmDIs.degreeWei = "Collapsed";
+                        }
+                        if (wmDIs.degree.Contains("急"))
+                        {
+                            wmDIs.degreeJi = "Visible";
+                        }
+                        else
+                        {
+                            wmDIs.degreeJi = "Collapsed";
+                        }
+                        if (wmDIs.degree.Contains("重"))
+                        {
+                            wmDIs.degreeZ = "Visible";
+                        }
+                        else
+                        {
+                            wmDIs.degreeZ = "Collapsed";
+                        }
                     }
+
+                    wmDIs.diseaseMatching = string.IsNullOrEmpty(wmDIs.diseaseMatching) ? "--" : wmDIs.diseaseMatching + "%";
 
                 }
 
@@ -171,12 +171,26 @@ namespace Doctor
         private void StackPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var stackpanel = sender as StackPanel;
-            string icd = stackpanel.Tag.ToString();
-            currentDiseaseDosageSchedule = WebApiService.GetPlanList(icd, suspectedDisease.patient.outpatientId);
-            Plan dlg = new Plan(suspectedDisease, currentDiseaseDosageSchedule);
-            dlg.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            dlg.Show();
-            this.Close();
+            //string icd = stackpanel.Tag;
+
+            var icd = stackpanel.Tag;
+            if (icd != null)
+            {
+                currentDiseaseDosageSchedule = WebApiService.GetPlanList(icd.ToString(), suspectedDisease.patient.outpatientId);
+                Plan dlg = new Plan(suspectedDisease, currentDiseaseDosageSchedule);
+                dlg.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                dlg.Show();
+                this.Close();
+            }
+            else
+            {
+                Plan dlg = new Plan(suspectedDisease, null);
+                dlg.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                dlg.Show();
+                this.Close();
+            }
+
+            
         }
     }
 }

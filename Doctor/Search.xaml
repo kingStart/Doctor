@@ -23,7 +23,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" Background="#3484F5 " >
-            <Label x:Name="titleLabel" Foreground="White"  FontWeight="Bold"  Margin="0,0,0,0.4" HorizontalContentAlignment="Left"    FontSize="15" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="30"   Width="417">增加疾病</Label>
+            <Label x:Name="titleLabel" Foreground="White"  FontWeight="Bold"  Margin="0,0,0,0.4" HorizontalContentAlignment="Left"    FontSize="15" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="30"   Width="417" MouseLeftButtonDown="titleLabel_MouseLeftButtonDown" >增加疾病</Label>
 
             <Button Template="{StaticResource CloseBtn}"  Margin="60,0,0,0" Click="CancelButton_Click" />
         </StackPanel>

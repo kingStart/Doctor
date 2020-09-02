@@ -64,7 +64,7 @@
 
                                             <Label Visibility="{Binding IsShowIcd}" Height="23" Width="60" Background=" #009EFF"  FontSize="9.5" Foreground="White"   HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Center" Content="自定义"/>
                                             <StackPanel Height="40" Orientation="Horizontal">
-                                                <Label Height="40" Width="100" Margin="5,0,0,0" FontSize="12"  FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding disease}"/>
+                                                <Label Height="40" Width="100" Margin="5,0,0,0" FontSize="12"  FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="{Binding disease}"/>
                                                 <StackPanel Width="60" Height="25">
                                                     <Image Width="20" Visibility="{Binding degreeJi}"    Height="25" Source="/Doctor;component/Resources/急.png"></Image>
                                                     <Image Width="20" Visibility="{Binding degreeWei}"  Height="25" Source="/Doctor;component/Resources/危.png"></Image>

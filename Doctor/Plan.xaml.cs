@@ -100,128 +100,9 @@ namespace Doctor
         {
 
             App._suspensionWindow._defultWindow = this;
-            //加载疑似病例模块
-            if (suspectedDisease != null && suspectedDisease.wmDiseaseDetailSocketParams != null)
-            {
-                
-                foreach (var wmDIs in suspectedDisease.wmDiseaseDetailSocketParams)
-                {
-                    if (wmDIs.degree.Contains("危"))
-                    {
-                        wmDIs.degreeWei = "Visible";
-                    }
-                    else
-                    {
-                        wmDIs.degreeWei = "Collapsed";
-                    }
-                    if (wmDIs.degree.Contains("急"))
-                    {
-                        wmDIs.degreeJi = "Visible";
-                    }
-                    else
-                    {
-                        wmDIs.degreeJi = "Collapsed";
-                    }
-                    if (wmDIs.degree.Contains("重"))
-                    {
-                        wmDIs.degreeZ = "Visible";
-                    }
-                    else
-                    {
-                        wmDIs.degreeZ = "Collapsed";
-                    }
-
-                    if (string.IsNullOrEmpty(wmDIs.icd10))
-                    {
-                        wmDIs.IsShowIcd = "Visible";
-                    }
-                    else
-                    {
-                        wmDIs.IsShowIcd = "Collapsed";
-                    }
-
-
-
-                    //这里传过来的diseaseMatching是上个页面传过来的，已经经过处理了，所以不需要在去添加百分号
-                    //wmDIs.diseaseMatching = string.IsNullOrEmpty(wmDIs.diseaseMatching) ? "--" : wmDIs.diseaseMatching + "%";
-
-                }
-                this.YsListDb.ItemsSource = suspectedDisease.wmDiseaseDetailSocketParams;
-
-                string icd = suspectedDisease.wmDiseaseDetailSocketParams.FirstOrDefault().icd10;
-
-
-
-                if (currentDiseaseDosageSchedule == null)
-                {
-                    currentDiseaseDosageSchedule = WebApiService.GetPlanList(icd, suspectedDisease.patient.outpatientId);
-                }
-                //加载疾病知识库
-               
-                LinChuang.Text = currentDiseaseDosageSchedule.clinicalManifestation;
-                ZhenDuan.Text = currentDiseaseDosageSchedule.differentialDiagnosis;
-                GaiShu.Text = currentDiseaseDosageSchedule.diseasesummary;
-                JianCha.Text = currentDiseaseDosageSchedule.laboratoryExamination;
-                YuFang.Text = currentDiseaseDosageSchedule.prophylacticPrognosis;
-                ZhiLiao.Text = currentDiseaseDosageSchedule.treatmentPlan;
-                YuanZe.Text = currentDiseaseDosageSchedule.treatmentPrinciple;
-                LiuXing.Text = currentDiseaseDosageSchedule.epidemiology;
-                Changjian.Text = currentDiseaseDosageSchedule.commonSymptoms;
-
-                //绑定一般治疗方法
-
-                if (currentDiseaseDosageSchedule.drugProgram.Count > 0)
-                {
-                    if (currentDiseaseDosageSchedule.drugProgram[0].childItem != null && currentDiseaseDosageSchedule.drugProgram[0].childItem.Any())
-                    {
-                        proListItem = currentDiseaseDosageSchedule.drugProgram[0].childItem.Take(4).ToList();
-                        ProgramMotherList.ItemsSource = proListItem;
-                    }
-                    else
-                    {
-                        ProgramMotherList.ItemsSource = null;
-                    }
-                    
-                }
-
-
-
-                //绑定药物治疗
-                if (currentDiseaseDosageSchedule.drugProgram.Count >= 2)
-                {
-                    ItemProgramMotherList.ItemsSource = currentDiseaseDosageSchedule.drugProgram[1].childItem;
-                    var tList = currentDiseaseDosageSchedule.drugProgram[1].childItem;
-                    if (tList != null)
-                    {
-                        foreach (var item in tList)
-                        {
-                            if (string.IsNullOrEmpty(item.drugid))
-                            {
-                                item.showDrugId = "Collapsed";
-                            }
-                            else
-                            {
-                                item.showDrugId = "Visibility";
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    ItemProgramMotherList.ItemsSource = null;
-                }
-
-
-                //加载检查方案
-                disCheckItem.ItemsSource = currentDiseaseDosageSchedule.diseaseCheckItem;
-
-            }
-
-
-
 
             //socket传过来的症状
-            if (!string.IsNullOrEmpty(suspectedDisease.patient.symptom)&& suspectedDisease.patient.symptom.Contains(","))
+            if (!string.IsNullOrEmpty(suspectedDisease.patient.symptom) && suspectedDisease.patient.symptom.Contains(","))
             {
                 List<string> pList = suspectedDisease.patient.symptom.Split(new[] { ',', '，' }, StringSplitOptions.RemoveEmptyEntries).ToList();
                 foreach (var u in pList)
@@ -230,51 +111,177 @@ namespace Doctor
                 }
             }
 
-            var newList = new List<PaintName>() { };
 
-            //疑似病例中的症状列表
-            if (!string.IsNullOrEmpty(currentDiseaseDosageSchedule.commonSymptoms))
+            //加载疑似病例模块
+            if (suspectedDisease != null && suspectedDisease.wmDiseaseDetailSocketParams != null)
             {
-                var list = currentDiseaseDosageSchedule.commonSymptoms.Split(new[] { ',', '，' }, StringSplitOptions.RemoveEmptyEntries).ToList();
-
-                foreach (var item in list)
+                
+                foreach (var wmDIs in suspectedDisease.wmDiseaseDetailSocketParams)
                 {
-
-                    PaintName p0 = new PaintName();
-                    p0.Name = item;
-                    
-                    if (_symptomsList.Contains(item))
+                    if (string.IsNullOrEmpty(wmDIs.icd10))
                     {
+                        wmDIs.IsShowIcd = "Visible";
                     }
                     else
                     {
-                        p0.IsSelf = false;
-                    }
-                    newList.Add(p0);
-                }
+                        wmDIs.IsShowIcd = "Collapsed";
 
-                var index = 0;
-                foreach (var item in list)
+
+                        //自定的疾病，没有以下属性
+                        if (wmDIs.degree.Contains("危"))
+                        {
+                            wmDIs.degreeWei = "Visible";
+                        }
+                        else
+                        {
+                            wmDIs.degreeWei = "Collapsed";
+                        }
+                        if (wmDIs.degree.Contains("急"))
+                        {
+                            wmDIs.degreeJi = "Visible";
+                        }
+                        else
+                        {
+                            wmDIs.degreeJi = "Collapsed";
+                        }
+                        if (wmDIs.degree.Contains("重"))
+                        {
+                            wmDIs.degreeZ = "Visible";
+                        }
+                        else
+                        {
+                            wmDIs.degreeZ = "Collapsed";
+                        }
+                    }
+                    //这里传过来的diseaseMatching是上个页面传过来的，已经经过处理了，所以不需要在去添加百分号
+                    //wmDIs.diseaseMatching = string.IsNullOrEmpty(wmDIs.diseaseMatching) ? "--" : wmDIs.diseaseMatching + "%";
+
+                }
+                this.YsListDb.ItemsSource = suspectedDisease.wmDiseaseDetailSocketParams;
+
+                if (!string.IsNullOrEmpty(suspectedDisease.wmDiseaseDetailSocketParams.FirstOrDefault().icd10))
                 {
 
-                    PaintName p0 = new PaintName();
-                    p0.Name = item;
 
-                    if (_symptomsList.Contains(item))
+                    if (currentDiseaseDosageSchedule != null)
                     {
-                        
-                        p0.IsSelf = true;
 
-                        newList.Insert(index, p0);
-                        index++;
+                        //加载疾病知识库
+
+                        LinChuang.Text = currentDiseaseDosageSchedule.clinicalManifestation;
+                        ZhenDuan.Text = currentDiseaseDosageSchedule.differentialDiagnosis;
+                        GaiShu.Text = currentDiseaseDosageSchedule.diseasesummary;
+                        JianCha.Text = currentDiseaseDosageSchedule.laboratoryExamination;
+                        YuFang.Text = currentDiseaseDosageSchedule.prophylacticPrognosis;
+                        ZhiLiao.Text = currentDiseaseDosageSchedule.treatmentPlan;
+                        YuanZe.Text = currentDiseaseDosageSchedule.treatmentPrinciple;
+                        LiuXing.Text = currentDiseaseDosageSchedule.epidemiology;
+                        Changjian.Text = currentDiseaseDosageSchedule.commonSymptoms;
+
+                        //绑定一般治疗方法
+
+                        if (currentDiseaseDosageSchedule.drugProgram.Count > 0)
+                        {
+                            if (currentDiseaseDosageSchedule.drugProgram[0].childItem != null && currentDiseaseDosageSchedule.drugProgram[0].childItem.Any())
+                            {
+                                proListItem = currentDiseaseDosageSchedule.drugProgram[0].childItem.Take(4).ToList();
+                                ProgramMotherList.ItemsSource = proListItem;
+                            }
+                            else
+                            {
+                                ProgramMotherList.ItemsSource = null;
+                            }
+
+                        }
+
+
+
+                        //绑定药物治疗
+                        if (currentDiseaseDosageSchedule.drugProgram.Count >= 2)
+                        {
+                            ItemProgramMotherList.ItemsSource = currentDiseaseDosageSchedule.drugProgram[1].childItem;
+                            var tList = currentDiseaseDosageSchedule.drugProgram[1].childItem;
+                            if (tList != null)
+                            {
+                                foreach (var item in tList)
+                                {
+                                    if (string.IsNullOrEmpty(item.drugid))
+                                    {
+                                        item.showDrugId = "Hidden";
+                                    }
+                                    else
+                                    {
+                                        item.showDrugId = "Visibility";
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            ItemProgramMotherList.ItemsSource = null;
+                        }
+
+
+                        //加载检查方案
+                        disCheckItem.ItemsSource = currentDiseaseDosageSchedule.diseaseCheckItem;
+
+
+
+                        var newList = new List<PaintName>() { };
+
+                        //疑似病例中的症状列表
+                        if (!string.IsNullOrEmpty(currentDiseaseDosageSchedule.commonSymptoms))
+                        {
+                            var list = currentDiseaseDosageSchedule.commonSymptoms.Split(new[] { ',', '，' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+
+                            foreach (var item in list)
+                            {
+
+                                PaintName p0 = new PaintName();
+                                p0.Name = item;
+
+                                if (_symptomsList.Contains(item))
+                                {
+                                }
+                                else
+                                {
+                                    p0.IsSelf = false;
+                                }
+                                newList.Add(p0);
+                            }
+
+                            var index = 0;
+                            foreach (var item in list)
+                            {
+
+                                PaintName p0 = new PaintName();
+                                p0.Name = item;
+
+                                if (_symptomsList.Contains(item))
+                                {
+
+                                    p0.IsSelf = true;
+
+                                    newList.Insert(index, p0);
+                                    index++;
+                                }
+
+                            }
+
+                        }
+                        painetDb.ItemsSource = newList;
                     }
+
+                }
                     
+
                 }
 
-            }
 
 
-            painetDb.ItemsSource = newList;
+
+                
+
 
 
 
@@ -309,125 +316,149 @@ namespace Doctor
 
         private void StackPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
-       
-
             var stackpanel = sender as StackPanel;
-            //stackpanel.Background = System.Windows.Media.Brushes.BlueViolet;
-            string icd = stackpanel.Tag.ToString();
+            var tag = stackpanel.Tag;
 
-            //加载疾病知识库
-            currentDiseaseDosageSchedule =  WebApiService.GetPlanList(icd, suspectedDisease.patient.outpatientId);
-            if (currentDiseaseDosageSchedule == null)
+            if (tag != null)
             {
-                return;
-            }
+                var icd = tag.ToString();
 
-            LinChuang.Text = currentDiseaseDosageSchedule.clinicalManifestation;
-            ZhenDuan.Text = currentDiseaseDosageSchedule.differentialDiagnosis;
-            GaiShu.Text = currentDiseaseDosageSchedule.diseasesummary;
-            JianCha.Text = currentDiseaseDosageSchedule.laboratoryExamination;
-            YuFang.Text = currentDiseaseDosageSchedule.prophylacticPrognosis;
-            ZhiLiao.Text = currentDiseaseDosageSchedule.treatmentPlan;
-            YuanZe.Text = currentDiseaseDosageSchedule.treatmentPrinciple;
-            LiuXing.Text = currentDiseaseDosageSchedule.epidemiology;
-            Changjian.Text = currentDiseaseDosageSchedule.commonSymptoms;
-
-            //绑定一般治疗方法
-
-            if (currentDiseaseDosageSchedule.drugProgram.Count > 0)
-            {
-                if (currentDiseaseDosageSchedule.drugProgram[0].childItem != null && currentDiseaseDosageSchedule.drugProgram[0].childItem.Any())
+                //加载疾病知识库
+                currentDiseaseDosageSchedule = WebApiService.GetPlanList(icd, suspectedDisease.patient.outpatientId);
+                if (currentDiseaseDosageSchedule == null)
                 {
-                    proListItem = currentDiseaseDosageSchedule.drugProgram[0].childItem.Take(4).ToList();
-                    ProgramMotherList.ItemsSource = proListItem;
-                }
-                else
-                {
-                    ProgramMotherList.ItemsSource = null;
+                    return;
                 }
 
-            }
+                LinChuang.Text = currentDiseaseDosageSchedule.clinicalManifestation;
+                ZhenDuan.Text = currentDiseaseDosageSchedule.differentialDiagnosis;
+                GaiShu.Text = currentDiseaseDosageSchedule.diseasesummary;
+                JianCha.Text = currentDiseaseDosageSchedule.laboratoryExamination;
+                YuFang.Text = currentDiseaseDosageSchedule.prophylacticPrognosis;
+                ZhiLiao.Text = currentDiseaseDosageSchedule.treatmentPlan;
+                YuanZe.Text = currentDiseaseDosageSchedule.treatmentPrinciple;
+                LiuXing.Text = currentDiseaseDosageSchedule.epidemiology;
+                Changjian.Text = currentDiseaseDosageSchedule.commonSymptoms;
 
-            //绑定药物治疗
-            if (currentDiseaseDosageSchedule.drugProgram.Count >= 2)
-            {
+                //绑定一般治疗方法
 
-                var tList = currentDiseaseDosageSchedule.drugProgram[1].childItem;
-                if (tList != null)
+                if (currentDiseaseDosageSchedule.drugProgram.Count > 0)
                 {
-                    foreach (var item in tList)
+                    if (currentDiseaseDosageSchedule.drugProgram[0].childItem != null && currentDiseaseDosageSchedule.drugProgram[0].childItem.Any())
                     {
-                        if (string.IsNullOrEmpty(item.drugid))
-                        {
-                            item.showDrugId = "Collapsed";
-                        }
-                        else
-                        {
-                            item.showDrugId = "Visibility";
-                        }
-                    }
-
-                    ItemProgramMotherList.ItemsSource = currentDiseaseDosageSchedule.drugProgram[1].childItem;
-                }
-               
-            }
-            else
-            {
-                ItemProgramMotherList.ItemsSource = null;
-            }
-
-            //加载检查方案
-
-            disCheckItem.ItemsSource = currentDiseaseDosageSchedule.diseaseCheckItem;
-
-
-
-            var newList = new List<PaintName>() { };
-
-            //疑似病例中的症状列表
-            if (!string.IsNullOrEmpty(currentDiseaseDosageSchedule.commonSymptoms))
-            {
-                var list = currentDiseaseDosageSchedule.commonSymptoms.Split(new[] { ',', '，' }, StringSplitOptions.RemoveEmptyEntries).ToList();
-
-                foreach (var item in list)
-                {
-
-                    PaintName p0 = new PaintName();
-                    p0.Name = item;
-
-                    if (_symptomsList.Contains(item))
-                    {
+                        proListItem = currentDiseaseDosageSchedule.drugProgram[0].childItem.Take(4).ToList();
+                        ProgramMotherList.ItemsSource = proListItem;
                     }
                     else
                     {
-                        p0.IsSelf = false;
+                        ProgramMotherList.ItemsSource = null;
                     }
-                    newList.Add(p0);
+
                 }
 
-                var index = 0;
-                foreach (var item in list)
+                //绑定药物治疗
+                if (currentDiseaseDosageSchedule.drugProgram.Count >= 2)
                 {
 
-                    PaintName p0 = new PaintName();
-                    p0.Name = item;
-
-                    if (_symptomsList.Contains(item))
+                    var tList = currentDiseaseDosageSchedule.drugProgram[1].childItem;
+                    if (tList != null)
                     {
+                        foreach (var item in tList)
+                        {
+                            if (string.IsNullOrEmpty(item.drugid))
+                            {
+                                item.showDrugId = "Hidden";
+                            }
+                            else
+                            {
+                                item.showDrugId = "Visibility";
+                            }
+                        }
 
-                        p0.IsSelf = true;
-
-                        newList.Insert(index, p0);
-                        index++;
+                        ItemProgramMotherList.ItemsSource = currentDiseaseDosageSchedule.drugProgram[1].childItem;
                     }
 
                 }
+                else
+                {
+                    ItemProgramMotherList.ItemsSource = null;
+                }
 
+                //加载检查方案
+
+                disCheckItem.ItemsSource = currentDiseaseDosageSchedule.diseaseCheckItem;
+
+
+
+                var newList = new List<PaintName>() { };
+
+                //疑似病例中的症状列表
+                if (!string.IsNullOrEmpty(currentDiseaseDosageSchedule.commonSymptoms))
+                {
+                    var list = currentDiseaseDosageSchedule.commonSymptoms.Split(new[] { ',', '，' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+
+                    foreach (var item in list)
+                    {
+
+                        PaintName p0 = new PaintName();
+                        p0.Name = item;
+
+                        if (_symptomsList.Contains(item))
+                        {
+                        }
+                        else
+                        {
+                            p0.IsSelf = false;
+                        }
+                        newList.Add(p0);
+                    }
+
+                    var index = 0;
+                    foreach (var item in list)
+                    {
+
+                        PaintName p0 = new PaintName();
+                        p0.Name = item;
+
+                        if (_symptomsList.Contains(item))
+                        {
+
+                            p0.IsSelf = true;
+
+                            newList.Insert(index, p0);
+                            index++;
+                        }
+
+                    }
+                }
+                painetDb.ItemsSource = newList;
             }
+            else
+            {
+                {
+                    LinChuang.Text = "";
+                    ZhenDuan.Text = "";
+                    GaiShu.Text ="";
+                    JianCha.Text = "";
+                    YuFang.Text = "";
+                    ZhiLiao.Text = "";
+                    YuanZe.Text = "";
+                    LiuXing.Text = "";
+                    Changjian.Text = "";
 
+                    //绑定一般治疗方法
 
-            painetDb.ItemsSource = newList;
+                    ProgramMotherList.ItemsSource = null;
+
+                    //绑定药物治疗
+                    ItemProgramMotherList.ItemsSource = null;
+                    //加载检查方案
+                    disCheckItem.ItemsSource = null;
+                    //疑似病例中的症状列表
+                    painetDb.ItemsSource = null;
+                }
+            }
+            
         }
 
         private void Label_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -453,7 +484,7 @@ namespace Doctor
                 this.ButtonSQ1.Template = this.FindResource("ShouQi") as ControlTemplate;
                 SQ1Panel.Visibility = Visibility.Visible;
                 SQ1Status = 0;
-                SQ1Panel.Height = 150;
+                SQ1Panel.Height = (SQ1Panel.Children[0] as Label).Height; ;
             }
            
         }
@@ -472,7 +503,7 @@ namespace Doctor
                 this.ButtonSQ2.Template = this.FindResource("ShouQi") as ControlTemplate;
                 SQ2Panel.Visibility = Visibility.Visible;
                 SQ2Status = 0;
-                SQ2Panel.Height = 150;
+                SQ2Panel.Height = (SQ2Panel.Children[0] as Label).Height;
             }
         }
 
@@ -490,7 +521,7 @@ namespace Doctor
                 this.ButtonSQ3.Template = this.FindResource("ShouQi") as ControlTemplate;
                 SQ3Panel.Visibility = Visibility.Visible;
                 SQ3Status = 0;
-                SQ3Panel.Height = 150;
+                SQ3Panel.Height = (SQ3Panel.Children[0] as Label).Height; ;
             }
         }
 
@@ -508,7 +539,7 @@ namespace Doctor
                 this.ButtonSQ4.Template = this.FindResource("ShouQi") as ControlTemplate;
                 SQ4Panel.Visibility = Visibility.Visible;
                 SQ4Status = 0;
-                SQ4Panel.Height = 150;
+                SQ4Panel.Height = (SQ4Panel.Children[0] as Label).Height; ;
             }
         }
 
@@ -526,7 +557,7 @@ namespace Doctor
                 this.ButtonSQ5.Template = this.FindResource("ShouQi") as ControlTemplate;
                 SQ5Panel.Visibility = Visibility.Visible;
                 SQ5Status = 0;
-                SQ5Panel.Height = 150;
+                SQ5Panel.Height = (SQ5Panel.Children[0] as Label).Height; ;
             }
         }
 
@@ -544,7 +575,7 @@ namespace Doctor
                 this.ButtonSQ6.Template = this.FindResource("ShouQi") as ControlTemplate;
                 SQ6Panel.Visibility = Visibility.Visible;
                 SQ6Status = 0;
-                SQ6Panel.Height = 150;
+                SQ6Panel.Height = (SQ6Panel.Children[0] as Label).Height; ;
             }
         }
 
@@ -562,7 +593,7 @@ namespace Doctor
                 this.ButtonSQ7.Template = this.FindResource("ShouQi") as ControlTemplate;
                 SQ7Panel.Visibility = Visibility.Visible;
                 SQ7Status = 0;
-                SQ7Panel.Height = 150;
+                SQ7Panel.Height = (SQ7Panel.Children[0] as Label).Height; ;
             }
 
         }
@@ -580,7 +611,7 @@ namespace Doctor
                 this.ButtonSQ8.Template = this.FindResource("ShouQi") as ControlTemplate;
                 SQ8Panel.Visibility = Visibility.Visible;
                 SQ8Status = 0;
-                SQ8Panel.Height = 150;
+                SQ8Panel.Height = (SQ8Panel.Children[0] as Label).Height; ;
             }
 
         }
@@ -598,7 +629,7 @@ namespace Doctor
                 this.ButtonSQ9.Template = this.FindResource("ShouQi") as ControlTemplate;
                 SQ9Panel.Visibility = Visibility.Visible;
                 SQ9Status = 0;
-                SQ9Panel.Height = 150;
+                SQ9Panel.Height = (SQ9Panel.Children[0] as Label).Height;
             }
 
         }
@@ -661,7 +692,7 @@ namespace Doctor
                 this.ButtonSQ1.Template = this.FindResource("ShouQi") as ControlTemplate;
                 SQ1Panel.Visibility = Visibility.Visible;
                 SQ1Status = 0;
-                SQ1Panel.Height = 150;
+                SQ1Panel.Height = (SQ1Panel.Children[0] as Label).Height;
             }
         }
 
@@ -679,7 +710,8 @@ namespace Doctor
                 this.ButtonSQ2.Template = this.FindResource("ShouQi") as ControlTemplate;
                 SQ2Panel.Visibility = Visibility.Visible;
                 SQ2Status = 0;
-                SQ2Panel.Height = 150;
+
+                SQ2Panel.Height = (SQ2Panel.Children[0] as Label).Height;
             }
         }
 
@@ -697,7 +729,7 @@ namespace Doctor
                 this.ButtonSQ3.Template = this.FindResource("ShouQi") as ControlTemplate;
                 SQ3Panel.Visibility = Visibility.Visible;
                 SQ3Status = 0;
-                SQ3Panel.Height = 150;
+                SQ3Panel.Height = (SQ3Panel.Children[0] as Label).Height;
             }
         }
 
@@ -715,7 +747,7 @@ namespace Doctor
                 this.ButtonSQ4.Template = this.FindResource("ShouQi") as ControlTemplate;
                 SQ4Panel.Visibility = Visibility.Visible;
                 SQ4Status = 0;
-                SQ4Panel.Height = 150;
+                SQ4Panel.Height = (SQ4Panel.Children[0] as Label).Height; ;
             }
         }
 
@@ -733,7 +765,7 @@ namespace Doctor
                 this.ButtonSQ5.Template = this.FindResource("ShouQi") as ControlTemplate;
                 SQ5Panel.Visibility = Visibility.Visible;
                 SQ5Status = 0;
-                SQ5Panel.Height = 150;
+                SQ5Panel.Height = (SQ5Panel.Children[0] as Label).Height; ;
             }
         }
 
@@ -751,7 +783,7 @@ namespace Doctor
                 this.ButtonSQ6.Template = this.FindResource("ShouQi") as ControlTemplate;
                 SQ6Panel.Visibility = Visibility.Visible;
                 SQ6Status = 0;
-                SQ6Panel.Height = 150;
+                SQ6Panel.Height = (SQ6Panel.Children[0] as Label).Height; ;
             }
         }
 
@@ -769,7 +801,7 @@ namespace Doctor
                 this.ButtonSQ7.Template = this.FindResource("ShouQi") as ControlTemplate;
                 SQ7Panel.Visibility = Visibility.Visible;
                 SQ7Status = 0;
-                SQ7Panel.Height = 150;
+                SQ7Panel.Height = (SQ7Panel.Children[0] as Label).Height; ;
             }
 
         }
@@ -788,7 +820,7 @@ namespace Doctor
                 this.ButtonSQ8.Template = this.FindResource("ShouQi") as ControlTemplate;
                 SQ8Panel.Visibility = Visibility.Visible;
                 SQ8Status = 0;
-                SQ8Panel.Height = 150;
+                SQ8Panel.Height = (SQ8Panel.Children[0] as Label).Height; ;
             }
         }
 
@@ -806,7 +838,7 @@ namespace Doctor
                 this.ButtonSQ9.Template = this.FindResource("ShouQi") as ControlTemplate;
                 SQ9Panel.Visibility = Visibility.Visible;
                 SQ9Status = 0;
-                SQ9Panel.Height = 150;
+                SQ9Panel.Height = (SQ9Panel.Children[0] as Label).Height; ;
             }
         }
     }
