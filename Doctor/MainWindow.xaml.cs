@@ -191,7 +191,7 @@ namespace Doctor
                 //发出请求，查询
                 foreach (var s in _symptomResultList)
                 {
-                    sn = s.symptom + ",";
+                    sn += s.symptom + ",";
                 }
                 _diagnosisDiseaseList.Clear();
                 _symptomResultList2.Clear();
