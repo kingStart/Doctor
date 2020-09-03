@@ -121,6 +121,9 @@ namespace Doctor
                     if (string.IsNullOrEmpty(wmDIs.icd10))
                     {
                         wmDIs.IsShowIcd = "Visible";
+                        wmDIs.degreeWei = "Collapsed";
+                        wmDIs.degreeJi = "Collapsed";
+                        wmDIs.degreeZ = "Collapsed";
                     }
                     else
                     {

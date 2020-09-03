@@ -386,7 +386,7 @@
                                             <Label  Visibility="{Binding IsShowIcd}" Height="23" Width="60" Background=" #009EFF"  FontSize="9.5" Foreground="White" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" VerticalAlignment="Center" Content="自定义"/>
                                             <StackPanel Height="40" Orientation="Horizontal">
                                                 <Label Height="40" Width="90" Margin="5,0,0,0" FontSize="12"  FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="{Binding disease}"/>
-                                                <StackPanel Width="60" Height="25">
+                                                <StackPanel Width="60" Height="25" Orientation="Horizontal">
                                                     <Image Width="20" Visibility="{Binding degreeJi}"    Height="25" Source="/Doctor;component/Resources/急.png"></Image>
                                                     <Image Width="20" Visibility="{Binding degreeWei}"  Height="25" Source="/Doctor;component/Resources/危.png"></Image>
                                                     <Image Width="20" Visibility="{Binding degreeZ}"  Height="25" Source="/Doctor;component/Resources/重.png"></Image>
@@ -407,7 +407,7 @@
                         <StackPanel Grid.Row="3" Orientation="Horizontal">
                             <Image HorizontalAlignment="Center" VerticalAlignment="Center" Width="20" Height="20" Source="/Doctor;component/Resources/记录 .png"></Image>
                             <Label x:Name="totalCountLabel" Height="40" Width="120"  FontSize="13" Foreground="Black"  FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="共计：0"/>
-                            <Button Margin="80,0,0,0" Background="White" BorderBrush="White"  FontWeight="Bold" Foreground="#009EFF" HorizontalContentAlignment="Right" Width="70" Click="MoreButton_Click">查看更多>></Button>
+                            <Button Visibility="Hidden" x:Name="More_Btn" Margin="80,0,0,0" Background="White" BorderBrush="White"  FontWeight="Bold" Foreground="#009EFF" HorizontalContentAlignment="Right" Width="70" Click="MoreButton_Click">查看更多>></Button>
                         </StackPanel>
                     </Grid>
                 </StackPanel>

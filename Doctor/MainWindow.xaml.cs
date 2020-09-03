@@ -49,6 +49,8 @@ namespace Doctor
         private PatientInfo _patieneInfo;
         public static MainWindow mainWindow;
 
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -198,13 +200,9 @@ namespace Doctor
 
                 if (string.IsNullOrEmpty(sn))
                 {
-
-
                     this.YsListDb.ItemsSource = _diagnosisDiseaseList;
-                    this.totalCountLabel.Content = "共计：0" ;
-
-
-
+                    this.totalCountLabel.Content = "共计：0";
+                    More_Btn.Visibility = Visibility.Hidden;
                     return;
                 }
 
@@ -213,8 +211,6 @@ namespace Doctor
 
                 var suspectedDisease = list.diagnosisDisease;
                 var sList = list.concomitant;
-
-
                 //加载疑似病例模块
                 if (suspectedDisease != null && suspectedDisease.Any())
                 {
@@ -225,6 +221,9 @@ namespace Doctor
                         if (string.IsNullOrEmpty(wmDIs.icd10))
                         {
                             wmDIs.IsShowIcd = "Visible";
+                            wmDIs.degreeWei = "Collapsed";
+                            wmDIs.degreeJi = "Collapsed";
+                            wmDIs.degreeZ = "Collapsed";
                         }
                         else
                         {
@@ -255,26 +254,25 @@ namespace Doctor
                                 wmDIs.degreeZ = "Collapsed";
                             }
                         }
-
-
-
-
                         wmDIs.diseaseMatching = string.IsNullOrEmpty(wmDIs.diseaseMatching)?"--" : wmDIs.diseaseMatching + "%";
                         _diagnosisDiseaseList.Add(wmDIs);
                     }
-                    if (_diagnosisDiseaseList.Count > 7)
+                    if (_diagnosisDiseaseList.Count > 9)
                     {
-                        this.YsListDb.ItemsSource = _diagnosisDiseaseList.Take(7);
+                        this.YsListDb.ItemsSource = _diagnosisDiseaseList.Take(9);
+                        More_Btn.Visibility = Visibility.Visible;
                     }
                     else
                     {
                         this.YsListDb.ItemsSource = _diagnosisDiseaseList;
+                        More_Btn.Visibility = Visibility.Hidden;
                     }
                     this.totalCountLabel.Content = "共计：" + suspectedDisease.Count();
                 }
                 else
                 {
                     this.totalCountLabel.Content = "共计：0";
+                    More_Btn.Visibility = Visibility.Hidden;
                 }
 
                 _symptomResultList2.Clear();

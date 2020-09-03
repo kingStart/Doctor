@@ -88,6 +88,9 @@ namespace Doctor
                     if (string.IsNullOrEmpty(wmDIs.icd10))
                     {
                         wmDIs.IsShowIcd = "Visible";
+                        wmDIs.degreeWei = "Collapsed";
+                        wmDIs.degreeJi = "Collapsed";
+                        wmDIs.degreeZ = "Collapsed";
                     }
                     else
                     {
@@ -128,10 +131,13 @@ namespace Doctor
                 if (suspectedDisease.wmDiseaseDetailSocketParams.Count > 7)
                 {
                     this.YsListDb.ItemsSource = suspectedDisease.wmDiseaseDetailSocketParams.Take(7);
+                    
+                    More_Btn.Visibility = Visibility.Visible;
                 }
                 else
                 {
                     this.YsListDb.ItemsSource = suspectedDisease.wmDiseaseDetailSocketParams;
+                    More_Btn.Visibility = Visibility.Hidden;
                 }
 
                 
