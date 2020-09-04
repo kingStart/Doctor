@@ -44,6 +44,7 @@ namespace Doctor
         public static int SQ7Status = 1;
         public static int SQ8Status = 1;
         public static int SQ9Status = 1;
+        public static int SQ10Status = 1;
 
         public List<ProgramItem> proListItem;
 
@@ -342,7 +343,7 @@ namespace Doctor
                 YuanZe.Text = currentDiseaseDosageSchedule.treatmentPrinciple;
                 LiuXing.Text = currentDiseaseDosageSchedule.epidemiology;
                 Changjian.Text = currentDiseaseDosageSchedule.commonSymptoms;
-
+                BingYin.Text= currentDiseaseDosageSchedule.etiology;
                 //绑定一般治疗方法
 
                 if (currentDiseaseDosageSchedule.drugProgram.Count > 0)
@@ -636,6 +637,25 @@ namespace Doctor
             }
 
         }
+
+        private void ButtonSQ10_Click(object sender, RoutedEventArgs e)
+        {
+            if (SQ10Status == 0)
+            {
+                SQ10Status = 1;
+                this.ButtonSQ10.Template = this.FindResource("ZhanKai") as ControlTemplate;
+                SQ10Panel.Visibility = Visibility.Hidden;
+                SQ9Panel.Height = 0;
+            }
+            else
+            {
+                this.ButtonSQ10.Template = this.FindResource("ShouQi") as ControlTemplate;
+                SQ10Panel.Visibility = Visibility.Visible;
+                SQ10Status = 0;
+                SQ10Panel.Height = (SQ10Panel.Children[0] as Label).Height;
+            }
+
+        }
         /// <summary>
         /// 药品说明
         /// </summary>
@@ -733,6 +753,24 @@ namespace Doctor
                 SQ3Panel.Visibility = Visibility.Visible;
                 SQ3Status = 0;
                 SQ3Panel.Height = (SQ3Panel.Children[0] as Label).Height;
+            }
+        }
+
+        private void StackPanel_MouseLeftButtonDown_10(object sender, MouseButtonEventArgs e)
+        {
+            if (SQ10Status == 0)
+            {
+                SQ10Status = 1;
+                this.ButtonSQ10.Template = this.FindResource("ZhanKai") as ControlTemplate;
+                SQ10Panel.Visibility = Visibility.Hidden;
+                SQ10Panel.Height = 0;
+            }
+            else
+            {
+                this.ButtonSQ10.Template = this.FindResource("ShouQi") as ControlTemplate;
+                SQ10Panel.Visibility = Visibility.Visible;
+                SQ10Status = 0;
+                SQ10Panel.Height = (SQ10Panel.Children[0] as Label).Height;
             }
         }
 

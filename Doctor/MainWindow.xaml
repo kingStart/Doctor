@@ -391,8 +391,8 @@
                                                     <Image Width="20" Visibility="{Binding degreeWei}"  Height="25" Source="/Doctor;component/Resources/危.png"></Image>
                                                     <Image Width="20" Visibility="{Binding degreeZ}"  Height="25" Source="/Doctor;component/Resources/重.png"></Image>
                                                 </StackPanel>
-                                                <Label Height="40" Width="55" Margin="5,0,0,5" FontSize="13"  FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="置信度："/>
-                                                <Label Height="40"  Width="50"  FontSize="13" Foreground="#009EFF"  FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="{Binding diseaseMatching}"/>
+                                                <Label Height="40" Width="55" Margin="5,0,0,5" FontSize="12"  FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="置信度："/>
+                                                <Label Height="40"  Width="50"  FontSize="12" Foreground="#009EFF"  FontWeight="Bold" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Content="{Binding diseaseMatching}"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </DataTemplate>
